@@ -5,8 +5,9 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import {FwbButton, FwbInput} from "flowbite-vue";
 
-defineProps<{
+const props = defineProps<{
     status?: string;
 }>();
 
@@ -23,7 +24,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <div class="mb-4 text-sm text-purple-600 dark:text-purple-400">
+        <div class="mb-4 text-sm text-blue-600 dark:text-blue-400">
             Forgot your password? No problem. Just let us know your email address and we will email you a password reset
             link that will allow you to choose a new one.
         </div>
@@ -34,25 +35,19 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
+                <fwb-input
                     type="email"
-                    class="mt-1 block w-full"
                     v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
                 />
-
-                <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <fwb-button :loading="form.processing" :disabled="form.processing">
                     Email Password Reset Link
-                </PrimaryButton>
+                </fwb-button>
             </div>
         </form>
     </GuestLayout>

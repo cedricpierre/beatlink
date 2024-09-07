@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import DangerButton from '@/Components/DangerButton.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import Modal from '@/Components/Modal.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { useForm } from '@inertiajs/vue3';
-import { nextTick, ref } from 'vue';
+import {useForm} from '@inertiajs/vue3';
+import {nextTick, ref} from 'vue';
+import {FwbButton, FwbInput, FwbModal} from "flowbite-vue";
+import BCard from "@/Components/BCard.vue";
 
-const confirmingUserDeletion = ref(false);
+const confirmingDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
 
 const form = useForm({
@@ -16,16 +12,13 @@ const form = useForm({
 });
 
 const confirmUserDeletion = () => {
-    confirmingUserDeletion.value = true;
-
-    nextTick(() => passwordInput.value?.focus());
+    confirmingDeletion.value = true;
 };
 
-const deleteUser = () => {
+const destroy = () => {
     form.delete(route('profile.destroy'), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
-        onError: () => passwordInput.value?.focus(),
         onFinish: () => {
             form.reset();
         },
@@ -33,65 +26,60 @@ const deleteUser = () => {
 };
 
 const closeModal = () => {
-    confirmingUserDeletion.value = false;
+    confirmingDeletion.value = false;
 
     form.reset();
 };
 </script>
 
 <template>
-    <section class="space-y-6">
-        <header>
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Delete Account</h2>
+    <BCard>
+        <template #header>
+            Delete Account
+        </template>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
-                your account, please download any data or information that you wish to retain.
-            </p>
-        </header>
+        <template #subtitle>
+            Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
+            your account, please download any data or information that you wish to retain.
+        </template>
 
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <fwb-button color="red" class="mt-4" @click="confirmUserDeletion">Delete Account</fwb-button>
 
-        <Modal :show="confirmingUserDeletion" @close="closeModal">
-            <div class="p-6">
-                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <fwb-modal v-if="confirmingDeletion" @close="closeModal">
+            <template #header>
+                <h2>
                     Are you sure you want to delete your account?
                 </h2>
+            </template>
+            <template #body>
 
-                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                <p class="mt-1 text-sm text-blue-600 dark:text-blue-400">
                     Once your account is deleted, all of its resources and data will be permanently deleted. Please
                     enter your password to confirm you would like to permanently delete your account.
                 </p>
 
                 <div class="mt-6">
-                    <InputLabel for="password" value="Password" class="sr-only" />
-
-                    <TextInput
-                        id="password"
+                    <fwb-input
+                        label="Password"
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
-                        class="mt-1 block w-3/4"
                         placeholder="Password"
-                        @keyup.enter="deleteUser"
+                        @keyup.enter="destroy"
                     />
-
-                    <InputError :message="form.errors.password" class="mt-2" />
                 </div>
-
-                <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
-
-                    <DangerButton
-                        class="ms-3"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                        @click="deleteUser"
-                    >
-                        Delete Account
-                    </DangerButton>
-                </div>
-            </div>
-        </Modal>
-    </section>
+            </template>
+            <template #footer>
+                <fwb-button color="alternative" @click="closeModal"> Cancel</fwb-button>
+                <fwb-button color="red"
+                            class="ms-3"
+                            :loading="form.processing"
+                            :disabled="form.processing"
+                            @click="destroy"
+                >
+                    Delete Account
+                </fwb-button>
+            </template>
+        </fwb-modal>
+    </BCard>
 </template>

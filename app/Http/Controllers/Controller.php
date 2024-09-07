@@ -7,13 +7,19 @@ use Inertia\Response;
 
 class Controller extends BaseController
 {
-    public function index(): Response
+    public function home(): Response
     {
         return Inertia::render('Welcome');
     }
 
-    public function pricings(): Response
+    public function dashboard(): Response
     {
-        return Inertia::render('Pricings');
+        return Inertia::render('Dashboard');
     }
+
+    public function pricing(): Response
+    {
+        return Inertia::render('Pricing');
+    }
+
 }

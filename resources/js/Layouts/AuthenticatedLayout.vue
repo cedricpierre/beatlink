@@ -1,146 +1,82 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import { Link } from '@inertiajs/vue3';
-import Background from "@/Layouts/Background.vue";
-
-const showingNavigationDropdown = ref(false);
+import {Link} from '@inertiajs/vue3';
+import Background from "@/Components/Background.vue";
+import {FwbButton, FwbDropdown, FwbListGroup, FwbListGroupItem, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
+import {UserIcon} from '@heroicons/vue/16/solid'
+import Footer from "@/Components/Footer.vue";
 </script>
 
 <template>
     <Background>
-        <nav class="dark:bg-purple-800 dark:bg-opacity-10 shadow">
-            <!-- Primary Navigation Menu -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <!-- Logo -->
-                        <div class="shrink-0 flex items-center">
-                            <Link :href="route('dashboard')">
-                                <ApplicationLogo
-                                    class="block h-9 w-auto fill-current text-purple-800 dark:text-purple-200"
-                                />
-                            </Link>
-                            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                Dashboard
-                            </NavLink>
-                        </div>
-                    </div>
-
-                    <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <!-- Settings Dropdown -->
-                        <div class="ms-3 relative">
-                            <Dropdown align="right" width="48">
-                                <template #trigger>
-                                    <span class="inline-flex rounded-md">
-                                        <button
-                                            type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-purple-500 dark:text-purple-400 bg-white dark:bg-purple-800 hover:text-purple-700 dark:hover:text-purple-300 focus:outline-none transition ease-in-out duration-150"
-                                        >
-                                            {{ $page.props.auth.user.name }}
-
-                                            <svg
-                                                class="ms-2 -me-0.5 h-4 w-4"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </span>
-                                </template>
-
-                                <template #content>
-                                    <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                    <DropdownLink :href="route('logout')" method="post" as="button">
-                                        Log Out
-                                    </DropdownLink>
-                                </template>
-                            </Dropdown>
-                        </div>
-                    </div>
-
-                    <!-- Hamburger -->
-                    <div class="-me-2 flex items-center sm:hidden">
-                        <button
-                            @click="showingNavigationDropdown = !showingNavigationDropdown"
-                            class="inline-flex items-center justify-center p-2 rounded-md text-purple-400 dark:text-purple-500 hover:text-purple-500 dark:hover:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900 focus:outline-none focus:bg-purple-100 dark:focus:bg-purple-900 focus:text-purple-500 dark:focus:text-purple-400 transition duration-150 ease-in-out"
-                        >
-                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path
-                                    :class="{
-                                        hidden: showingNavigationDropdown,
-                                        'inline-flex': !showingNavigationDropdown,
-                                    }"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                                <path
-                                    :class="{
-                                        hidden: !showingNavigationDropdown,
-                                        'inline-flex': showingNavigationDropdown,
-                                    }"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Responsive Navigation Menu -->
-            <div
-                :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
-                class="sm:hidden"
-            >
-                <div class="pt-2 pb-3 space-y-1">
-                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+        <fwb-navbar>
+            <template #logo>
+                <ApplicationLogo/>
+            </template>
+            <template #default="{isShowMenu}">
+                <fwb-navbar-collapse :is-show-menu="isShowMenu">
+                    <fwb-navbar-link :link="route('dashboard')" :is-active="route().current() === 'dashboard'">
                         Dashboard
-                    </NavLink>
-                </div>
-
-                <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-purple-200 dark:border-purple-600">
-                    <div class="px-4">
-                        <div class="font-medium text-base text-purple-800 dark:text-purple-200">
-                            {{ $page.props.auth.user.name }}
-                        </div>
-                        <div class="font-medium text-sm text-purple-500">{{ $page.props.auth.user.email }}</div>
-                    </div>
-
-                    <div class="mt-3 space-y-1">
-                        <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                            Log Out
-                        </ResponsiveNavLink>
-                    </div>
-                </div>
-            </div>
-        </nav>
+                    </fwb-navbar-link>
+                    <fwb-navbar-link :link="route('campaigns.list')" :is-active="route().current() === 'campaigns.list'">
+                        Campaigns
+                    </fwb-navbar-link>
+                    <fwb-navbar-link link="#">
+                        Contact
+                    </fwb-navbar-link>
+                </fwb-navbar-collapse>
+            </template>
+            <template #right-side>
+                <fwb-dropdown text="bottom" align-to-end>
+                    <template #trigger>
+                        <fwb-button>
+                            <div class="flex flex-row align-center justify-center">
+                                <UserIcon class="h-4 mr-2"></UserIcon>
+                                {{ $page.props.auth.user.name }}
+                            </div>
+                        </fwb-button>
+                    </template>
+                    <fwb-list-group>
+                        <fwb-list-group-item>
+                            <Link :href="route('profile.edit')">Profile</Link>
+                        </fwb-list-group-item>
+                        <fwb-list-group-item>
+                            <Link :href="route('logout')" method="post" as="button">Log Out</Link>
+                        </fwb-list-group-item>
+                    </fwb-list-group>
+                </fwb-dropdown>
+            </template>
+        </fwb-navbar>
 
         <!-- Page Heading -->
-        <header class="bg-white dark:bg-purple-950 dark:bg-opacity-10 dark:text-white shadow" v-if="$slots.header">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <slot name="header" />
+        <header
+            class="h-20 flex items-center bg-blue-900 text-white dark:bg-blue-600 dark:text-white"
+                v-if="$slots.header"
+        >
+            <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg">
+                <div class="flex flex-1 items-center">
+                    <div class="flex flex-grow items-center">
+                        <span class="leading-tight font-extrabold font-2xl" v-if="$slots.header">
+                            <slot name="header"/>
+                        </span>
+                        <span class="ml-4 font-sm text-blue-300" v-if="$slots.subtitle">
+                            <slot name="subtitle"/>
+                        </span>
+                    </div>
+                    <div class="flex shrink-0">
+                        <span class="ml-4 font-sm text-blue-300 space-x-2" v-if="$slots.actions">
+                            <slot name="actions"/>
+                        </span>
+                    </div>
+                </div>
             </div>
         </header>
 
         <!-- Page Content -->
-        <main>
-            <slot />
+        <main class="container mx-auto mt-4">
+            <slot/>
         </main>
+
+        <Footer></Footer>
     </Background>
 </template>
