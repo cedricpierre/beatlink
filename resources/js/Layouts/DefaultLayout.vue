@@ -29,7 +29,7 @@ import {FwbButton, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-v
             </template>
             <template #right-side>
                 <fwb-navbar-collapse>
-                    <fwb-navbar-link :link="route('login')">
+                    <fwb-navbar-link :link="route('register')">
                         <fwb-button>Register</fwb-button>
                     </fwb-navbar-link>
                     <fwb-navbar-link :link="route('login')">

@@ -1,10 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import {Head, Link, useForm} from '@inertiajs/vue3';
 import {FwbButton, FwbInput} from "flowbite-vue";
 
 const form = useForm({
@@ -25,47 +21,54 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Register"/>
 
         <form @submit.prevent="submit">
             <div>
                 <fwb-input
-                    label="name"
                     v-model="form.name"
-                    required
-                    autofocus
                     autocomplete="name"
+                    autofocus
+                    label="name"
+                    required
                 />
             </div>
 
             <div class="mt-4">
                 <fwb-input
-                    label="Email"
-                    type="email"
                     v-model="form.email"
+                    label="Email"
                     required
+                    type="email"
                 />
             </div>
 
             <div class="mt-4">
                 <fwb-input
-                    label="Password"
-                    type="password"
                     v-model="form.password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    label="Password"
                     required
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
+                    type="password"
+                >
+                    <template #validationMessage>
+                        {{ form.errors.password }}
+                    </template>
+                </fwb-input>
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-
                 <fwb-input
-                    type="password"
+                    label="Confirm Password"
                     v-model="form.password_confirmation"
+                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
                     required
-                />
+                    type="password"
+                >
+                    <template #validationMessage>
+                        {{ form.errors.password_confirmation }}
+                    </template>
+                </fwb-input>
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -76,7 +79,7 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <fwb-button class="ms-4" :disabled="form.processing" :loading="form.processing">
+                <fwb-button :disabled="form.processing" :loading="form.processing" class="ms-4">
                     Register
                 </fwb-button>
             </div>

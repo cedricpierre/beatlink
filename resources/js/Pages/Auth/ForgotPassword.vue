@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import {Head, useForm} from '@inertiajs/vue3';
 import {FwbButton, FwbInput} from "flowbite-vue";
 
 const props = defineProps<{
@@ -22,7 +18,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Forgot Password" />
+        <Head title="Forgot Password"/>
 
         <div class="mb-4 text-sm text-blue-600 dark:text-blue-400">
             Forgot your password? No problem. Just let us know your email address and we will email you a password reset
@@ -41,7 +37,12 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="username"
-                />
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                >
+                    <template #validationMessage>
+                        {{ form.errors.email }}
+                    </template>
+                </fwb-input>
             </div>
 
             <div class="flex items-center justify-end mt-4">
