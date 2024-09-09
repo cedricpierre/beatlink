@@ -24,8 +24,6 @@
     },
     "dependencies": {
         "@heroicons/vue": "^2.1.5",
-        "flowbite": "^2.5.1",
-        "flowbite-vue": "^0.1.6",
         "moment": "^2.30.1"
     }
 }
