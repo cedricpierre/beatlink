@@ -77,32 +77,32 @@ watch(isAddingLink, (value) => {
             Add links to your campaign
         </template>
 
-        <fwb-table v-if="campaign?.links.length" class="mb-4">
-            <fwb-table-head>
-                <fwb-table-head-cell></fwb-table-head-cell>
-                <fwb-table-head-cell>Platform</fwb-table-head-cell>
-                <fwb-table-head-cell>URL</fwb-table-head-cell>
-                <fwb-table-head-cell>Views</fwb-table-head-cell>
-                <fwb-table-head-cell class="w-4">Actions</fwb-table-head-cell>
-            </fwb-table-head>
-            <fwb-table-body>
-                <fwb-table-row v-for="link in campaign?.links" :key="campaign.id">
-                    <fwb-table-cell class="px-2">
+        <table v-if="campaign?.links.length" class="table mb-4">
+            <thead>
+            <th></th>
+            <th>Platform</th>
+            <th>URL</th>
+            <th>Views</th>
+            <th class="w-4">Actions</th>
+            </thead>
+            <tbody>
+            <tr v-for="link in campaign?.links" :key="campaign.id">
+                <td class="px-2">
                         <div class="w-4" v-html="link.platform?.icon"></div>
-                    </fwb-table-cell>
-                    <fwb-table-cell>{{ link.platform?.name }}</fwb-table-cell>
-                    <fwb-table-cell :title="link.url">
+                </td>
+                <td>{{ link.platform?.name }}</td>
+                <td :title="link.url">
                         <a class="text-blue-600" :href="link.url" target="_blank">open</a>
-                    </fwb-table-cell>
-                    <fwb-table-cell class="text-center">{{ link.leads_count }}</fwb-table-cell>
-                    <fwb-table-cell class="w-4">
+                </td>
+                <td class="text-center">{{ link.leads_count }}</td>
+                <td class="w-4">
                         <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button">
                             <button class="btn btn-error btn-sm">Delete</button>
                         </Link>
-                    </fwb-table-cell>
-                </fwb-table-row>
-            </fwb-table-body>
-        </fwb-table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
         <div class="flex items-center gap-4">
             <button class="btn btn-primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>

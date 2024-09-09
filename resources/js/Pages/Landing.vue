@@ -16,7 +16,7 @@ const props = defineProps<{
         <div class="animation-fade-in fixed top-0 left-0 w-full h-full z-0 blur-2xl bg-cover opacity-10" v-if="campaign.background_url"
              :style="{backgroundImage:`url(/storage/${campaign.background_url})`}"></div>
 
-        <div class="z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col align-center justify-center">
+        <div class="z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col  justify-center">
             <div class="flex flex-col max-w-screen-sm mx-auto h-full w-full">
 
                 <div class="flex flex-col flex-grow items-center justify-center">
@@ -35,8 +35,8 @@ const props = defineProps<{
                                 class="px-6 py-4 rounded-xl shadow block dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:text-black hover:bg-white"
                                 :href="route('landing.open',{campaign: campaign.slug, link: link.platform_id})">
 
-                                <div class="flex flex-row align-center">
-                                    <div class="h-6 flex align-center" v-html="link.platform.icon"></div>
+                                <div class="flex flex-row items-center">
+                                    <div class="h-6 flex" v-html="link.platform.icon"></div>
                                     <h3 class="ml-3 text-xl leading-tight">
                                         {{ link.platform.name }}
                                     </h3>

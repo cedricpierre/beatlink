@@ -2,9 +2,10 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import {Link} from '@inertiajs/vue3';
 import Background from "@/Components/Background.vue";
-import {FwbButton, FwbDropdown, FwbListGroup, FwbListGroupItem, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
+import {FwbListGroup, FwbListGroupItem, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
 import {UserIcon} from '@heroicons/vue/16/solid'
 import Footer from "@/Components/Footer.vue";
+import Dropdown from "@/Components/Dropdown.vue";
 </script>
 
 <template>
@@ -21,31 +22,29 @@ import Footer from "@/Components/Footer.vue";
                 </fwb-navbar-collapse>
             </template>
             <template #right-side>
-                <fwb-dropdown text="bottom" align-to-end>
+                <Dropdown align="end">
                     <template #trigger>
-                        <button class="btn btn-primary btn-sm">
-                            <div class="flex flex-row align-center justify-center">
-                                <UserIcon class="h-4 mr-2"></UserIcon>
-                                {{ $page.props.auth.user.name }}
+                        <button class="btn btn-primary">
+                            <div class="flex flex-row items-center justify-center">
+                                <UserIcon class="h-5 mr-2"></UserIcon>
+                                <span>{{ $page.props.auth.user.name }}</span>
                             </div>
                         </button>
                     </template>
-                    <fwb-list-group>
-                        <fwb-list-group-item>
+                    <li>
                             <Link :href="route('profile.edit')">Profile</Link>
-                        </fwb-list-group-item>
-                        <fwb-list-group-item>
+                    </li>
+                    <li>
                             <Link :href="route('logout')" method="post" as="button">Log Out</Link>
-                        </fwb-list-group-item>
-                    </fwb-list-group>
-                </fwb-dropdown>
+                    </li>
+                </Dropdown>
             </template>
         </fwb-navbar>
 
         <!-- Page Heading -->
         <header
             class="h-20 flex items-center bg-blue-900 text-white dark:bg-blue-600 dark:text-white"
-                v-if="$slots.header"
+            v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg">
                 <div class="flex flex-1 items-center">
