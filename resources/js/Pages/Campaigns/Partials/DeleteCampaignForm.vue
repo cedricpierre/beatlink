@@ -4,6 +4,7 @@ import {ref} from 'vue';
 import {FwbButton, FwbModal} from "flowbite-vue";
 import Card from "@/Components/Card.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
+import Modal from "@/Components/Modal.vue";
 
 const confirmingDeletion = ref(false);
 
@@ -30,11 +31,9 @@ const confirmDeletion = () => {
 
         <button class="btn btn-error mt-4" @click="confirmDeletion">Delete campaign</button>
 
-        <fwb-modal v-if="confirmingDeletion" @close="confirmingDeletion = false">
+        <Modal v-model="confirmingDeletion" @close="confirmingDeletion = false">
             <template #header>
-                <h2>
-                    Are you sure you want to delete?
-                </h2>
+                Are you sure you want to delete?
             </template>
             <template #body>
                 Once deleted, you cannot undo this action.
@@ -48,6 +47,6 @@ const confirmDeletion = () => {
                     </Link>
                 </button>
             </template>
-        </fwb-modal>
+        </Modal>
     </Card>
 </template>

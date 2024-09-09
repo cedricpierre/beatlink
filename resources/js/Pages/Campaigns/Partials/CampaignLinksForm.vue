@@ -118,43 +118,45 @@ watch(isAddingLink, (value) => {
         </div>
 
         <form @submit.prevent="addLink">
-	        <Modal v-model="isAddingLink">
+            <Modal v-model="isAddingLink">
                 <template #header>
                     <h2>
                         Add a link to your campaign
                     </h2>
                 </template>
                 <template #body>
-                    <fwb-select
-                        v-model="form.platform_id"
-                        :options="platforms.map((platform) => {
+                    <div class="space-y-6">
+                        <fwb-select
+                            v-model="form.platform_id"
+                            :options="platforms.map((platform) => {
                             return {
                                 value: platform.id,
                                 name: platform.name,
                             }
                         })"
-                        :validation-status="form.errors.platform_id ? 'error' : 'success'"
-                    >
-                        <template #validationMessage>
-                            {{ form.errors.platform_id }}
-                        </template>
-                    </fwb-select>
+                            :validation-status="form.errors.platform_id ? 'error' : 'success'"
+                        >
+                            <template #validationMessage>
+                                {{ form.errors.platform_id }}
+                            </template>
+                        </fwb-select>
 
-                    <Autocomplete
-                        :items="items"
-                        :disabled="!form.platform_id"
-                        @change="search"
-                        @select="form.url = $event.url"
-                    />
+                        <Autocomplete
+                            :items="items"
+                            :disabled="!form.platform_id"
+                            @change="search"
+                            @select="form.url = $event.url"
+                        />
 
-	                <Input
-                        v-model="form.url"
-                        :disabled="!form.platform_id"
-                        label="URL"
-                        placeholder="https://"
-                        :validation-status="form.errors.url ? 'error' : 'success'"
-                        :error-message="form.errors.url"
-	                />
+                        <Input
+                            v-model="form.url"
+                            :disabled="!form.platform_id"
+                            label="URL"
+                            placeholder="https://"
+                            :validation-status="form.errors.url ? 'error' : 'success'"
+                            :error-message="form.errors.url"
+                        />
+                    </div>
                 </template>
                 <template #footer>
                     <button class="btn btn-secondary" @click="isAddingLink = false">Cancel</button>
@@ -162,7 +164,7 @@ watch(isAddingLink, (value) => {
                         Save
                     </button>
                 </template>
-	        </Modal>
+            </Modal>
         </form>
     </Card>
 </template>

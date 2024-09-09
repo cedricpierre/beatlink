@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {useForm} from '@inertiajs/vue3';
 import {ref} from 'vue';
-import {FwbModal} from "flowbite-vue";
 import Card from "@/Components/Card.vue";
 import Input from "@/Components/Input.vue";
+import Modal from "@/Components/Modal.vue";
 
 const confirmingDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -28,7 +28,6 @@ const destroy = () => {
 
 const closeModal = () => {
     confirmingDeletion.value = false;
-
     form.reset();
 };
 </script>
@@ -46,11 +45,9 @@ const closeModal = () => {
 
         <button class="btn btn-error mt-4" @click="confirmUserDeletion">Delete Account</button>
 
-        <fwb-modal v-if="confirmingDeletion" @close="closeModal">
+        <Modal v-model="confirmingDeletion">
             <template #header>
-                <h2>
-                    Are you sure you want to delete your account?
-                </h2>
+                Are you sure you want to delete your account?
             </template>
             <template #body>
 
@@ -82,6 +79,6 @@ const closeModal = () => {
                     Delete Account
                 </button>
             </template>
-        </fwb-modal>
+        </Modal>
     </Card>
 </template>
