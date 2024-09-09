@@ -2,7 +2,7 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Background from "@/Components/Background.vue";
 import Footer from "@/Components/Footer.vue";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 </script>
 
 <template>
@@ -11,9 +11,9 @@ import BCard from "@/Components/BCard.vue";
             <div class="container w-1/4">
                 <ApplicationLogo class="text-center text-2xl mb-2"/>
 
-                <BCard>
+                <Card>
                     <slot/>
-                </BCard>
+                </Card>
 
                 <Footer></Footer>
             </div>

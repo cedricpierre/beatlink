@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
-import {FwbButton, FwbInput} from "flowbite-vue";
-
-const props = defineProps<{
-    status?: string;
-}>();
+import Input from "@/Components/Input.vue";
 
 const form = useForm({
     email: '',
@@ -25,30 +21,23 @@ const submit = () => {
             link that will allow you to choose a new one.
         </div>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ status }}
-        </div>
-
         <form @submit.prevent="submit">
             <div>
-                <fwb-input
+                <Input
                     type="email"
                     v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
                     :validation-status="form.errors.email ? 'error' : 'success'"
-                >
-                    <template #validationMessage>
-                        {{ form.errors.email }}
-                    </template>
-                </fwb-input>
+                    :error-message="form.errors.email"
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">
                     Email Password Reset Link
-                </fwb-button>
+                </button>
             </div>
         </form>
     </GuestLayout>

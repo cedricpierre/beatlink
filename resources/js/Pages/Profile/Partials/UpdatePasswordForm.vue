@@ -2,7 +2,7 @@
 import {useForm} from '@inertiajs/vue3';
 import {ref} from 'vue';
 import {FwbButton, FwbInput} from "flowbite-vue";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -33,7 +33,7 @@ const updatePassword = () => {
 </script>
 
 <template>
-    <BCard>
+    <Card>
         <template #header>
             Update Password
         </template>
@@ -80,10 +80,10 @@ const updatePassword = () => {
             </fwb-input>
 
             <div class="flex items-center gap-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">Save</fwb-button>
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>
         </form>
-    </BCard>
+    </Card>
 </template>

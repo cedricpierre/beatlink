@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Background from "@/Components/Background.vue";
-import {FwbButton, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
+import {FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
 </script>
 
 <template>
@@ -30,10 +30,10 @@ import {FwbButton, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-v
             <template #right-side>
                 <fwb-navbar-collapse>
                     <fwb-navbar-link :link="route('register')">
-                        <fwb-button>Register</fwb-button>
+                        <button class="btn btn-primary">Register</button>
                     </fwb-navbar-link>
                     <fwb-navbar-link :link="route('login')">
-                        <fwb-button>Login</fwb-button>
+                        <button class="btn btn-primary">Login</button>
                     </fwb-navbar-link>
                 </fwb-navbar-collapse>
 

@@ -15,9 +15,9 @@ import {FwbButton} from "flowbite-vue";
                     <h2 class="dark:text-blue-500 font-bold text-3xl mb-4">Music Affiliation Software </h2>
                     <div class="flex align-left">
                         <Link :href="route('register')">
-                            <fwb-button variant="primary" size="xl">
+                            <button class="btn btn-primary" size="xl">
                                 Register
-                            </fwb-button>
+                            </button>
                         </Link>
                         <Link :href="route('pricing')" class="ml-4 self-center text-black dark:text-white">View prices</Link>
                     </div>

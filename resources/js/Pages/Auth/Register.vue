@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
-import {FwbButton, FwbInput} from "flowbite-vue";
+import Input from "@/Components/Input.vue";
+import Checkbox from "@/Components/Checkbox.vue";
 
 const form = useForm({
     name: '',
@@ -25,50 +26,48 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <fwb-input
+                <Input
                     v-model="form.name"
                     autocomplete="name"
                     autofocus
                     label="name"
                     required
+                    :validation-status="form.errors.name ? 'error' : 'success'"
+                    :error-message="form.errors.name"
                 />
             </div>
 
             <div class="mt-4">
-                <fwb-input
+                <Input
                     v-model="form.email"
                     label="Email"
                     required
                     type="email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    :error-message="form.errors.email"
                 />
             </div>
 
             <div class="mt-4">
-                <fwb-input
+                <Input
                     v-model="form.password"
-                    :validation-status="form.errors.password ? 'error' : 'success'"
                     label="Password"
                     required
                     type="password"
-                >
-                    <template #validationMessage>
-                        {{ form.errors.password }}
-                    </template>
-                </fwb-input>
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    :error-message="form.errors.password"
+                />
             </div>
 
             <div class="mt-4">
-                <fwb-input
+                <Input
                     label="Confirm Password"
                     v-model="form.password_confirmation"
-                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
                     required
                     type="password"
-                >
-                    <template #validationMessage>
-                        {{ form.errors.password_confirmation }}
-                    </template>
-                </fwb-input>
+                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
+                    :error-message="form.errors.password_confirmation"
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -79,9 +78,9 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <fwb-button :disabled="form.processing" :loading="form.processing" class="ms-4">
+                <button class="btn btn-primary ms-3" :disabled="form.processing" :loading="form.processing">
                     Register
-                </fwb-button>
+                </button>
             </div>
         </form>
     </GuestLayout>

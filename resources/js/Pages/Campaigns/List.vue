@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {FwbButton, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {IPaginate} from "@/Interfaces/Paginate";
-import BPagination from "@/Components/BPagination.vue";
+import BPagination from "@/Components/Pagination.vue";
 import moment from 'moment'
 import DeleteCampaignForm from "@/Pages/Campaigns/Partials/DeleteCampaignForm.vue";
 
@@ -26,9 +26,9 @@ const props = defineProps<{
         </template>
         <template #actions>
             <Link :href="route('campaigns.create')">
-                <fwb-button>
+                <button class="btn btn-primary">
                     Create new campaign
-                </fwb-button>
+                </button>
             </Link>
         </template>
         <fwb-table>
@@ -57,14 +57,14 @@ const props = defineProps<{
                     <fwb-table-cell class="text-center">{{ campaign.conversion_rate }}%</fwb-table-cell>
                     <fwb-table-cell class="space-x-2 whitespace-nowrap">
                         <Link :href="route('campaigns.view', {id: campaign.id})">
-                            <fwb-button color="alternative">
+                            <button class="btn btn-secondary">
                                 View
-                            </fwb-button>
+                            </button>
                         </Link>
                         <Link :href="route('campaigns.edit', {id: campaign.id})">
-                            <fwb-button>
+                            <button class="btn btn-primary">
                                 Edit
-                            </fwb-button>
+                            </button>
                         </Link>
 
                     </fwb-table-cell>

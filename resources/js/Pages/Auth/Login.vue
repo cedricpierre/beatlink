@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
-import {FwbButton, FwbCheckbox, FwbInput} from "flowbite-vue";
-
-const props = defineProps<{
-    status?: string;
-}>();
+import Input from "@/Components/Input.vue";
+import Checkbox from "@/Components/Checkbox.vue";
 
 const form = useForm({
     email: '',
@@ -26,34 +23,40 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in"/>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
         <form @submit.prevent="submit">
             <div>
-                <fwb-input
-                    type="email"
+                <Input
                     v-model="form.email"
+                    label="Email"
+                    type="email"
                     required
                     autofocus
-                    autocomplete="username"
+                    autocomplete="email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    :error-message="form.errors.email"
                 />
+
             </div>
 
             <div class="mt-4">
-                <fwb-input
-                    type="password"
+                <Input
                     v-model="form.password"
+                    label="Password"
+                    type="password"
                     required
                     autocomplete="current-password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    :error-message="form.errors.password"
                 />
             </div>
 
             <div class="block mt-4">
                 <label class="flex items-center">
-                    <fwb-checkbox name="remember" v-model:checked="form.remember"/>
-                    <span class="ms-2 text-sm text-blue-600 dark:text-blue-400">Remember me</span>
+                    <Checkbox
+                        v-model="form.remember"
+                        label="Remember me"
+                        name="remember"
+                    />
                 </label>
             </div>
 
@@ -65,9 +68,9 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <fwb-button class="ms-4" :loading="form.processing" :disabled="form.processing">
+                <button class="btn btn-primary ms-3" :loading="form.processing" :disabled="form.processing">
                     Log in
-                </fwb-button>
+                </button>
             </div>
         </form>
     </GuestLayout>

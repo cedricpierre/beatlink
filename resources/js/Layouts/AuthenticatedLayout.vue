@@ -23,12 +23,12 @@ import Footer from "@/Components/Footer.vue";
             <template #right-side>
                 <fwb-dropdown text="bottom" align-to-end>
                     <template #trigger>
-                        <fwb-button>
+                        <button class="btn btn-primary btn-sm">
                             <div class="flex flex-row align-center justify-center">
                                 <UserIcon class="h-4 mr-2"></UserIcon>
                                 {{ $page.props.auth.user.name }}
                             </div>
-                        </fwb-button>
+                        </button>
                     </template>
                     <fwb-list-group>
                         <fwb-list-group-item>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Link, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 import {FwbButton, FwbFileInput, FwbProgress} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
 
@@ -15,7 +15,7 @@ const form = useForm({
 })
 </script>
 <template>
-    <BCard>
+    <Card>
         <template #header>
             Upload image
         </template>
@@ -25,7 +25,7 @@ const form = useForm({
                     <h2 class="mb-2 text-blue-600 dark:text-white">Background</h2>
                     <img :src="'/storage/'+campaign.background_url" class="w-60 mb-4 rounded rounded-2xl" alt="">
                     <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{background_url: null}" as="button" method="put" preserve-scroll>
-                        <fwb-button size="sm" color="red">Delete</fwb-button>
+                        <button class="btn btn-error btn-sm">Delete</button>
                     </Link>
                 </div>
                 <fwb-file-input
@@ -44,7 +44,7 @@ const form = useForm({
                     <h2 class="mb-2 text-blue-600 dark:text-white">Image</h2>
                     <img :src="'/storage/'+campaign.image_url" class="w-60 mb-4 rounded rounded-2xl" alt="">
                     <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{image_url: null}" as="button" method="put" preserve-scroll>
-                        <fwb-button size="sm" color="red">Delete</fwb-button>
+                        <button class="btn btn-error btn-sm">Delete</button>
                     </Link>
                 </div>
                 <fwb-file-input
@@ -60,7 +60,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">Save</fwb-button>
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
                 <fwb-progress v-if="form.progress" :progress="form.progress.percentage">
                     {{ form.progress.percentage }}%
@@ -69,5 +69,5 @@ const form = useForm({
                 <Saved :form="form"/>
             </div>
         </form>
-    </BCard>
+    </Card>
 </template>

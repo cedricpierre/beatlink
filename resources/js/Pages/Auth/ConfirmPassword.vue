@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
-import {FwbButton, FwbInput} from "flowbite-vue";
+import Input from "@/Components/Input.vue";
 
 const form = useForm({
     password: '',
@@ -26,24 +26,21 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <fwb-input
+                <Input
                     type="password"
                     v-model="form.password"
                     required
                     autocomplete="current-password"
                     autofocus
                     :validation-status="form.errors.password ? 'error' : 'success'"
-                >
-                    <template #validationMessage>
-                        {{ form.errors.password }}
-                    </template>
-                </fwb-input>
+                    :error-message="form.errors.password"
+                />
             </div>
 
             <div class="flex justify-end mt-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">
                     Confirm
-                </fwb-button>
+                </button>
             </div>
         </form>
     </GuestLayout>

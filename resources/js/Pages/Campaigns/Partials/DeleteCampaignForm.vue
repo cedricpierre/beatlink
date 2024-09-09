@@ -2,7 +2,7 @@
 import {Link} from '@inertiajs/vue3';
 import {ref} from 'vue';
 import {FwbButton, FwbModal} from "flowbite-vue";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
 
 const confirmingDeletion = ref(false);
@@ -18,7 +18,7 @@ const confirmDeletion = () => {
 </script>
 
 <template>
-    <BCard>
+    <Card>
         <template #header>
             Delete campaign
         </template>
@@ -28,7 +28,7 @@ const confirmDeletion = () => {
             your campaign, be sure you wish to retain.
         </template>
 
-        <fwb-button color="red" class="mt-4" @click="confirmDeletion">Delete campaign</fwb-button>
+        <button class="btn btn-error mt-4" @click="confirmDeletion">Delete campaign</button>
 
         <fwb-modal v-if="confirmingDeletion" @close="confirmingDeletion = false">
             <template #header>
@@ -40,15 +40,14 @@ const confirmDeletion = () => {
                 Once deleted, you cannot undo this action.
             </template>
             <template #footer>
-                <fwb-button color="alternative" @click="confirmingDeletion = false"> Cancel</fwb-button>
-                <fwb-button color="red"
-                            class="ms-3"
+                <button class="btn btn-secondary" @click="confirmingDeletion = false"> Cancel</button>
+                <button class="btn btn-error ms-3"
                 >
                     <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete" as="button">
                         Delete
                     </Link>
-                </fwb-button>
+                </button>
             </template>
         </fwb-modal>
-    </BCard>
+    </Card>
 </template>

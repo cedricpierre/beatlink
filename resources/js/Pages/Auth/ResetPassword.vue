@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import {Head, useForm} from '@inertiajs/vue3';
-import {FwbButton, FwbInput} from "flowbite-vue";
+import Input from "@/Components/Input.vue";
 
 const props = defineProps<{
     email: string;
@@ -31,36 +30,42 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <fwb-input
+                <Input
                     type="email"
                     v-model="form.email"
                     required
                     autofocus
-                    autocomplete="username"
+                    autocomplete="email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    :error-message="form.errors.email"
                 />
             </div>
 
             <div class="mt-4">
-                <fwb-input
+                <Input
                     type="password"
                     v-model="form.password"
                     required
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    :error-message="form.errors.password"
                 />
             </div>
 
             <div class="mt-4">
-                <fwb-input
+                <Input
                     id="password_confirmation"
                     type="password"
                     v-model="form.password_confirmation"
                     required
+                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
+                    :error-message="form.errors.password_confirmation"
                 />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">
                     Reset Password
-                </fwb-button>
+                </button>
             </div>
         </form>
     </GuestLayout>

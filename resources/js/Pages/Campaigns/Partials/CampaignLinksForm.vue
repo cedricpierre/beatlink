@@ -3,10 +3,10 @@
 import {Link, router, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {computed, ComputedRef, onMounted, ref, watch} from "vue";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 import {FwbButton, FwbInput, FwbModal, FwbSelect, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
 import {IPlatform} from "@/Interfaces/Platform";
-import BAutocomplete from "@/Components/BAutocomplete.vue";
+import Autocomplete from "@/Components/Autocomplete.vue";
 
 const props = defineProps<{
     campaign: ICampaign,
@@ -70,7 +70,7 @@ watch(isAddingLink, (value) => {
 
 </script>
 <template>
-    <BCard>
+    <Card>
         <template #header>
             Add links to your campaign
         </template>
@@ -95,9 +95,7 @@ watch(isAddingLink, (value) => {
                     <fwb-table-cell class="text-center">{{ link.leads_count }}</fwb-table-cell>
                     <fwb-table-cell class="w-4">
                         <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button">
-                            <fwb-button color="red">
-                                Delete
-                            </fwb-button>
+                            <button class="btn btn-error btn-sm">Delete</button>
                         </Link>
                     </fwb-table-cell>
                 </fwb-table-row>
@@ -105,7 +103,7 @@ watch(isAddingLink, (value) => {
         </fwb-table>
 
         <div class="flex items-center gap-4">
-            <fwb-button :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</fwb-button>
+            <button class="btn btn-primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
 
             <Transition
                 enter-active-class="transition ease-in-out"
@@ -140,7 +138,7 @@ watch(isAddingLink, (value) => {
                         </template>
                     </fwb-select>
 
-                    <BAutocomplete
+                    <Autocomplete
                         :items="items"
                         :disabled="!form.platform_id"
                         @change="search"
@@ -160,12 +158,12 @@ watch(isAddingLink, (value) => {
                     </fwb-input>
                 </template>
                 <template #footer>
-                    <fwb-button color="alternative" @click="isAddingLink = false">Cancel</fwb-button>
-                    <fwb-button class="ms-3" :loading="form.processing">
+                    <button class="btn btn-secondary" @click="isAddingLink = false">Cancel</button>
+                    <button class="btn btn-primary ms-3" :loading="form.processing">
                         Save
-                    </fwb-button>
+                    </button>
                 </template>
             </fwb-modal>
         </form>
-    </BCard>
+    </Card>
 </template>

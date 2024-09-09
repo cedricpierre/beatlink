@@ -2,7 +2,7 @@
 
 import {useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 import {FwbButton, FwbCheckbox, FwbInput} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
 
@@ -17,7 +17,7 @@ const form = useForm({
 })
 </script>
 <template>
-    <BCard>
+    <Card>
         <template #header>
             General informations
         </template>
@@ -51,10 +51,10 @@ const form = useForm({
 
 
             <div class="flex items-center gap-4">
-                <fwb-button :loading="form.processing" :disabled="form.processing">Save</fwb-button>
+                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>
         </form>
-    </BCard>
+    </Card>
 </template>

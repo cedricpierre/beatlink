@@ -2,7 +2,7 @@
 import {useForm} from '@inertiajs/vue3';
 import {nextTick, ref} from 'vue';
 import {FwbButton, FwbInput, FwbModal} from "flowbite-vue";
-import BCard from "@/Components/BCard.vue";
+import Card from "@/Components/Card.vue";
 
 const confirmingDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -33,7 +33,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <BCard>
+    <Card>
         <template #header>
             Delete Account
         </template>
@@ -43,7 +43,7 @@ const closeModal = () => {
             your account, please download any data or information that you wish to retain.
         </template>
 
-        <fwb-button color="red" class="mt-4" @click="confirmUserDeletion">Delete Account</fwb-button>
+        <button class="btn btn-error mt-4" @click="confirmUserDeletion">Delete Account</button>
 
         <fwb-modal v-if="confirmingDeletion" @close="closeModal">
             <template #header>
@@ -70,16 +70,15 @@ const closeModal = () => {
                 </div>
             </template>
             <template #footer>
-                <fwb-button color="alternative" @click="closeModal"> Cancel</fwb-button>
-                <fwb-button color="red"
-                            class="ms-3"
+                <button class="btn btn-secondary" @click="closeModal"> Cancel</button>
+                <button class="btn btn-error ms-3"
                             :loading="form.processing"
                             :disabled="form.processing"
                             @click="destroy"
                 >
                     Delete Account
-                </fwb-button>
+                </button>
             </template>
         </fwb-modal>
-    </BCard>
+    </Card>
 </template>
