@@ -10,7 +10,7 @@ export function useStyleProps() {
         },
         size: {
             type: String,
-            default: null,
+            default: 'md',
             validator(value: string,): boolean {
                 return ['xs', 'sm', 'md', 'lg'].includes(value);
             }

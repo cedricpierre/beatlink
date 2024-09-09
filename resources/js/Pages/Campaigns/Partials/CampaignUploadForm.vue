@@ -42,8 +42,9 @@ const form = useForm({
                 <div v-if="campaign.image_url">
                     <h2 class="mb-2 text-gray-400 dark:text-white">Image</h2>
                     <img :src="'/storage/'+campaign.image_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
-                    <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{image_url: null}" as="button" method="put" preserve-scroll>
-                        <Button variant="error" size="sm">Delete</button>
+                    <Link class="btn btn-error btn-sm" :href="route('campaigns.update', {campaign: campaign.id})" :data="{image_url: null}" as="button"
+                          method="put" preserve-scroll>
+                        Delete
                     </Link>
                 </div>
                 <InputFile

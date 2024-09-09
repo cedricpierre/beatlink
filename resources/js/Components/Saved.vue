@@ -13,6 +13,6 @@ defineProps({
         leave-active-class="transition ease-in-out"
         leave-to-class="opacity-0"
     >
-        <p v-if="form.recentlySuccessful" class="text-sm text-blue-600 dark:text-blue-400">Saved.</p>
+        <p v-if="form.recentlySuccessful" class="text-sm text-green-600 dark:text-green-400">Saved.</p>
     </Transition>
 </template>

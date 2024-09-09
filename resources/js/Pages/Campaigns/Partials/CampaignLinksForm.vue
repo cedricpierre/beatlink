@@ -98,8 +98,10 @@ watch(isAddingLink, (value) => {
                 </td>
                 <td class="text-center">{{ link.leads_count }}</td>
                 <td class="w-4">
-                    <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button" preserve-scroll>
-                        <Button variant="error" size="sm">Delete</button>
+                    <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE"
+                          as="button"
+                          preserve-scroll>
+                        Delete
                     </Link>
                 </td>
             </tr>
