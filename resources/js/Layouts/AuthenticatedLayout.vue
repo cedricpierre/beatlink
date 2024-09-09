@@ -15,14 +15,8 @@ import Footer from "@/Components/Footer.vue";
             </template>
             <template #default="{isShowMenu}">
                 <fwb-navbar-collapse :is-show-menu="isShowMenu">
-                    <fwb-navbar-link :link="route('dashboard')" :is-active="route().current() === 'dashboard'">
-                        Dashboard
-                    </fwb-navbar-link>
                     <fwb-navbar-link :link="route('campaigns.list')" :is-active="route().current() === 'campaigns.list'">
                         Campaigns
-                    </fwb-navbar-link>
-                    <fwb-navbar-link link="#">
-                        Contact
                     </fwb-navbar-link>
                 </fwb-navbar-collapse>
             </template>
