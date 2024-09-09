@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Link;
-use App\Models\Platform;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -30,12 +29,14 @@ class LandingController extends BaseController
         $link->increment('leads_count');
 
         $link->leads()->create([
-                                   'ip'         => $request->getClientIp(),
-                                   'user_agent' => $request->header('User-Agent'),
-                                   'referrer' => $request->header('Referrer'),
-                                   'email'    => $request->input('email'),
-                                   'name'     => $request->input('name'),
-                                   'phone'    => $request->input('phone'),
+                                   'platform_id' => $link->platform_id,
+                                   'campaign_id' => $campaign->id,
+                                   'ip'          => $request->getClientIp(),
+                                   'user_agent'  => $request->header('User-Agent'),
+                                   'referer'     => $request->header('Referer'),
+                                   'email'       => $request->input('email'),
+                                   'name'        => $request->input('name'),
+                                   'phone'       => $request->input('phone'),
                                ]);
 
         return Redirect::away($link->url);

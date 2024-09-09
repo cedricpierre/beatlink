@@ -13,11 +13,13 @@ return new class extends Migration {
         Schema::create('leads', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('link_id');
+            $table->foreignUlid('campaign_id');
+            $table->foreignUlid('platform_id');
             $table->string('ip')->nullable();
             $table->string('country')->nullable();
             $table->string('country_code')->nullable();
             $table->string('user_agent')->nullable();
-            $table->string('referrer')->nullable();
+            $table->string('referer')->nullable();
             $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();

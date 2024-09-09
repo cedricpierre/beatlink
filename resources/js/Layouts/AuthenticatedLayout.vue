@@ -38,23 +38,21 @@ import {Link} from '@inertiajs/vue3';
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-blue-900 text-white dark:bg-blue-600 dark:text-white "
+            class="h-20 flex items-center bg-blue-900 dark:bg-blue-600 dark:text-white "
             v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
                 <div class="flex flex-1 items-center">
-                    <div class="flex flex-grow items-center">
-                        <span class="leading-tight font-extrabold font-2xl" v-if="$slots.header">
+                    <div class="flex space-between items-center">
+                        <span class="leading-tight font-extrabold font-2xl text-white" v-if="$slots.header">
                             <slot name="header"/>
                         </span>
                         <span class="ml-4 font-sm text-blue-300" v-if="$slots.subtitle">
                             <slot name="subtitle"/>
                         </span>
                     </div>
-                    <div class="flex shrink-0">
-                        <span class="ml-4 font-sm text-blue-300 space-x-2" v-if="$slots.actions">
+                    <div class="flex flex-grow space-x-2 justify-end" v-if="$slots.actions">
                             <slot name="actions"/>
-                        </span>
                     </div>
                 </div>
             </div>

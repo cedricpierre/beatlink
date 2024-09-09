@@ -25,6 +25,7 @@ import Textarea from "@/Components/Textarea.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
+
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob<DefineComponent>('./Pages/**/*.vue')),

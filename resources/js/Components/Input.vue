@@ -5,6 +5,7 @@ const model = defineModel()
 
 const props = defineProps({
 	...useStyleProps(),
+	placeholder: String,
     label: String,
     name: String,
     required: Boolean,
@@ -28,6 +29,7 @@ const emits = defineEmits(['update:modelValue'])
         <input
             class="input input-bordered w-full"
             v-model="model"
+            :placeholder="props.placeholder"
             :name="props.name"
             :type="props.type"
             :class="[...props.className, `input-${props.variant}`]"

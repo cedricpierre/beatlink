@@ -46,6 +46,11 @@ class Campaign extends Model
         return $this->hasMany(Link::class)->orderBy('id', 'desc');
     }
 
+    public function leads(): HasMany
+    {
+        return $this->hasMany(Lead::class)->orderBy('id', 'desc');
+    }
+
     public function getConversionRateAttribute(): float|int
     {
         if ($this->views_count) {

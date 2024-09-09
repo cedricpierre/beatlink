@@ -2,15 +2,16 @@
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
-import {IPaginate} from "@/Interfaces/Paginate";
+import {IPaginated} from "@/Interfaces/Paginated";
 import BPagination from "@/Components/Pagination.vue";
-import moment from 'moment'
 import Card from "@/Components/Card.vue";
 import Badge from "@/Components/Badge.vue";
+import moment from "moment/moment";
+import {PropType} from "vue";
 
-const props = defineProps<{
-    campaigns: IPaginate<ICampaign>;
-}>();
+const props = defineProps({
+    campaigns: Object as PropType<IPaginated<ICampaign>>,
+});
 </script>
 
 <template>
@@ -25,13 +26,19 @@ const props = defineProps<{
             <p>Create or update your campaigns</p>
         </template>
         <template #actions>
-            <Link :href="route('campaigns.create')">
-                <Button variant="primary">
-                    Create new campaign
-                </button>
+            <Link class="btn btn-primary" :href="route('campaigns.create')">
+                Create new campaign
             </Link>
         </template>
         <Card>
+            <template #header>
+                Campaigns
+            </template>
+            <template #actions>
+                <Link class="btn btn-primary" :href="route('campaigns.create')">
+                    Create new campaign
+                </Link>
+            </template>
             <table class="table">
                 <thead>
                 <tr>
@@ -46,7 +53,7 @@ const props = defineProps<{
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="campaign in $props.campaigns.data" :key="campaign.id">
+                <tr v-for="campaign in props.campaigns?.data" :key="campaign.id">
                     <td>{{ campaign.name }}</td>
                     <td>
                         <a class="text-blue-600 hover:underline" :href="route('landing', {slug: campaign.slug})" target="_blank">
@@ -82,7 +89,7 @@ const props = defineProps<{
             </table>
         </Card>
 
-        <BPagination :paginated="$props.campaigns"></BPagination>
+        <BPagination :paginated="props.campaigns"></BPagination>
 
     </AuthenticatedLayout>
 </template>

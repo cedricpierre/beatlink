@@ -1,4 +1,4 @@
-export interface IPaginate<G> {
+export interface IPaginated<G> {
     data: Array<G>
     current_page: number
     first_page_url: string

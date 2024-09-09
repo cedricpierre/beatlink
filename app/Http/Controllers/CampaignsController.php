@@ -6,6 +6,7 @@ use App\Http\Requests\CampaignStoreRequest;
 use App\Http\Requests\CampaignUpdateRequest;
 use App\Http\Requests\CampaignUploadRequest;
 use App\Models\Campaign;
+use App\Models\Lead;
 use App\Models\Platform;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -42,6 +43,8 @@ class CampaignsController extends Controller
 
     public function view(Request $request, Campaign $campaign): Response
     {
+        $search = $request->input('search');
+
         $campaign->load([
                             'links',
                             'links.platform',
@@ -49,7 +52,27 @@ class CampaignsController extends Controller
 
         $campaign->loadCount(['links']);
 
-        return Inertia::render('Campaigns/View', ['campaign' => $campaign]);
+        $leads = $campaign->leads()
+                          ->with(['platform'])
+                          ->when($request->input('from'), function ($query, $from) {
+                              $query->where('created_at', '>=', $from);
+                          })
+                          ->when($request->input('to'), function ($query, $to) {
+                              $query->where('created_at', '<=', $to);
+                          })
+                          ->when($search, function ($query, $search) {
+                              $query->where('ip', $search);
+                              $query->orWhere('user_agent', 'like', '%' . $search . '%');
+                              $query->orWhere('referer', 'like', '%' . $search . '%');
+                          })
+                          ->orderBy('id', 'desc')
+                          ->paginate();
+
+        return Inertia::render('Campaigns/View', [
+            'campaign' => $campaign,
+            'leads'    => $leads,
+            'search'   => $search,
+        ]);
     }
 
     public function edit(Request $request, Campaign $campaign): Response

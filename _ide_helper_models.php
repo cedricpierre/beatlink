@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $user_id
@@ -63,25 +63,30 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $link_id
+ * @property string $campaign_id
+ * @property string $platform_id
  * @property string|null $ip
  * @property string|null $country
  * @property string|null $country_code
  * @property string|null $user_agent
- * @property string|null $referrer
+ * @property string|null $referer
  * @property string|null $email
  * @property string|null $name
  * @property string|null $phone
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Campaign|null $campaign
  * @property-read \App\Models\Link|null $link
+ * @property-read \App\Models\Platform|null $platform
  * @method static \Database\Factories\LeadFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Lead newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lead newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lead query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lead whereCampaignId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereCountryCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereCreatedAt($value)
@@ -91,7 +96,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereLinkId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Lead whereReferrer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lead wherePlatformId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lead wherereferer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereUserAgent($value)
  */
@@ -100,7 +106,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $url
@@ -131,7 +137,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $name
@@ -163,7 +169,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $name

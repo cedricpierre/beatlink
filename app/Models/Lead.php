@@ -16,14 +16,26 @@ class Lead extends Model
         'user_agent',
         'country',
         'country_code',
-        'referrer',
+        'referer',
         'email',
         'name',
         'phone',
+        'campaign_id',
+        'platform_id',
     ];
 
     public function link(): BelongsTo
     {
         return $this->belongsTo(Link::class);
+    }
+
+    public function campaign(): BelongsTo
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+
+    public function platform(): BelongsTo
+    {
+        return $this->belongsTo(Platform::class);
     }
 }
