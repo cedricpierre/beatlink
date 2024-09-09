@@ -44,7 +44,7 @@ const select = (data: any) => {
     isDropdownOpen.value = false
 }
 
-const onWindowClick = (event: Event) => {
+const onWindowClick = () => {
     isDropdownOpen.value = false
 }
 
