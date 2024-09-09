@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import {FwbButton, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {IPaginate} from "@/Interfaces/Paginate";
 import BPagination from "@/Components/Pagination.vue";
 import moment from 'moment'
-import DeleteCampaignForm from "@/Pages/Campaigns/Partials/DeleteCampaignForm.vue";
+import Card from "@/Components/Card.vue";
 
 const props = defineProps<{
     campaigns: IPaginate<ICampaign>;
@@ -31,31 +30,34 @@ const props = defineProps<{
                 </button>
             </Link>
         </template>
-        <fwb-table>
-            <thead>
-            <th>Name</th>
-            <th>Slug</th>
-            <th class="text-center">Links</th>
-            <th>Created at</th>
-            <th class="text-center">Total views</th>
-            <th class="text-center">Total leads</th>
-            <th class="text-center" title="Conversion rate">CR</th>
-            <th class="text-right">Actions</th>
-            </thead>
-            <tbody>
-            <tr v-for="campaign in $props.campaigns.data" :key="campaign.id">
-                <td>{{ campaign.name }}</td>
-                <td>
+        <Card>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th class="text-center">Links</th>
+                    <th>Created at</th>
+                    <th class="text-center">Total views</th>
+                    <th class="text-center">Total leads</th>
+                    <th class="text-center" title="Conversion rate">CR</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="campaign in $props.campaigns.data" :key="campaign.id">
+                    <td>{{ campaign.name }}</td>
+                    <td>
                         <a class="text-blue-600 hover:underline" :href="route('landing', {slug: campaign.slug})" target="_blank">
                             {{ campaign.slug }}
                         </a>
-                </td>
-                <td class="text-center">{{ campaign.links_count }}</td>
-                <td>{{ moment(campaign.created_at).format('YYYY-MM-DD HH:mm') }}</td>
-                <td class="text-center">{{ campaign.views_count }}</td>
-                <td class="text-center">{{ campaign.leads_count }}</td>
-                <td class="text-center">{{ campaign.conversion_rate }}%</td>
-                <td class="space-x-2 whitespace-nowrap">
+                    </td>
+                    <td class="text-center">{{ campaign.links_count }}</td>
+                    <td>{{ moment(campaign.created_at).format('YYYY-MM-DD HH:mm') }}</td>
+                    <td class="text-center">{{ campaign.views_count }}</td>
+                    <td class="text-center">{{ campaign.leads_count }}</td>
+                    <td class="text-center">{{ campaign.conversion_rate }}%</td>
+                    <td class="space-x-2 flex justify-end whitespace-nowrap">
                         <Link :href="route('campaigns.view', {id: campaign.id})">
                             <button class="btn btn-secondary">
                                 View
@@ -67,10 +69,11 @@ const props = defineProps<{
                             </button>
                         </Link>
 
-                </td>
-            </tr>
-            </tbody>
-        </fwb-table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </Card>
 
         <BPagination :paginated="$props.campaigns"></BPagination>
 

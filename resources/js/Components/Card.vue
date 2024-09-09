@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-blue-950 dark:bg-opacity-30 bg-white shadow rounded-2xl py-6 px-4">
+    <div class="dark:bg-blue-950 dark:bg-opacity-30 bg-white shadow rounded-2xl py-6 px-4 overflow-auto mx-2 sm:w-full">
 
         <h2 v-if="$slots.header" class="text-lg font-medium text-blue-900 dark:text-blue-100">
             <slot name="header"></slot>

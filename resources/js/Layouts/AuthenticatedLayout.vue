@@ -43,10 +43,10 @@ import Dropdown from "@/Components/Dropdown.vue";
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-blue-900 text-white dark:bg-blue-600 dark:text-white"
+            class="h-20 flex items-center bg-blue-900 text-white dark:bg-blue-600 dark:text-white "
             v-if="$slots.header"
         >
-            <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg">
+            <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
                 <div class="flex flex-1 items-center">
                     <div class="flex flex-grow items-center">
                         <span class="leading-tight font-extrabold font-2xl" v-if="$slots.header">
