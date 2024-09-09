@@ -10,8 +10,8 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
+    darkMode: 'selector',
     daisyui: {
-        darkTheme: "dark",
         base: false,
         styled: true,
         utils: true,
