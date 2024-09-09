@@ -2,44 +2,42 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import {Link} from '@inertiajs/vue3';
 import Background from "@/Components/Background.vue";
-import {FwbListGroup, FwbListGroupItem, FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
-import {UserIcon} from '@heroicons/vue/16/solid'
 import Footer from "@/Components/Footer.vue";
-import Dropdown from "@/Components/Dropdown.vue";
 </script>
 
 <template>
     <Background>
-        <fwb-navbar>
-            <template #logo>
-                <ApplicationLogo/>
-            </template>
-            <template #default="{isShowMenu}">
-                <fwb-navbar-collapse :is-show-menu="isShowMenu">
-                    <fwb-navbar-link :link="route('campaigns.list')" :is-active="route().current() === 'campaigns.list'">
-                        Campaigns
-                    </fwb-navbar-link>
-                </fwb-navbar-collapse>
-            </template>
-            <template #right-side>
-                <Dropdown align="end">
-                    <template #trigger>
-                        <button class="btn btn-primary">
-                            <div class="flex flex-row items-center justify-center">
-                                <UserIcon class="h-5 mr-2"></UserIcon>
-                                <span>{{ $page.props.auth.user.name }}</span>
-                            </div>
-                        </button>
-                    </template>
-                    <li>
-                            <Link :href="route('profile.edit')">Profile</Link>
-                    </li>
-                    <li>
-                            <Link :href="route('logout')" method="post" as="button">Log Out</Link>
-                    </li>
-                </Dropdown>
-            </template>
-        </fwb-navbar>
+        <div class="navbar bg-gradient-to-br from-bg-white to-bg-blue-100 dark:from-bg-black dark:to-bg-blue-950">
+            <div class="container mx-auto  lg:max-w-screen-lg">
+                <div class="flex shrink-0 mr-2">
+                    <ApplicationLogo/>
+                </div>
+                <div class="flex flex-grow">
+                    <ul class="menu menu-horizontal space-x-2">
+                        <li>
+                            <Link :href="route('campaigns.list')">Campaigns</Link>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex shrink-0 justify-end">
+                    <ul class="menu menu-horizontal justify-end">
+                        <li>
+                            <details>
+                                <summary>{{ $page.props.auth.user.name }}</summary>
+                                <ul class="bg-base-100 rounded-t-none p-2">
+                                    <li>
+                                        <Link :href="route('profile.edit')">Profile</Link>
+                                    </li>
+                                    <li>
+                                        <Link :href="route('logout')" method="post" as="button">Log Out</Link>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <!-- Page Heading -->
         <header

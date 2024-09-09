@@ -4,11 +4,11 @@ import {Link, router, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {computed, ComputedRef, onMounted, ref, watch} from "vue";
 import Card from "@/Components/Card.vue";
-import {FwbSelect, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
 import {IPlatform} from "@/Interfaces/Platform";
 import Autocomplete from "@/Components/Autocomplete.vue";
 import Modal from "@/Components/Modal.vue";
 import Input from "@/Components/Input.vue";
+import Select from "@/Components/Select.vue";
 
 const props = defineProps<{
     campaign: ICampaign,
@@ -47,19 +47,21 @@ const selectedPlatform: ComputedRef<IPlatform | undefined> = computed(() => {
 })
 
 const search = async (lookup: string) => {
-    const url = route('platforms.search', {platform: selectedPlatform.value?.slug})
-    const response = await fetch(`${url}?search=${lookup}`)
-    const results = await response.json()
+    if (selectedPlatform) {
+        const url = route('platforms.search', {platform: selectedPlatform.value?.slug})
+        const response = await fetch(`${url}?search=${lookup}`)
+        const results = await response.json()
 
-    items.value = []
+        items.value = []
 
-    for (const key in results) {
-        const obj = {
-            name: key,
-            children: results[key]
+        for (const key in results) {
+            const obj = {
+                name: key,
+                children: results[key]
+            }
+
+            items.value.push(obj)
         }
-
-        items.value.push(obj)
     }
 }
 
@@ -88,17 +90,17 @@ watch(isAddingLink, (value) => {
             <tbody>
             <tr v-for="link in campaign?.links" :key="campaign.id">
                 <td class="px-2">
-                        <div class="w-4" v-html="link.platform?.icon"></div>
+                    <div class="w-4" v-html="link.platform?.icon"></div>
                 </td>
                 <td>{{ link.platform?.name }}</td>
                 <td :title="link.url">
-                        <a class="text-blue-600" :href="link.url" target="_blank">open</a>
+                    <a class="text-blue-600" :href="link.url" target="_blank">open</a>
                 </td>
                 <td class="text-center">{{ link.leads_count }}</td>
                 <td class="w-4">
-                        <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button">
-                            <button class="btn btn-error btn-sm">Delete</button>
-                        </Link>
+                    <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button" preserve-scroll>
+                        <button class="btn btn-error btn-sm">Delete</button>
+                    </Link>
                 </td>
             </tr>
             </tbody>
@@ -126,20 +128,17 @@ watch(isAddingLink, (value) => {
                 </template>
                 <template #body>
                     <div class="space-y-6">
-                        <fwb-select
+                        <Select
                             v-model="form.platform_id"
                             :options="platforms.map((platform) => {
-                            return {
-                                value: platform.id,
-                                name: platform.name,
-                            }
-                        })"
+                                return {
+                                    value: platform.id,
+                                    text: platform.name,
+                                }
+                            })"
                             :validation-status="form.errors.platform_id ? 'error' : 'success'"
-                        >
-                            <template #validationMessage>
-                                {{ form.errors.platform_id }}
-                            </template>
-                        </fwb-select>
+                            :error-message="form.errors.platform_id"
+                        />
 
                         <Autocomplete
                             :items="items"

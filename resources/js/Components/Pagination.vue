@@ -12,30 +12,28 @@ const onPageChange = (event: number) => {
 }
 </script>
 <template>
-    <div class="join flex justify-center items-center my-4">
+    <div class="join flex justify-center items-center my-6">
         <button
-            v-if="$props.paginated.current_page > 1"
+            :disabled="!$props.paginated.prev_page_url"
             @click="onPageChange(1)"
-            class="join-item btn"
-            :class="{'btn-active': $props.paginated.current_page === 1}"
+            class="join-item btn btn-secondary"
         >
             Previous
         </button>
         <button
-            v-for="i in $props.paginated.total"
+            v-for="i in Math.ceil($props.paginated.total / $props.paginated.per_page)"
             @click="onPageChange(i)"
             class="join-item btn"
-            :class="{'btn-active': $props.paginated.current_page === i}"
+            :class="$props.paginated.current_page !== i ? 'btn-secondary' : 'btn-primary'"
         >
             {{ i }}
         </button>
         <button
-            v-if="$props.paginated.current_page < $props.paginated.total - 1"
-            @click="onPageChange($props.paginated.total)"
-            class="join-item btn"
-            :class="{'btn-active': $props.paginated.current_page === $props.paginated.total}"
+            :disabled="!$props.paginated.next_page_url"
+            @click="onPageChange($props.paginated.last_page)"
+            class="join-item btn btn-secondary"
         >
-            Previous
+            Next
         </button>
     </div>
 </template>

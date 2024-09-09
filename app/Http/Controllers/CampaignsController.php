@@ -21,7 +21,7 @@ class CampaignsController extends Controller
         $campaigns = auth()->user()
                            ->campaigns()
                            ->withCount(['links'])
-                           ->paginate(10);
+            ->paginate();
 
         return Inertia::render('Campaigns/List', [
             'campaigns' => $campaigns,

@@ -1,45 +1,34 @@
 <script setup lang="ts">
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Background from "@/Components/Background.vue";
-import {FwbNavbar, FwbNavbarCollapse, FwbNavbarLink} from "flowbite-vue";
+import {Link} from "@inertiajs/vue3";
 </script>
 
 <template>
     <Background>
-        <fwb-navbar>
-            <template #logo>
-                <ApplicationLogo/>
-            </template>
-            <template #default="{isShowMenu}">
-                <fwb-navbar-collapse :is-show-menu="isShowMenu">
-                    <fwb-navbar-link is-active link="#">
-                        How it works
-                    </fwb-navbar-link>
-                    <fwb-navbar-link link="#">
-                        Pricing
-                    </fwb-navbar-link>
-                    <fwb-navbar-link link="#">
-                        About us
-                    </fwb-navbar-link>
-                    <fwb-navbar-link link="#">
-                        Contact
-                    </fwb-navbar-link>
-
-                </fwb-navbar-collapse>
-            </template>
-            <template #right-side>
-                <fwb-navbar-collapse>
-                    <fwb-navbar-link :link="route('register')">
-                        <button class="btn btn-primary">Register</button>
-                    </fwb-navbar-link>
-                    <fwb-navbar-link :link="route('login')">
-                        <button class="btn btn-primary">Login</button>
-                    </fwb-navbar-link>
-                </fwb-navbar-collapse>
-
-
-            </template>
-        </fwb-navbar>
+        <div class="navbar bg-base-100">
+            <div class="container mx-auto lg:max-w-screen-lg">
+                <div class="flex shrink-0 mr-2">
+                    <ApplicationLogo/>
+                </div>
+                <div class="flex flex-grow">
+                    <ul class="menu menu-horizontal space-x-2">
+                        <li><a>Pricing</a></li>
+                        <li><a>How it works</a></li>
+                    </ul>
+                </div>
+                <div class="flex justify-end">
+                    <ul class="menu menu-horizontal space-x-2">
+                        <li>
+                            <Link :href="route('register')" class="btn btn-primary btn-outline">Register</Link>
+                        </li>
+                        <li>
+                            <Link :href="route('login')" class="btn btn-primary">Login</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <!-- Page Heading -->
         <header class="bg-white dark:bg-blue-800 shadow" v-if="$slots.header">

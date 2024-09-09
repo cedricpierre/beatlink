@@ -72,25 +72,28 @@ watch(() => props.items, (values) => {
             :validation-status="form.errors.search ? 'error' : 'success'"
             :error-message="form.errors.search"
         />
-        <div class="relative w-full" ref="dropdown">
-            <div id="dropdown" v-if="isDropdownOpen"
-                 class="absolute w-full z-10 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                <ul class="max-h-60 overflow-x-hidden overflow-y-scroll py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                    <template v-for="item in props.items">
+        <div class="relative" v-if="isDropdownOpen">
+            <ul class="dropdown-content bg-base-100 rounded-box z-[1] mt-2 w-full max-h-60 shadow-lg flex-col overflow-auto">
+                <template v-for="item in props.items">
+                    <li>
                         <h4
                             class="text-gray-600 py-2 border-b-2 border-b-gray-200 font-bold px-4 bg-gray-50 dark:bg-gray-950 dark:text-white first-letter:uppercase">
-                            {{ item.name }}</h4>
+                            {{ item.name }}
+                        </h4>
                         <template v-if="item.children">
-                            <li v-for="child in item.children">
+                            <ul>
+                                <li v-for="child in item.children">
                                 <span @click="select(child)"
                                       class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-600 dark:hover:text-white">{{
                                         child[textKey]
                                     }}</span>
-                            </li>
+                                </li>
+                            </ul>
                         </template>
-                    </template>
-                </ul>
-            </div>
+                    </li>
+                </template>
+            </ul>
+
         </div>
     </div>
 </template>
