@@ -7,9 +7,9 @@ import {FwbButton} from "flowbite-vue";
 <template>
     <Head title="Welcome"/>
     <DefaultLayout>
-        <div class="container mx-auto">
+        <div class="container mx-auto lg:max-w-screen-lg">
 
-            <div class="grid grid-flow-col w-4/5 mx-auto my-8">
+            <div class="grid grid-flow-col mx-auto my-8">
                 <div>
                     <h1 class="dark:text-blue-200 font-extrabold text-7xl mb-2">BeatLink</h1>
                     <h2 class="dark:text-blue-500 font-bold text-3xl mb-4">Music Affiliation Software </h2>

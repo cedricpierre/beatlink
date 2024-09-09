@@ -31,7 +31,7 @@ const form = useForm({
                 :validation-status="form.errors.name ? 'error' : 'success'"
                 autocomplete="name"
                 autofocus
-                label="name"
+                label="Name"
                 required
                 type="text"
             />
@@ -41,7 +41,7 @@ const form = useForm({
                 :error-message="form.errors.email"
                 :validation-status="form.errors.email ? 'error' : 'success'"
                 autocomplete="username"
-                label="email"
+                label="E-mail"
                 required
                 type="email"
             />

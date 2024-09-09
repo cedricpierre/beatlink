@@ -11,7 +11,11 @@ const props = defineProps({
         type: Number,
         default: 100,
     },
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
 })
 
 const emits = defineEmits(['update:modelValue'])

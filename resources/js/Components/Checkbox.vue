@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import {useVariant} from "@/Compasable/Variant.vue";
+
 const model = defineModel()
+const variant = useVariant()
 
 const props = defineProps({
     modelValue: Boolean,
@@ -8,7 +11,11 @@ const props = defineProps({
     required: Boolean,
     autofocus: Boolean,
     type: String,
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -19,17 +26,18 @@ const props = defineProps({
 })
 
 const emits = defineEmits(['update:modelValue'])
+
 </script>
 <template>
     <div class="form-control">
         <label class="label cursor-pointer justify-start">
             <input
                 v-model="model"
-                class="checkbox"
+                class="checkbox "
                 :name="props.name"
                 @input="emits('update:modelValue', modelValue)"
                 type="checkbox"
-                :class="props.className"
+                :class="`${props.className} checkbox-${variant}`"
                 :required="props.required"
                 :autofocus="props.autofocus"
             />

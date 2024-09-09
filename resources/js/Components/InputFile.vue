@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {useVariant} from '@/Compasable/Variant.vue';
 
-const model = defineModel()
+const variant = useVariant()
 
 const props = defineProps({
     label: String,
@@ -13,7 +13,11 @@ const props = defineProps({
     required: Boolean,
     autofocus: Boolean,
     autocomplete: String,
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -37,7 +41,7 @@ const emits = defineEmits(['update:modelValue'])
             :name="props.name"
             :multiple="multiple"
             type="file"
-            :class="props.className"
+            :class="`${props.className} input-${variant}`"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

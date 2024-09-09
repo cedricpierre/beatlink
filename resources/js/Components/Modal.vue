@@ -4,7 +4,11 @@ import {watch} from "vue";
 const model = defineModel<Boolean>()
 
 const props = defineProps({
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
 })
 
 </script>

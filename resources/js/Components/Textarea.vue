@@ -8,7 +8,11 @@ const props = defineProps({
     autofocus: Boolean,
     autocomplete: String,
     type: String,
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {

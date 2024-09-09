@@ -17,7 +17,11 @@ const props = defineProps({
         type: String,
         default: 'value',
     },
-    className: [Object, String],
+    className: {
+        type: String,
+        default: null,
+        required: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
