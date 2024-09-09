@@ -158,7 +158,7 @@ watch(isAddingLink, (value) => {
                     </div>
                 </template>
                 <template #footer>
-                    <Button variant="secondary" @click="isAddingLink = false">Cancel</button>
+                    <Button variant="neutral" @click="isAddingLink = false">Cancel</button>
                     <Button variant="primary" class="ms-3" :loading="form.processing">
                         Save
                     </button>

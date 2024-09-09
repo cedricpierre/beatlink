@@ -39,7 +39,7 @@ const confirmDeletion = () => {
                 Once deleted, you cannot undo this action.
             </template>
             <template #footer>
-                <Button @click="confirmingDeletion = false"> Cancel</button>
+                <Button variant="neutral" @click="confirmingDeletion = false"> Cancel</button>
                 <Button variant="error" class="ms-3"
                 >
                     <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete" as="button">

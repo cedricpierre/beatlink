@@ -66,7 +66,7 @@ const props = defineProps<{
                     </td>
                     <td class="space-x-2 flex justify-end whitespace-nowrap">
                         <Link :href="route('campaigns.view', {id: campaign.id})">
-                            <Button variant="secondary">
+                            <Button variant="neutral">
                                 View
                             </button>
                         </Link>

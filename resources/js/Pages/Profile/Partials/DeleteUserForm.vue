@@ -70,7 +70,7 @@ const closeModal = () => {
                 </div>
             </template>
             <template #footer>
-                <Button variant="secondary" @click="closeModal"> Cancel</button>
+                <Button variant="neutral" @click="closeModal"> Cancel</button>
                 <Button variant="error" class="ms-3"
                         :loading="form.processing"
                         :disabled="form.processing"
