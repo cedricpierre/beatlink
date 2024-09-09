@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import {useVariant} from "@/Compasable/Variant.vue";
+import {useStyleProps} from "@/Compasable/Variant.vue";
 
 const model = defineModel()
-const variant = useVariant()
 
 const props = defineProps({
+    ...useStyleProps(),
     modelValue: Boolean,
     label: String,
     name: String,
     required: Boolean,
     autofocus: Boolean,
     type: String,
-    className: {
-        type: String,
-        default: null,
-        required: false,
-    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -37,7 +32,7 @@ const emits = defineEmits(['update:modelValue'])
                 :name="props.name"
                 @input="emits('update:modelValue', modelValue)"
                 type="checkbox"
-                :class="`${props.className} checkbox-${variant}`"
+                :class="[...props.className, `checkbox-${props.variant}`]"
                 :required="props.required"
                 :autofocus="props.autofocus"
             />

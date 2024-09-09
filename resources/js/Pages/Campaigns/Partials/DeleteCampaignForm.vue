@@ -29,7 +29,7 @@ const confirmDeletion = () => {
             your campaign, be sure you wish to retain.
         </template>
 
-        <button class="btn btn-error mt-4" @click="confirmDeletion">Delete campaign</button>
+        <Button variant="error" class="mt-4" @click="confirmDeletion">Delete campaign</button>
 
         <Modal v-model="confirmingDeletion" @close="confirmingDeletion = false">
             <template #header>
@@ -39,8 +39,8 @@ const confirmDeletion = () => {
                 Once deleted, you cannot undo this action.
             </template>
             <template #footer>
-                <button class="btn btn-secondary" @click="confirmingDeletion = false"> Cancel</button>
-                <button class="btn btn-error ms-3"
+                <Button @click="confirmingDeletion = false"> Cancel</button>
+                <Button variant="error" class="ms-3"
                 >
                     <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete" as="button">
                         Delete

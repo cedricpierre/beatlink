@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import {useVariant} from '@/Compasable/Variant.vue';
-
-const variant = useVariant()
+import {useStyleProps} from '@/Compasable/Variant.vue';
 
 const props = defineProps({
+    ...useStyleProps(),
     label: String,
     name: String,
     multiple: {
@@ -13,11 +12,6 @@ const props = defineProps({
     required: Boolean,
     autofocus: Boolean,
     autocomplete: String,
-    className: {
-        type: String,
-        default: null,
-        required: false,
-    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -41,7 +35,7 @@ const emits = defineEmits(['update:modelValue'])
             :name="props.name"
             :multiple="multiple"
             type="file"
-            :class="`${props.className} input-${variant}`"
+            :class="[...props.className, `input-${props.variant}`]"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

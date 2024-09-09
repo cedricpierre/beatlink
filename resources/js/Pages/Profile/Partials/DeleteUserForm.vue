@@ -43,7 +43,7 @@ const closeModal = () => {
             your account, please download any data or information that you wish to retain.
         </template>
 
-        <button class="btn btn-error mt-4" @click="confirmUserDeletion">Delete Account</button>
+        <Button variant="error" class="mt-4" @click="confirmUserDeletion">Delete Account</button>
 
         <Modal v-model="confirmingDeletion">
             <template #header>
@@ -70,8 +70,8 @@ const closeModal = () => {
                 </div>
             </template>
             <template #footer>
-                <button class="btn btn-secondary" @click="closeModal"> Cancel</button>
-                <button class="btn btn-error ms-3"
+                <Button variant="secondary" @click="closeModal"> Cancel</button>
+                <Button variant="error" class="ms-3"
                         :loading="form.processing"
                         :disabled="form.processing"
                         @click="destroy"

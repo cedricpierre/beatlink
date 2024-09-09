@@ -27,7 +27,7 @@ const form = useForm({
                     <h2 class="mb-2 text-gray-400 dark:text-white">Background</h2>
                     <img :src="'/storage/'+campaign.background_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
                     <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{background_url: null}" as="button" method="put" preserve-scroll>
-                        <button class="btn btn-error btn-sm">Delete</button>
+                        <Button variant="error" size="sm">Delete</button>
                     </Link>
                 </div>
                 <InputFile
@@ -43,7 +43,7 @@ const form = useForm({
                     <h2 class="mb-2 text-gray-400 dark:text-white">Image</h2>
                     <img :src="'/storage/'+campaign.image_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
                     <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{image_url: null}" as="button" method="put" preserve-scroll>
-                        <button class="btn btn-error btn-sm">Delete</button>
+                        <Button variant="error" size="sm">Delete</button>
                     </Link>
                 </div>
                 <InputFile
@@ -56,7 +56,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
+                <Button variant="primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>

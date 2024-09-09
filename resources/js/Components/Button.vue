@@ -8,7 +8,7 @@ const props = defineProps({
 
 </script>
 <template>
-    <div class="badge" :class="[`badge-${props.variant}`]">
+    <button class="btn" :class="[...props.className, `btn-${props.variant}`, `btn-${props.size}`]">
         <slot></slot>
-    </div>
+    </button>
 </template>

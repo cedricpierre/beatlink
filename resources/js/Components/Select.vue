@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import {useStyleProps} from "@/Compasable/Variant.vue";
+
 const model = defineModel()
 
 const props = defineProps({
+	...useStyleProps(),
     label: String,
     name: String,
     options: Array,
@@ -16,11 +19,6 @@ const props = defineProps({
     valueKey: {
         type: String,
         default: 'value',
-    },
-    className: {
-        type: String,
-        default: null,
-        required: false,
     },
     validationStatus: {
         type: String,
@@ -40,7 +38,7 @@ const props = defineProps({
             v-model="model"
             :name="props.name"
             :type="props.type"
-            :class="props.className"
+            :class="[...props.className, `select-${props.variant}`]"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

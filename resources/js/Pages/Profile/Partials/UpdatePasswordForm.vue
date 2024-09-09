@@ -71,7 +71,7 @@ const updatePassword = () => {
             />
 
             <div class="flex items-center gap-4">
-                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
+                <Button variant="primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>

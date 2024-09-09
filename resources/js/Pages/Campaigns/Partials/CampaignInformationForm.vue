@@ -46,7 +46,7 @@ const form = useForm({
 
 
             <div class="flex items-center gap-4">
-                <button :disabled="form.processing" :loading="form.processing" class="btn btn-primary">Save</button>
+                <Button variant="primary" :disabled="form.processing" :loading="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>

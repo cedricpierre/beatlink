@@ -6,6 +6,7 @@ import {IPaginate} from "@/Interfaces/Paginate";
 import BPagination from "@/Components/Pagination.vue";
 import moment from 'moment'
 import Card from "@/Components/Card.vue";
+import Badge from "@/Components/Badge.vue";
 
 const props = defineProps<{
     campaigns: IPaginate<ICampaign>;
@@ -25,7 +26,7 @@ const props = defineProps<{
         </template>
         <template #actions>
             <Link :href="route('campaigns.create')">
-                <button class="btn btn-primary">
+                <Button variant="primary">
                     Create new campaign
                 </button>
             </Link>
@@ -54,17 +55,23 @@ const props = defineProps<{
                     </td>
                     <td class="text-center">{{ campaign.links_count }}</td>
                     <td>{{ moment(campaign.created_at).format('YYYY-MM-DD HH:mm') }}</td>
-                    <td class="text-center">{{ campaign.views_count }}</td>
-                    <td class="text-center">{{ campaign.leads_count }}</td>
-                    <td class="text-center">{{ campaign.conversion_rate }}%</td>
+                    <td class="text-center">
+                        <Badge>{{ campaign.views_count }}</Badge>
+                    </td>
+                    <td class="text-center">
+                        <Badge>{{ campaign.leads_count }}</Badge>
+                    </td>
+                    <td class="text-center">
+                        <Badge>{{ campaign.conversion_rate }}%</Badge>
+                    </td>
                     <td class="space-x-2 flex justify-end whitespace-nowrap">
                         <Link :href="route('campaigns.view', {id: campaign.id})">
-                            <button class="btn btn-secondary">
+                            <Button variant="secondary">
                                 View
                             </button>
                         </Link>
                         <Link :href="route('campaigns.edit', {id: campaign.id})">
-                            <button class="btn btn-primary">
+                            <Button variant="primary">
                                 Edit
                             </button>
                         </Link>

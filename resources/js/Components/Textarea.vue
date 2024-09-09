@@ -1,18 +1,16 @@
 <script setup lang="ts">
+import {useStyleProps} from "@/Compasable/Variant.vue";
+
 const model = defineModel()
 
 const props = defineProps({
+	...useStyleProps(),
     label: String,
     name: String,
     required: Boolean,
     autofocus: Boolean,
     autocomplete: String,
     type: String,
-    className: {
-        type: String,
-        default: null,
-        required: false,
-    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -32,7 +30,7 @@ const emits = defineEmits(['update:modelValue'])
             v-model="model"
             :name="props.name"
             :type="props.type"
-            :class="props.className"
+            :class="[...props.className, `textarea-${props.variant}`]"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

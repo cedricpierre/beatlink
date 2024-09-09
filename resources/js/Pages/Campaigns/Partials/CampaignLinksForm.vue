@@ -99,7 +99,7 @@ watch(isAddingLink, (value) => {
                 <td class="text-center">{{ link.leads_count }}</td>
                 <td class="w-4">
                     <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE" as="button" preserve-scroll>
-                        <button class="btn btn-error btn-sm">Delete</button>
+                        <Button variant="error" size="sm">Delete</button>
                     </Link>
                 </td>
             </tr>
@@ -107,7 +107,7 @@ watch(isAddingLink, (value) => {
         </table>
 
         <div class="flex items-center gap-4">
-            <button class="btn btn-primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
+            <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
 
             <Transition
                 enter-active-class="transition ease-in-out"
@@ -158,8 +158,8 @@ watch(isAddingLink, (value) => {
                     </div>
                 </template>
                 <template #footer>
-                    <button class="btn btn-secondary" @click="isAddingLink = false">Cancel</button>
-                    <button class="btn btn-primary ms-3" :loading="form.processing">
+                    <Button variant="secondary" @click="isAddingLink = false">Cancel</button>
+                    <Button variant="primary" class="ms-3" :loading="form.processing">
                         Save
                     </button>
                 </template>

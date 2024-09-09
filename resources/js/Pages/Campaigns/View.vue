@@ -22,7 +22,7 @@ const props = defineProps<{
         </template>
         <template #actions>
             <Link :href="route('campaigns.edit', {campaign: campaign.id})" target="_blank">
-	            <button class="btn btn-primary">
+                <Button variant="primary">
                     Edit campain
 	            </button>
             </Link>

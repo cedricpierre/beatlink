@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import {Link} from '@inertiajs/vue3';
-import Background from "@/Components/Background.vue";
-import Footer from "@/Components/Footer.vue";
 </script>
 
 <template>
@@ -10,7 +7,7 @@ import Footer from "@/Components/Footer.vue";
         <div class="navbar bg-gradient-to-br from-bg-white to-bg-blue-100 dark:from-bg-black dark:to-bg-blue-950">
             <div class="container mx-auto  lg:max-w-screen-lg">
                 <div class="flex shrink-0 mr-2">
-                    <ApplicationLogo/>
+                    <Logo/>
                 </div>
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">

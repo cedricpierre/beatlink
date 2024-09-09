@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Background from "@/Components/Background.vue";
 import {Link} from "@inertiajs/vue3";
 </script>
 
@@ -9,7 +7,7 @@ import {Link} from "@inertiajs/vue3";
         <div class="navbar bg-base-100">
             <div class="container mx-auto lg:max-w-screen-lg">
                 <div class="flex shrink-0 mr-2">
-                    <ApplicationLogo/>
+	                <Logo/>
                 </div>
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">

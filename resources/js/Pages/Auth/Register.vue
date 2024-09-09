@@ -78,7 +78,8 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <button class="btn btn-primary ms-3" :disabled="form.processing" :loading="form.processing">
+                <
+                <Button variant="primary" class="ms-3" :disabled="form.processing" :loading="form.processing">
                     Register
                 </button>
             </div>

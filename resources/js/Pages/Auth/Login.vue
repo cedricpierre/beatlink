@@ -68,9 +68,9 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <button class="btn btn-primary ms-3" :loading="form.processing" :disabled="form.processing">
+                <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
                     Log in
-                </button>
+                </Button>
             </div>
         </form>
     </GuestLayout>
