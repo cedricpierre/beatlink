@@ -75,7 +75,7 @@ class CampaignsController extends Controller
         return Redirect::route('campaigns.edit', ['campaign' => $campaign->id]);
     }
 
-    public function upload(Request $request, Campaign $campaign): RedirectResponse
+    public function upload(CampaignUploadRequest $request, Campaign $campaign): RedirectResponse
     {
         if ($request->hasFile('background')) {
             $campaign->background_url = $request->file('background')?->store('backgrounds', 'public');

@@ -34,6 +34,9 @@ const form = useForm({
                     label="Background"
                     :validation-status="form.errors.background ? 'error' : 'success'"
                 >
+                    <template #default>
+                        <div class="text-red-600 dark:text-red-500 text-sm" v-if="form.errors.background">{{ form.errors.background }}</div>
+                    </template>
                 </fwb-file-input>
             </div>
             <div class="flex">
@@ -50,6 +53,9 @@ const form = useForm({
                     label="Image"
                     :validation-status="form.errors.image ? 'error' : 'success'"
                 >
+                    <template #default>
+                        <div class="text-red-600 dark:text-red-500 text-sm" v-if="form.errors.image">{{ form.errors.image }}</div>
+                    </template>
                 </fwb-file-input>
             </div>
 

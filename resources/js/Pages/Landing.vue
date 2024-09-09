@@ -13,7 +13,7 @@ const props = defineProps<{
     <Head :title="campaign.name"></Head>
     <div
         class="flex flex-col min-h-screen bg-gray-100 from-gray-100 to-white bg-gradient-to-br dark:from-gray-950 dark:to-gray-800 py-8 px-2">
-        <div class="animation-fade-in fixed top-0 left-0 w-full h-full z-0 blur blur-3xl bg-cover opacity-10" v-if="campaign.background_url"
+        <div class="animation-fade-in fixed top-0 left-0 w-full h-full z-0 blur blur-2xl bg-cover opacity-10" v-if="campaign.background_url"
              :style="{backgroundImage:`url(/storage/${campaign.background_url})`}"></div>
 
         <div class="z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col align-center justify-center">
