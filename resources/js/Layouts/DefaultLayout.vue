@@ -13,8 +13,8 @@ import {Link} from "@inertiajs/vue3";
                 </div>
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">
-                        <li><a>Pricing</a></li>
-                        <li><a>How it works</a></li>
+                        <li><a class="text-blue-600">Pricing</a></li>
+                        <li><a class="text-blue-600">How it works</a></li>
                     </ul>
                 </div>
                 <div class="flex justify-end">

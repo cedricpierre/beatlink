@@ -15,7 +15,7 @@ import Footer from "@/Components/Footer.vue";
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">
                         <li>
-                            <Link :href="route('campaigns.list')">Campaigns</Link>
+                            <Link class="text-blue-600" :href="route('campaigns.list')">Campaigns</Link>
                         </li>
                     </ul>
                 </div>
@@ -23,13 +23,13 @@ import Footer from "@/Components/Footer.vue";
                     <ul class="menu menu-horizontal justify-end">
                         <li>
                             <details>
-                                <summary>{{ $page.props.auth.user.name }}</summary>
+                                <summary class="text-blue-600 bg-blue-100">{{ $page.props.auth.user.name }}</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2">
                                     <li>
-                                        <Link :href="route('profile.edit')">Profile</Link>
+                                        <Link class="text-blue-600" :href="route('profile.edit')">Profile</Link>
                                     </li>
                                     <li>
-                                        <Link :href="route('logout')" method="post" as="button">Log Out</Link>
+                                        <Link class="text-blue-600" :href="route('logout')" method="post" as="button">Log Out</Link>
                                     </li>
                                 </ul>
                             </details>
