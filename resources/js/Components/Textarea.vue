@@ -2,11 +2,11 @@
 const model = defineModel()
 
 const props = defineProps({
-    modelValue: Boolean,
     label: String,
     name: String,
     required: Boolean,
     autofocus: Boolean,
+    autocomplete: String,
     type: String,
     className: [Object, String],
     validationStatus: {
@@ -22,19 +22,17 @@ const emits = defineEmits(['update:modelValue'])
 </script>
 <template>
     <div class="form-control">
-        <label class="label cursor-pointer justify-start">
-            <input
-                v-model="model"
-                class="checkbox"
-                :name="props.name"
-                @input="emits('update:modelValue', modelValue)"
-                type="checkbox"
-                :class="props.className"
-                :required="props.required"
-                :autofocus="props.autofocus"
-            />
-            <div v-if="props.label" class="text-neutral-500 text-sm ml-2 justify-items-start">{{ props.label }}</div>
-        </label>
+        <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
+        <textarea
+            class="textarea textarea-bordered w-full"
+            v-model="model"
+            :name="props.name"
+            :type="props.type"
+            :class="props.className"
+            :required="props.required"
+            :autocomplete="props.autocomplete"
+            :autofocus="props.autofocus"
+        />
         <div v-if="props.errorMessage" class="text-xs my-2" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',

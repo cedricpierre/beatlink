@@ -3,8 +3,8 @@
 import {useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
-import {FwbButton, FwbTextarea} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
+import Textarea from "@/Components/Textarea.vue";
 
 const props = defineProps<{
     campaign: ICampaign,
@@ -27,21 +27,21 @@ const form = useForm({
         </template>
 
         <form @submit.prevent="form.put(route('campaigns.update',{campaign: campaign?.id}))" class="space-y-6">
-            <fwb-textarea
+            <Textarea
                 v-model="form.custom_script"
                 label="Script"
                 placeholder="Place your javascript script here"
                 :validation-status="form.errors.custom_script ? 'error' : 'success'"
-            >
-            </fwb-textarea>
+                :error-message="form.errors.custom_script"
+            />
 
-            <fwb-textarea
+            <Textarea
                 v-model="form.custom_css"
                 label="CSS"
                 placeholder="Place your CSS here"
                 :validation-status="form.errors.custom_css ? 'error' : 'success'"
-            >
-            </fwb-textarea>
+                :error-message="form.errors.custom_css"
+            />
 
 
             <div class="flex items-center gap-4">

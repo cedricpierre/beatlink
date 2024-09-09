@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {useForm} from '@inertiajs/vue3';
-import {nextTick, ref} from 'vue';
-import {FwbButton, FwbInput, FwbModal} from "flowbite-vue";
+import {ref} from 'vue';
+import {FwbModal} from "flowbite-vue";
 import Card from "@/Components/Card.vue";
+import Input from "@/Components/Input.vue";
 
 const confirmingDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -59,22 +60,24 @@ const closeModal = () => {
                 </p>
 
                 <div class="mt-6">
-                    <fwb-input
+                    <Input
                         label="Password"
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
                         placeholder="Password"
                         @keyup.enter="destroy"
+                        :validation-status="form.errors.password ? 'error' : 'success'"
+                        :error-message="form.errors.password"
                     />
                 </div>
             </template>
             <template #footer>
                 <button class="btn btn-secondary" @click="closeModal"> Cancel</button>
                 <button class="btn btn-error ms-3"
-                            :loading="form.processing"
-                            :disabled="form.processing"
-                            @click="destroy"
+                        :loading="form.processing"
+                        :disabled="form.processing"
+                        @click="destroy"
                 >
                     Delete Account
                 </button>

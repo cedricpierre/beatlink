@@ -4,9 +4,11 @@ import {Link, router, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {computed, ComputedRef, onMounted, ref, watch} from "vue";
 import Card from "@/Components/Card.vue";
-import {FwbButton, FwbInput, FwbModal, FwbSelect, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
+import {FwbSelect, FwbTable, FwbTableBody, FwbTableCell, FwbTableHead, FwbTableHeadCell, FwbTableRow} from "flowbite-vue";
 import {IPlatform} from "@/Interfaces/Platform";
 import Autocomplete from "@/Components/Autocomplete.vue";
+import Modal from "@/Components/Modal.vue";
+import Input from "@/Components/Input.vue";
 
 const props = defineProps<{
     campaign: ICampaign,
@@ -116,7 +118,7 @@ watch(isAddingLink, (value) => {
         </div>
 
         <form @submit.prevent="addLink">
-            <fwb-modal v-if="isAddingLink" @close="isAddingLink = false">
+	        <Modal v-model="isAddingLink">
                 <template #header>
                     <h2>
                         Add a link to your campaign
@@ -145,17 +147,14 @@ watch(isAddingLink, (value) => {
                         @select="form.url = $event.url"
                     />
 
-                    <fwb-input
+	                <Input
                         v-model="form.url"
                         :disabled="!form.platform_id"
                         label="URL"
                         placeholder="https://"
                         :validation-status="form.errors.url ? 'error' : 'success'"
-                    >
-                        <template #validationMessage>
-                            {{ form.errors.url }}
-                        </template>
-                    </fwb-input>
+                        :error-message="form.errors.url"
+	                />
                 </template>
                 <template #footer>
                     <button class="btn btn-secondary" @click="isAddingLink = false">Cancel</button>
@@ -163,7 +162,7 @@ watch(isAddingLink, (value) => {
                         Save
                     </button>
                 </template>
-            </fwb-modal>
+	        </Modal>
         </form>
     </Card>
 </template>

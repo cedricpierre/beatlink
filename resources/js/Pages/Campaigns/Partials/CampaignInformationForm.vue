@@ -1,13 +1,14 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
-import {FwbButton, FwbCheckbox, FwbInput} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
+import Input from "@/Components/Input.vue";
+import Checkbox from "@/Components/Checkbox.vue";
 
 const props = defineProps<{
-    campaign: ICampaign
+    campaign?: ICampaign
 }>()
 
 const form = useForm({
@@ -21,37 +22,31 @@ const form = useForm({
         <template #header>
             General informations
         </template>
-        <form @submit.prevent="$emit('save', form)" class="space-y-6">
-            <fwb-input
+        <form class="space-y-6" @submit.prevent="$emit('save', form)">
+            <Input
                 v-model="form.name"
-                label="Name"
+                :error-message="form.errors.name"
                 :validation-status="form.errors.name ? 'error' : 'success'"
-            >
-                <template #validationMessage>
-                    {{ form.errors.name }}
-                </template>
-            </fwb-input>
+                label="Name"
+            />
 
-            <fwb-input
+            <Input
                 v-model="form.slug"
-                label="Slug"
+                :error-message="form.errors.slug"
                 :validation-status="form.errors.slug ? 'error' : 'success'"
-            >
-                <template #validationMessage>
-                    {{ form.errors.slug }}
-                </template>
-            </fwb-input>
+                label="Slug"
+            />
 
-            <fwb-checkbox
+            <Checkbox
                 v-model="form.is_dark"
-                label="Dark mode"
+                :error-message="form.errors.is_dark"
                 :validation-status="form.errors.is_dark ? 'error' : 'success'"
-            >
-            </fwb-checkbox>
+                label="Dark mode"
+            />
 
 
             <div class="flex items-center gap-4">
-                <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
+                <button :disabled="form.processing" :loading="form.processing" class="btn btn-primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

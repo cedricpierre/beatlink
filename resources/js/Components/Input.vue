@@ -27,7 +27,6 @@ const emits = defineEmits(['update:modelValue'])
             class="input input-bordered w-full"
             v-model="model"
             :name="props.name"
-            :value="modelValue"
             :type="props.type"
             :class="props.className"
             :required="props.required"

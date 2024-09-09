@@ -4,6 +4,7 @@ import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
 import {FwbButton, FwbFileInput, FwbProgress} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
+import Input from "@/Components/Input.vue";
 
 const props = defineProps<{
     campaign: ICampaign
@@ -28,16 +29,13 @@ const form = useForm({
                         <button class="btn btn-error btn-sm">Delete</button>
                     </Link>
                 </div>
-                <fwb-file-input
+                <Input
                     v-else
                     v-model="form.background"
                     label="Background"
                     :validation-status="form.errors.background ? 'error' : 'success'"
-                >
-                    <template #default>
-                        <div class="text-red-600 dark:text-red-500 text-sm" v-if="form.errors.background">{{ form.errors.background }}</div>
-                    </template>
-                </fwb-file-input>
+                    :error-message="form.errors.background"
+                />
             </div>
             <div class="flex">
                 <div v-if="campaign.image_url">
@@ -47,24 +45,22 @@ const form = useForm({
                         <button class="btn btn-error btn-sm">Delete</button>
                     </Link>
                 </div>
-                <fwb-file-input
+                <Input
+                    type="file"
                     v-else
                     v-model="form.image"
                     label="Image"
                     :validation-status="form.errors.image ? 'error' : 'success'"
-                >
-                    <template #default>
-                        <div class="text-red-600 dark:text-red-500 text-sm" v-if="form.errors.image">{{ form.errors.image }}</div>
-                    </template>
-                </fwb-file-input>
+                    :error-message="form.errors.image"
+                />
             </div>
 
             <div class="flex items-center gap-4">
                 <button class="btn btn-primary" :loading="form.processing" :disabled="form.processing">Save</button>
 
-                <fwb-progress v-if="form.progress" :progress="form.progress.percentage">
+                <Progress v-if="form.progress" :value="form.progress.percentage">
                     {{ form.progress.percentage }}%
-                </fwb-progress>
+                </Progress>
 
                 <Saved :form="form"/>
             </div>
