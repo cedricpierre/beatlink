@@ -7,11 +7,22 @@ import BPagination from "@/Components/Pagination.vue";
 import Card from "@/Components/Card.vue";
 import Badge from "@/Components/Badge.vue";
 import moment from "moment/moment";
-import {PropType} from "vue";
+import {PropType, ref} from "vue";
 
 const props = defineProps({
     campaigns: Object as PropType<IPaginated<ICampaign>>,
 });
+
+const columns = ref([
+    {key: 'name', name: 'Name'},
+    {key: 'slug', name: 'Slug'},
+    {key: 'links_count', name: 'Links', align: 'center'},
+    {key: 'created_at', name: 'Created at', align: 'center'},
+    {key: 'views_count', name: 'Views', align: 'center'},
+    {key: 'leads_count', name: 'Leads', align: 'center'},
+    {key: 'conversion_rate', name: 'Conversion rate'},
+    {key: 'actions', name: 'Actions', align: 'right'},
+])
 </script>
 
 <template>
@@ -39,54 +50,44 @@ const props = defineProps({
                     Create new campaign
                 </Link>
             </template>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Slug</th>
-                    <th class="text-center">Links</th>
-                    <th>Created at</th>
-                    <th class="text-center">Total views</th>
-                    <th class="text-center">Total leads</th>
-                    <th class="text-center" title="Conversion rate">CR</th>
-                    <th class="text-right">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="campaign in props.campaigns?.data" :key="campaign.id">
-                    <td>{{ campaign.name }}</td>
-                    <td>
-                        <a class="text-blue-600 hover:underline" :href="route('landing', {slug: campaign.slug})" target="_blank">
-                            {{ campaign.slug }}
-                        </a>
-                    </td>
-                    <td class="text-center">{{ campaign.links_count }}</td>
-                    <td>{{ moment(campaign.created_at).format('YYYY-MM-DD HH:mm') }}</td>
-                    <td class="text-center">
-                        <Badge>{{ campaign.views_count }}</Badge>
-                    </td>
-                    <td class="text-center">
-                        <Badge>{{ campaign.leads_count }}</Badge>
-                    </td>
-                    <td class="text-center">
-                        <Badge>{{ campaign.conversion_rate }}%</Badge>
-                    </td>
-                    <td class="space-x-2 flex justify-end whitespace-nowrap">
-                        <Link :href="route('campaigns.view', {id: campaign.id})">
-                            <Button variant="neutral">
-                                View
-                            </button>
-                        </Link>
-                        <Link :href="route('campaigns.edit', {id: campaign.id})">
-                            <Button variant="primary">
-                                Edit
-                            </button>
-                        </Link>
+            <Table :columns="columns" :items="props.campaigns?.data">
 
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                <template #item.slug="{item}">
+                    <a class="text-blue-600 hover:underline" :href="route('landing', {slug: item.slug})" target="_blank">
+                        {{ item.slug }}
+                    </a>
+                </template>
+
+                <template #item.created_at="{item}">
+                    {{ moment(item.created_at).format('YYYY-MM-DD HH:mm') }}
+                </template>
+
+                <template #item.views_count="{item}">
+                    <Badge>{{ item.views_count }}</Badge>
+                </template>
+
+                <template #item.leads_count="{item}">
+                    <Badge>{{ item.leads_count }}</Badge>
+                </template>
+
+                <template #item.conversion_rate="{item}">
+                    <Badge>{{ item.conversion_rate }}%</Badge>
+                </template>
+
+                <template #item.actions="{item}">
+                    <div class="space-x-2">
+                        <a class="btn btn-sm" :href="route('landing', {slug: item.slug})" target="_blank">
+                            View page
+                        </a>
+                        <Link class="btn btn-sm" :href="route('campaigns.view', {id: item.id})">
+                            Stats
+                        </Link>
+                        <Link class="btn btn-sm btn-primary" :href="route('campaigns.edit', {id: item.id})">
+                            Edit
+                        </Link>
+                    </div>
+                </template>
+            </Table>
         </Card>
 
         <BPagination :paginated="props.campaigns"></BPagination>

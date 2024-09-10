@@ -4,6 +4,7 @@ export function useStyleProps() {
         variant: {
             type: String,
             default: 'neutral',
+            required: false,
             validator(value: string,): boolean {
                 return ['neutral', 'accent', 'ghost', 'primary', 'secondary', 'error', 'success'].includes(value);
             }
@@ -11,6 +12,7 @@ export function useStyleProps() {
         size: {
             type: String,
             default: 'md',
+            required: false,
             validator(value: string,): boolean {
                 return ['xs', 'sm', 'md', 'lg'].includes(value);
             }

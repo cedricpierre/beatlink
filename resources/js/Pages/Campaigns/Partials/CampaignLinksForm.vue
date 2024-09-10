@@ -72,6 +72,13 @@ watch(isAddingLink, (value) => {
     if (value) fetchPlatforms()
 })
 
+const columns = ref([
+    {key: 'icon', name: 'Icon'},
+    {key: 'platform', name: 'Platform'},
+    {key: 'url', name: 'Url'},
+    {key: 'views', name: 'Views', align: 'center'},
+    {key: 'actions', name: '', align: 'right'},
+])
 </script>
 <template>
     <Card>
@@ -79,34 +86,27 @@ watch(isAddingLink, (value) => {
             Add links to your campaign
         </template>
 
-        <table v-if="campaign?.links.length" class="table mb-4">
-            <thead>
-            <th></th>
-            <th>Platform</th>
-            <th>URL</th>
-            <th>Views</th>
-            <th class="w-4">Actions</th>
-            </thead>
-            <tbody>
-            <tr v-for="link in campaign?.links" :key="campaign.id">
-                <td class="px-2">
-                    <div class="w-4" v-html="link.platform?.icon"></div>
-                </td>
-                <td>{{ link.platform?.name }}</td>
-                <td :title="link.url">
-                    <a class="text-blue-600" :href="link.url" target="_blank">open</a>
-                </td>
-                <td class="text-center">{{ link.leads_count }}</td>
-                <td class="w-4">
-                    <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: link.id})" method="DELETE"
-                          as="button"
-                          preserve-scroll>
-                        Delete
-                    </Link>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <Table :columns="columns" :items="props.campaign?.links">
+            <template #item.icon="{item}">
+                <div class="w-4" v-html="item.platform?.icon"></div>
+            </template>
+            <template #item.url="{item}">
+                <a class="text-blue-600" :href="item.url" target="_blank">open</a>
+            </template>
+            <template #item.platform="{item}">
+                <Badge>{{ item.platform?.name }}</Badge>
+            </template>
+            <template #item.views="{item}">
+                <Badge>{{ item.leads_count }}</Badge>
+            </template>
+            <template #item.actions="{item}">
+                <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" method="DELETE"
+                      as="button"
+                      preserve-scroll>
+                    Delete
+                </Link>
+            </template>
+        </Table>
 
         <div class="flex items-center gap-4">
             <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
@@ -160,7 +160,7 @@ watch(isAddingLink, (value) => {
                     </div>
                 </template>
                 <template #footer>
-                    <Button variant="neutral" @click="isAddingLink = false">Cancel</button>
+                    <Button @click="isAddingLink = false">Cancel</button>
                     <Button variant="primary" class="ms-3" :loading="form.processing">
                         Save
                     </button>

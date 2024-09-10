@@ -33,7 +33,7 @@ const props = defineProps<{
                 </button>
             </Link>
             <a :href="route('landing', {slug: campaign.slug})" target="_blank">
-                <Button variant="neutral">
+	            <Button>
                     View page
                 </button>
             </a>

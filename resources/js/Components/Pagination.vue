@@ -14,7 +14,6 @@ const onPageChange = (event: number) => {
 <template>
 	<div class="join flex justify-center items-center my-6" v-if="props.paginated">
 		<Button
-				variant="neutral"
 				:disabled="!props.paginated.prev_page_url"
 				@click="onPageChange(1)"
 				class="join-item"
@@ -22,7 +21,6 @@ const onPageChange = (event: number) => {
 			Previous
 		</Button>
 		<Button
-				variant="neutral"
 				v-for="i in Math.ceil(props.paginated.total / props.paginated.per_page)"
 				@click="onPageChange(i)"
 				class="join-item"
@@ -31,7 +29,6 @@ const onPageChange = (event: number) => {
 			{{ i }}
 		</Button>
 		<Button
-				variant="neutral"
 				:disabled="!props.paginated.next_page_url"
 				@click="onPageChange(props.paginated.last_page)"
 				class="join-item"

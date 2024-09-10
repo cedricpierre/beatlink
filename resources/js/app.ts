@@ -22,6 +22,7 @@ import Progress from "@/Components/Progress.vue";
 import Saved from "@/Components/Saved.vue";
 import Select from "@/Components/Select.vue";
 import Textarea from "@/Components/Textarea.vue";
+import Table from "@/Components/Table.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -51,6 +52,7 @@ createInertiaApp({
             .component('Saved', Saved)
             .component('Select', Select)
             .component('Textarea', Textarea)
+            .component('Table', Table)
             .mount(el);
     },
 });
