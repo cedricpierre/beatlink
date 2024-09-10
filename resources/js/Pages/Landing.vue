@@ -37,7 +37,7 @@ const props = defineProps<{
 
                                 <div class="flex flex-row items-center">
                                     <div class="h-6 flex" v-html="link.platform.icon"></div>
-                                    <h3 class="ml-3 text-xl leading-tight text-black ">
+                                    <h3 class="ml-3 text-xl leading-tight">
                                         {{ link.platform.name }}
                                     </h3>
                                 </div>
