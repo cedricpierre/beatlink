@@ -6,6 +6,7 @@ import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import Input from "@/Components/Input.vue";
 import Checkbox from "@/Components/Checkbox.vue";
+import Textarea from "@/Components/Textarea.vue";
 
 const props = defineProps<{
     campaign?: ICampaign
@@ -14,6 +15,7 @@ const props = defineProps<{
 const form = useForm({
     name: props.campaign?.name,
     slug: props.campaign?.slug,
+    description: props.campaign?.description,
     is_dark: props.campaign?.is_dark,
 })
 </script>
@@ -28,6 +30,13 @@ const form = useForm({
                 :error-message="form.errors.name"
                 :validation-status="form.errors.name ? 'error' : 'success'"
                 label="Name"
+            />
+
+            <Textarea
+                v-model="form.description"
+                :error-message="form.errors.description"
+                :validation-status="form.errors.description ? 'error' : 'success'"
+                label="Description"
             />
 
             <Input

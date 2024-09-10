@@ -4,6 +4,7 @@ export interface ICampaign {
     id: string
     name: string
     slug: string
+    description: string
     settings: object
     created_at: Date
     updated_at: Date

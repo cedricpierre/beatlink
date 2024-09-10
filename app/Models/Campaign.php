@@ -16,6 +16,7 @@ class Campaign extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
         'is_dark',
         'background_url',
         'image_url',

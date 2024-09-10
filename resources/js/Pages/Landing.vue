@@ -12,16 +12,21 @@ const props = defineProps<{
 <template>
     <Head :title="campaign.name"></Head>
     <Background
-        class="flex flex-col min-h-screen py-8 px-2">
+        class="flex flex-col min-h-screen">
         <div class="animation-fade-in fixed top-0 left-0 w-full h-full z-0 blur-2xl bg-cover opacity-10" v-if="campaign.background_url"
              :style="{backgroundImage:`url(/storage/${campaign.background_url})`}"></div>
 
-        <div class="z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col  justify-center">
+        <div class="py-8 px-4 z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col  justify-center">
             <div class="flex flex-col max-w-screen-sm mx-auto h-full w-full">
 
                 <div class="flex flex-col flex-grow items-center justify-center">
                     <div class="animation-fade-in delay-200 leading-tight font-extrabold text-3xl text-center mb-4 text-black dark:text-white">{{
                             campaign.name
+                        }}
+                    </div>
+                    <div v-if="campaign.description"
+                         class="animation-fade-in delay-400 leading-tight font-light text-xl text-center mb-4 text-black dark:text-white">{{
+                            campaign.description
                         }}
                     </div>
                     <div class="animation-fade-in delay-400 w-full flex justify-center my-8" v-if="campaign.image_url">

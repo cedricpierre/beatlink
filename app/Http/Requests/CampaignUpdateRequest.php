@@ -13,8 +13,9 @@ class CampaignUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'slug' => ['sometimes', 'required', 'string', 'max:255', 'unique:campaigns,slug,' . $this->campaign->id],
+            'name'        => ['required', 'string', 'max:255'],
+            'slug'        => ['required', 'string', 'max:255', 'unique:campaigns,slug,' . $this->campaign->id],
+            'description' => ['required', 'string'],
         ];
     }
 }

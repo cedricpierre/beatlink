@@ -59,7 +59,6 @@ class Tidal implements PlatformServiceConcern
                 case 'albums':
                     $albums->push(new Album($item->id, $item->attributes->title, $item->attributes->externalLinks[0]->href));
                     break;
-
             }
         });
 
