@@ -77,8 +77,8 @@ onMounted(fetchPlatforms)
 
 watch(isAddingLink, (value) => {
     if (value) {
-        fetchPlatforms()
         form.reset()
+        fetchPlatforms()
     }
 })
 

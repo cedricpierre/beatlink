@@ -27,28 +27,47 @@ class Tidal implements PlatformServiceConcern
         $client = new Client();
 
         try {
-
-            $response = $client->get(self::TIDAL_SEARCH_URL . '/' . $lookup, [
+            $response = $client->get(self::TIDAL_SEARCH_URL . '/' . $lookup . '?countryCode=US&include=artists&include=tracks&include=albums&limit=100',
+                                     [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->getAccessToken(),
                     'Accept'        => 'application/vnd.api+json',
                 ],
-                'query'   => [
-                    'countryCode' => 'US',
-                    'include'     => 'tracks'
-                ]
             ]);
         } catch (RequestException $e) {
             dd($e);
         }
 
-        $body = Json::decode((string)$response->getBody(), false);;
+        $body = Json::decode((string)$response->getBody(), false);
+
+        $included = collect($body->included ?? []);
+
         /** @var Track[] $albums */
-        $tracks = collect($body->included)->map(function ($album) {
-            return new Album($album->attributes->isrc, $album->attributes->title, $album->attributes->externalLinks[0]->href);
+        $tracks = $included->filter(function ($item) {
+            return $item->type === 'tracks';
+        })->map(function ($track) {
+            return new Track($track->id, $track->attributes->title, $track->attributes->externalLinks[0]->href);
         });
 
-        return new PlatformSearchResponse(['tracks' => $tracks]);
+        /** @var Album[] $albums */
+        $albums = $included->filter(function ($item) {
+            return $item->type === 'albums';
+        })->map(function ($album) {
+            return new Album($album->id, $album->attributes->title, $album->attributes->externalLinks[0]->href);
+        });
+
+        /** @var Playlist[] $albums */
+        $artists = $included->filter(function ($item) {
+            return $item->type === 'artists';
+        })->map(function ($artist) {
+            return new Artist($artist->id, $artist->attributes->name, $artist->attributes->externalLinks[0]->href);
+        });
+
+        return new PlatformSearchResponse([
+                                              'tracks'  => $tracks,
+                                              'albums'  => $albums,
+                                              'artists' => $artists,
+                                          ]);
     }
 
     public function getAccessToken(): string
