@@ -15,6 +15,7 @@ class Link extends Model
     protected $fillable = [
         'platform_id',
         'url',
+        'name',
         'leads_count',
     ];
 

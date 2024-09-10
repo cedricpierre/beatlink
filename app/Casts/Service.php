@@ -2,7 +2,7 @@
 
 namespace App\Casts;
 
-use App\Services\Music\Concerns\MusicSearchResultConcern;
+use App\Services\Platform\Concerns\MusicSearchResultConcern;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 

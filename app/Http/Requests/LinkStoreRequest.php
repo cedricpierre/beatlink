@@ -11,6 +11,7 @@ class LinkStoreRequest extends FormRequest
     {
         return [
             'url'         => ['required', 'string', 'max:255', 'url'],
+            'name' => ['required', 'string', 'max:255'],
             'platform_id' => [
                 'required',
                 'string',

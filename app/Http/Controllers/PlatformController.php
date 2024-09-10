@@ -10,6 +10,8 @@ class PlatformController extends Controller
 {
     public function search(PlatformSearchRequest $request, Platform $platform): JsonResponse
     {
-        return $platform->service->search($request->input('search'));
+        $result = $platform->service->search($request->input('search'));
+
+        return response()->json($result->toArray());
     }
 }

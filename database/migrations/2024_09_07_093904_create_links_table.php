@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('url');
+            $table->string('name');
             $table->foreignUlid('campaign_id');
             $table->string('title')->nullable();
             $table->foreignUlid('platform_id');

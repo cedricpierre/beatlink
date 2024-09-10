@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useStyleProps} from "@/Compasable/Variant.vue";
+import {useStyleProps} from "@/Compasable/variant.js";
 import {watch} from "vue";
 
 const model = defineModel<Boolean>()

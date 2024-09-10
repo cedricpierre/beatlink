@@ -2,8 +2,10 @@
 import {useForm} from "@inertiajs/vue3";
 import {ref, watch} from "vue";
 import Input from "@/Components/Input.vue";
-
+import {useDebounce} from "@/Compasable/debounce.js";
 const emits = defineEmits(['change', 'select']);
+
+const debounce = useDebounce()
 
 const props = defineProps({
     label: {
@@ -46,6 +48,10 @@ const onWindowClick = () => {
     isDropdownOpen.value = false
 }
 
+const onChange = () => {
+    emits('change', lookup.value)
+}
+
 watch(isDropdownOpen, (value) => {
 
     if (value) {
@@ -66,7 +72,7 @@ watch(() => props.items, (values) => {
             v-model="lookup"
             :disabled="props.disabled"
             :label="props.label"
-            @keyup.prevent.stop="emits('change', lookup)"
+            @keyup.prevent.stop="debounce(onChange,500)"
             :validation-status="form.errors.search ? 'error' : 'success'"
             :error-message="form.errors.search"
         />
@@ -75,10 +81,10 @@ watch(() => props.items, (values) => {
                 <template v-for="item in props.items">
                     <li>
                         <h4
-                            class="text-gray-600 py-2 border-b-2 border-b-gray-200 font-bold px-4 bg-gray-50 dark:bg-gray-950 dark:text-white first-letter:uppercase">
+                            class="text-gray-600 py-2 font-bold px-4 bg-gray-100 dark:bg-gray-950 dark:text-white first-letter:uppercase">
                             {{ item.name }}
                         </h4>
-                        <template v-if="item.children">
+                        <template v-if="item.children && item.children.length">
                             <ul>
                                 <li v-for="child in item.children">
                                 <span @click="select(child)"
@@ -88,6 +94,9 @@ watch(() => props.items, (values) => {
                                 </li>
                             </ul>
                         </template>
+                        <div v-else class="text-blue-300 py-2 px-4 text-sm">
+                            No items to display
+                        </div>
                     </li>
                 </template>
             </ul>

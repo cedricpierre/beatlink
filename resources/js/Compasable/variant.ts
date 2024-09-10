@@ -1,4 +1,3 @@
-<script lang="ts">
 export function useStyleProps() {
     return {
         variant: {
@@ -25,4 +24,3 @@ export function useStyleProps() {
 
     }
 }
-</script>

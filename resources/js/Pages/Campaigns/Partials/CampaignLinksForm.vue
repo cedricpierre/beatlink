@@ -23,6 +23,7 @@ const items = ref([])
 const form = useForm({
     platform_id: null,
     url: 'https://',
+    name: '',
 })
 
 const addLink = () => {
@@ -56,7 +57,7 @@ const search = async (lookup: string) => {
         items.value = []
 
         for (const key in results) {
-            const obj = {
+            const obj: any = {
                 name: key,
                 children: results[key]
             }
@@ -66,11 +67,19 @@ const search = async (lookup: string) => {
     }
 }
 
+const onSelect = (event: any) => {
+    form.url = event.url
+    form.name = event.name
+}
+
 
 onMounted(fetchPlatforms)
 
 watch(isAddingLink, (value) => {
-    if (value) fetchPlatforms()
+    if (value) {
+        fetchPlatforms()
+        form.reset()
+    }
 })
 
 const columns = ref([
@@ -92,7 +101,7 @@ const columns = ref([
                 <div class="w-4" v-html="item.platform?.icon"></div>
             </template>
             <template #item.url="{item}">
-                <a class="text-blue-600" :href="item.url" target="_blank">open</a>
+                <a class="text-blue-600" :href="item.url" target="_blank"><strong>{{ item.name }}</strong></a>
             </template>
             <template #item.platform="{item}">
                 <Badge>{{ item.platform?.name }}</Badge>
@@ -108,7 +117,7 @@ const columns = ref([
                 </Link>
             </template>
         </Table>
-        <Alert variant="info" v-else>No links found</Alert>
+        <Alert v-else>No links found</Alert>
 
         <div class="flex items-center gap-4">
             <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
@@ -148,7 +157,7 @@ const columns = ref([
                             :items="items"
                             :disabled="!form.platform_id"
                             @change="search"
-                            @select="form.url = $event.url"
+                            @select="onSelect"
                         />
 
                         <Input
