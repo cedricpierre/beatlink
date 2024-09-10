@@ -21,7 +21,7 @@ module.exports = {
                     "error": colors.red['600'],
                     "secondary-content": colors.gray['900'],
                     "accent": colors.blue['600'],
-                    "neutral": colors.white,
+                    "neutral": colors.gray['200'],
                     "neutral-content": colors.gray['100'],
                     "base-100": colors.white,
                     "base-200": colors.gray['50'],

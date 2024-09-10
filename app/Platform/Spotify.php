@@ -20,7 +20,6 @@ class Spotify implements PlatformServiceConcern
     private const SPOTIFY_SEARCH_URL    = 'https://api.spotify.com/v1/search';
     private const CACHE_PREFIX          = 'spotify';
 
-
     public function search(string $lookup): PlatformSearchResponse
     {
         $client = new Client();
