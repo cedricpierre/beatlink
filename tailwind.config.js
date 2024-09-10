@@ -1,7 +1,7 @@
 import colors from "tailwindcss/colors.js";
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
@@ -35,3 +35,5 @@ export default {
         require('daisyui'),
     ],
 };
+
+console.log(colors.blue)

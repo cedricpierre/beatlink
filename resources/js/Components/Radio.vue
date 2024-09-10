@@ -11,6 +11,10 @@ const props = defineProps({
     required: Boolean,
     autofocus: Boolean,
     type: String,
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -29,6 +33,7 @@ const emits = defineEmits(['update:modelValue'])
             <input
                 v-model="model"
                 class="radio"
+                :disabled="props.disabled"
                 :name="props.name"
                 @input="emits('update:modelValue', modelValue)"
                 type="radio"

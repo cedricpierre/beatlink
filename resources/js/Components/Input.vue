@@ -12,6 +12,10 @@ const props = defineProps({
     autofocus: Boolean,
     autocomplete: String,
     type: String,
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -29,6 +33,7 @@ const emits = defineEmits(['update:modelValue'])
         <input
             class="input input-bordered w-full"
             v-model="model"
+            :disabled="props.disabled"
             :placeholder="props.placeholder"
             :name="props.name"
             :type="props.type"

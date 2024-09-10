@@ -12,6 +12,10 @@ const props = defineProps({
     required: Boolean,
     autofocus: Boolean,
     autocomplete: String,
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
     validationStatus: {
         type: String,
         validator(value: unknown): boolean {
@@ -33,7 +37,8 @@ const emits = defineEmits(['update:modelValue'])
         <input
             class="file-input input-bordered w-full"
             :name="props.name"
-            :multiple="multiple"
+            :multiple="props.multiple"
+            :disabled="props.disabled"
             type="file"
             :class="[...props.className, `input-${props.variant}`]"
             :required="props.required"

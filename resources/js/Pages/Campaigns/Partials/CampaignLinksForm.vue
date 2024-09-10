@@ -9,6 +9,7 @@ import Autocomplete from "@/Components/Autocomplete.vue";
 import Modal from "@/Components/Modal.vue";
 import Input from "@/Components/Input.vue";
 import Select from "@/Components/Select.vue";
+import Alert from "@/Components/Alert.vue";
 
 const props = defineProps<{
     campaign: ICampaign,
@@ -86,7 +87,7 @@ const columns = ref([
             Add links to your campaign
         </template>
 
-        <Table :columns="columns" :items="props.campaign?.links">
+        <Table :columns="columns" :items="props.campaign?.links" v-if="props.campaign?.links.length">
             <template #item.icon="{item}">
                 <div class="w-4" v-html="item.platform?.icon"></div>
             </template>
@@ -107,6 +108,7 @@ const columns = ref([
                 </Link>
             </template>
         </Table>
+        <Alert variant="info" v-else>No links found</Alert>
 
         <div class="flex items-center gap-4">
             <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>

@@ -36,8 +36,6 @@ const form = useForm({
     search: ''
 })
 
-const dropdown = ref(null);
-
 const select = (data: any) => {
     emits('select', data);
     lookup.value = ''

@@ -23,6 +23,7 @@ import Saved from "@/Components/Saved.vue";
 import Select from "@/Components/Select.vue";
 import Textarea from "@/Components/Textarea.vue";
 import Table from "@/Components/Table.vue";
+import Alert from "@/Components/Alert.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -36,6 +37,7 @@ createInertiaApp({
         app.use(plugin)
             .use(ZiggyVue)
             .component('Autocomplete', Autocomplete)
+            .component('Alert', Alert)
             .component('Background', Background)
             .component('Badge', Badge)
             .component('Button', Button)
