@@ -13,6 +13,7 @@ module.exports = {
         styled: true,
         utils: true,
         themes: [
+            "cupcake",
             {
                 "beatlink": {
                     "color-scheme": "light",
