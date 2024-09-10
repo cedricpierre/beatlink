@@ -49,17 +49,17 @@ class Spotify implements PlatformServiceConcern
 
         /** @var Artist[] $albums */
         $artists = collect($body->artists->items)->map(function ($artist) {
-            return new Album($artist->id, $artist->name, $artist->external_urls->spotify);
+            return new Artist($artist->id, $artist->name, $artist->external_urls->spotify);
         });
 
         /** @var Track[] $albums */
         $tracks = collect($body->tracks->items)->map(function ($track) {
-            return new Album($track->id, $track->name, $track->external_urls->spotify);
+            return new Track($track->id, $track->name, $track->external_urls->spotify);
         });
 
         /** @var Playlist[] $albums */
         $playlists = collect($body->playlists->items)->map(function ($playlist) {
-            return new Album($playlist->id, $playlist->name, $playlist->external_urls->spotify);
+            return new Playlist($playlist->id, $playlist->name, $playlist->external_urls->spotify);
         });
 
         return new PlatformSearchResponse([

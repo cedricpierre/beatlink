@@ -6,6 +6,7 @@ use App\Platform\Concerns\PlatformServiceConcern;
 use App\Platform\Responses\PlatformSearchResponse;
 use App\Platform\Types\Album;
 use App\Platform\Types\Artist;
+use App\Platform\Types\Author;
 use App\Platform\Types\Playlist;
 use App\Platform\Types\Track;
 use GuzzleHttp\Client;
@@ -43,30 +44,30 @@ class Tidal implements PlatformServiceConcern
         $included = collect($body->included ?? []);
 
         /** @var Track[] $albums */
-        $tracks = $included->filter(function ($item) {
-            return $item->type === 'tracks';
-        })->map(function ($track) {
-            return new Track($track->id, $track->attributes->title, $track->attributes->externalLinks[0]->href);
+        $tracks = collect();
+        $artists = collect();
+        $albums = collect();
+
+        $included->each(function ($item) use (&$tracks, &$artists, &$albums) {
+            switch ($item->type) {
+                case 'tracks':
+                    $tracks->push(new Track($item->id, $item->attributes->title, $item->attributes->externalLinks[0]->href));
+                    break;
+                case 'artists':
+                    $artists->push(new Artist($item->id, $item->attributes->name, $item->attributes->externalLinks[0]->href));
+                    break;
+                case 'albums':
+                    $albums->push(new Album($item->id, $item->attributes->title, $item->attributes->externalLinks[0]->href));
+                    break;
+
+            }
         });
 
-        /** @var Album[] $albums */
-        $albums = $included->filter(function ($item) {
-            return $item->type === 'albums';
-        })->map(function ($album) {
-            return new Album($album->id, $album->attributes->title, $album->attributes->externalLinks[0]->href);
-        });
-
-        /** @var Playlist[] $albums */
-        $artists = $included->filter(function ($item) {
-            return $item->type === 'artists';
-        })->map(function ($artist) {
-            return new Artist($artist->id, $artist->attributes->name, $artist->attributes->externalLinks[0]->href);
-        });
 
         return new PlatformSearchResponse([
                                               'tracks'  => $tracks,
-                                              'albums'  => $albums,
                                               'artists' => $artists,
+                                              'albums'  => $albums,
                                           ]);
     }
 

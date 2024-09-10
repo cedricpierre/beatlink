@@ -6,20 +6,18 @@ use App\Platform\Contracts\PlatformTypeContract;
 
 class Track extends PlatformTypeContract
 {
-    protected Artist $artist;
+    public ?Author $author;
 
     /**
      * @param int|string $id
      * @param string $name
      * @param string $url
-     * @param Artist|null $artist
+     * @param Author|null $author
      * @param string|null $description
      */
-    public function __construct(int|string $id, string $name, string $url, ?Artist $artist = null, ?string $description = null)
+    public function __construct(int|string $id, string $name, string $url, ?Author $author = null, ?string $description = null)
     {
-        if ($artist) {
-            $this->artist = $artist;
-        }
+        $this->author = $author;
 
         parent::__construct($id, $name, $url, $description);
     }
