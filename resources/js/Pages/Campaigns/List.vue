@@ -75,7 +75,7 @@ const columns = ref([
                 </template>
 
                 <template #item.actions="{item}">
-                    <div class="space-x-2">
+                    <div class="space-x-2 whitespace-nowrap">
                         <a class="btn btn-sm" :href="route('landing', {slug: item.slug})" target="_blank">
                             View page
                         </a>

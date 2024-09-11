@@ -7,7 +7,6 @@ import Card from "@/Components/Card.vue";
 import {IPlatform} from "@/Interfaces/Platform";
 import Autocomplete from "@/Components/Autocomplete.vue";
 import Modal from "@/Components/Modal.vue";
-import Input from "@/Components/Input.vue";
 import Select from "@/Components/Select.vue";
 import Alert from "@/Components/Alert.vue";
 
@@ -123,13 +122,13 @@ const columns = ref([
                 <Badge>{{ item.leads_count }}</Badge>
             </template>
             <template #item.actions="{item}">
-                <div class="space-x-2">
+                <div class="space-x-2 whitespace-nowrap">
                     <a class="btn btn-primary btn-outline btn-sm" :href="item.url" target="_blank">Preview</a>
-                <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" method="DELETE"
-                      as="button"
-                      preserve-scroll>
-                    Delete
-                </Link>
+                    <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" method="DELETE"
+                          as="button"
+                          preserve-scroll>
+                        Delete
+                    </Link>
                 </div>
             </template>
         </Table>
