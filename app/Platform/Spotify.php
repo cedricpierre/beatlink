@@ -6,6 +6,7 @@ use App\Platform\Concerns\PlatformServiceConcern;
 use App\Platform\Responses\PlatformSearchResponse;
 use App\Platform\Types\Album;
 use App\Platform\Types\Artist;
+use App\Platform\Types\Author;
 use App\Platform\Types\Picture;
 use App\Platform\Types\Playlist;
 use App\Platform\Types\Track;
@@ -49,8 +50,8 @@ class Spotify implements PlatformServiceConcern
                 $item->id,
                 $item->name,
                 $item->external_urls->spotify,
-                null,
-                isset($item->images, $item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                picture: isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                author : isset($item->artists[0]) ? new Author($item->artists[0]->name) : null,
             );
         });
 
@@ -60,32 +61,31 @@ class Spotify implements PlatformServiceConcern
                 $item->id,
                 $item->name,
                 $item->external_urls->spotify,
-                null,
-                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                picture: isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                author : isset($item->artists[0]) ? new Author($item->artists[0]->name) : null,
             );
         });
 
         /** @var Track[] $albums */
         $tracks = collect($body->tracks->items)->map(function ($item) {
             return new Track(
-                $item->id,
-                $item->name,
-                $item->external_urls->spotify,
-                null,
-                null,
-                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                         $item->id,
+                         $item->name,
+                         $item->external_urls->spotify,
+                picture: isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                author : isset($item->artists[0]) ? new Author($item->artists[0]->name) : null,
             );
         });
 
         /** @var Playlist[] $albums */
         $playlists = collect($body->playlists->items)->map(function ($item) {
             return new Playlist(
-                $item->id,
-                $item->name,
-                $item->external_urls->spotify,
-                null,
-                null,
-                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                         $item->id,
+                         $item->name,
+                         $item->external_urls->spotify,
+                picture: isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+                author : isset($item->artists[0]) ? new Author($item->artists[0]->name) : null,
+
             );
         });
 

@@ -97,8 +97,9 @@ watch(() => props.items, (values) => {
 			                                <div class="flex-shrink mr-2" v-if="child.picture">
 				                                <img class="h-10 w-10 rounded" :src="child.picture.url" alt="">
 			                                </div>
-			                                <div class="flex-grow-1 flex items-center">
+                                            <div class="flex-grow-1 flex justify-center items-start flex-col flex-1">
 				                                <div>{{ child[textKey] }}</div>
+                                                <div v-if="child.author" class="text-gray-400 text-xs">{{ child.author.name }}</div>
 			                                </div>
 		                                </div>
 	                                </a>
