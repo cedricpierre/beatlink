@@ -2,9 +2,7 @@
 import {Link, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
-import {FwbButton, FwbFileInput, FwbProgress} from "flowbite-vue";
 import Saved from "@/Components/Saved.vue";
-import Input from "@/Components/Input.vue";
 import InputFile from "@/Components/InputFile.vue";
 
 const props = defineProps<{
