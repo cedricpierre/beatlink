@@ -135,7 +135,7 @@ const columns = ref([
         </Table>
         <Alert v-else>No links found</Alert>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 mt-4">
             <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
 
             <Transition

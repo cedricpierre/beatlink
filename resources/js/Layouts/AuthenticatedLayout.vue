@@ -38,7 +38,7 @@ import {Link} from '@inertiajs/vue3';
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-blue-100 dark:bg-black dark:bg-opacity-10 text-blue-900 dark:text-white "
+            class="h-20 flex items-center bg-blue-700 dark:bg-black dark:bg-opacity-10 text-blue-100 dark:text-white "
             v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
