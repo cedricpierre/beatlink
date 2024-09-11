@@ -11,14 +11,14 @@ const props = defineProps({
     },
 })
 
-const isLoading = ref(false);
+const loading = ref(false);
 
 watch(() => props.loading, (value) => {
     if (value) {
-        isLoading.value = true;
+        loading.value = true;
         setTimeout(() => {
             if (!props.loading) {
-                isLoading.value = false;
+                loading.value = false;
             }
         }, 1000)
     }
@@ -26,7 +26,7 @@ watch(() => props.loading, (value) => {
 </script>
 <template>
     <button class="btn" :class="[...props.className, `btn-${props.variant}`, `btn-${props.size}`]">
-        <span v-if="loading" class="loading loading-spinner" :class="[`loading-${props.size}`]"></span>
+        <Loading :active="loading" variant="dots"></Loading>
         <slot></slot>
     </button>
 </template>

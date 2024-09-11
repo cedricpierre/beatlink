@@ -3,11 +3,13 @@ import {useForm} from "@inertiajs/vue3";
 import {ref, watch} from "vue";
 import Input from "@/Components/Input.vue";
 import {useDebounce} from "@/Compasable/debounce.js";
+
 const emits = defineEmits(['change', 'select']);
 
 const debounce = useDebounce()
 
 const props = defineProps({
+	loading: Boolean,
     label: {
         type: String,
         default: 'Search',
@@ -40,7 +42,7 @@ const form = useForm({
 
 const select = (data: any) => {
     emits('select', data);
-    lookup.value = ''
+	lookup.value = data[props.textKey]
     isDropdownOpen.value = false
 }
 
@@ -70,6 +72,8 @@ watch(() => props.items, (values) => {
     <div class="form-control">
         <Input
             v-model="lookup"
+            :loading="props.loading"
+            type="search"
             :disabled="props.disabled"
             :label="props.label"
             @keyup.prevent.stop="debounce(onChange,500)"
@@ -87,10 +91,17 @@ watch(() => props.items, (values) => {
                         <template v-if="item.children && item.children.length">
                             <ul>
                                 <li v-for="child in item.children">
-                                <span @click="select(child)"
-                                      class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-600 dark:hover:text-white">{{
-                                        child[textKey]
-                                    }}</span>
+	                                <a href="#" @click.prevent="select(child)"
+	                                   class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-600 dark:hover:text-white">
+		                                <div class="flex">
+			                                <div class="flex-shrink mr-2" v-if="child.picture">
+				                                <img class="h-10 w-10 rounded" :src="child.picture.url" alt="">
+			                                </div>
+			                                <div class="flex-grow-1 flex items-center">
+				                                <div>{{ child[textKey] }}</div>
+			                                </div>
+		                                </div>
+	                                </a>
                                 </li>
                             </ul>
                         </template>

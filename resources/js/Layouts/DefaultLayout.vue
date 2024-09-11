@@ -4,7 +4,7 @@ import {Link} from "@inertiajs/vue3";
 
 <template>
     <Background>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-white dark:bg-blue-950">
             <div class="container mx-auto lg:max-w-screen-lg">
                 <div class="flex shrink-0 mr-2">
 	                <Logo/>

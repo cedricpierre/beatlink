@@ -14,11 +14,12 @@ class Track extends PlatformTypeContract
      * @param string $url
      * @param Author|null $author
      * @param string|null $description
+     * @param Picture|null $picture
      */
-    public function __construct(int|string $id, string $name, string $url, ?Author $author = null, ?string $description = null)
+    public function __construct(int|string $id, string $name, string $url, ?Author $author = null, ?string $description = null, ?Picture $picture = null)
     {
         $this->author = $author;
 
-        parent::__construct($id, $name, $url, $description);
+        parent::__construct($id, $name, $url, $description, $picture);
     }
 }

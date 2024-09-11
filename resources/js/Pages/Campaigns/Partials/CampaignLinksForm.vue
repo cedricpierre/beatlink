@@ -48,8 +48,11 @@ const selectedPlatform: ComputedRef<IPlatform | undefined> = computed(() => {
     return props.platforms.find((p) => p.id === form.platform_id)
 })
 
+const loading = ref(false)
+
 const search = async (lookup: string) => {
     if (selectedPlatform) {
+        loading.value = true
         const url = route('platforms.search', {platform: selectedPlatform.value?.slug})
         const response = await fetch(`${url}?search=${lookup}`)
         const results = await response.json()
@@ -64,6 +67,8 @@ const search = async (lookup: string) => {
 
             items.value.push(obj)
         }
+
+        loading.value = false
     }
 }
 
@@ -154,19 +159,11 @@ const columns = ref([
                         />
 
                         <Autocomplete
+                            :loading="loading"
                             :items="items"
                             :disabled="!form.platform_id"
                             @change="search"
                             @select="onSelect"
-                        />
-
-                        <Input
-                            v-model="form.url"
-                            :disabled="!form.platform_id"
-                            label="URL"
-                            placeholder="https://"
-                            :validation-status="form.errors.url ? 'error' : 'success'"
-                            :error-message="form.errors.url"
                         />
                     </div>
                 </template>

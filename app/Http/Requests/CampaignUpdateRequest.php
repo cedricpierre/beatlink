@@ -15,7 +15,7 @@ class CampaignUpdateRequest extends FormRequest
         return [
             'name'        => ['required', 'string', 'max:255'],
             'slug'        => ['required', 'string', 'max:255', 'unique:campaigns,slug,' . $this->campaign->id],
-            'description' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
         ];
     }
 }

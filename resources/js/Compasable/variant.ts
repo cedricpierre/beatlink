@@ -2,11 +2,7 @@ export function useStyleProps() {
     return {
         variant: {
             type: String,
-            default: 'neutral',
             required: false,
-            validator(value: string,): boolean {
-                return ['neutral', 'accent', 'ghost', 'primary', 'secondary', 'error', 'success'].includes(value);
-            }
         },
         size: {
             type: String,

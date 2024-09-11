@@ -2,15 +2,17 @@
 
 namespace App\Platform\Contracts;
 
+use App\Platform\Types\Picture;
+
 class PlatformTypeContract
 {
     public string|int $id;
     public string     $name;
     public string     $url;
-    public ?string    $description = null;
-    public ?string    $picture     = null;
+    public ?string  $description = null;
+    public ?Picture $picture     = null;
 
-    public function __construct(string|int $id, string $name, string $url, ?string $description = null, ?string $picture = null)
+    public function __construct(string|int $id, string $name, string $url, ?string $description = null, ?Picture $picture = null)
     {
         $this->description = $description;
         $this->url = $url;

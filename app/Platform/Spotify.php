@@ -6,6 +6,7 @@ use App\Platform\Concerns\PlatformServiceConcern;
 use App\Platform\Responses\PlatformSearchResponse;
 use App\Platform\Types\Album;
 use App\Platform\Types\Artist;
+use App\Platform\Types\Picture;
 use App\Platform\Types\Playlist;
 use App\Platform\Types\Track;
 use GuzzleHttp\Client;
@@ -43,23 +44,49 @@ class Spotify implements PlatformServiceConcern
         $body = Json::decode((string)$response->getBody(), false);
 
         /** @var Album[] $albums */
-        $albums = collect($body->albums->items)->map(function ($album) {
-            return new Album($album->id, $album->name, $album->external_urls->spotify);
+        $albums = collect($body->albums->items)->map(function ($item) {
+            return new Album(
+                $item->id,
+                $item->name,
+                $item->external_urls->spotify,
+                null,
+                isset($item->images, $item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+            );
         });
 
         /** @var Artist[] $albums */
-        $artists = collect($body->artists->items)->map(function ($artist) {
-            return new Artist($artist->id, $artist->name, $artist->external_urls->spotify);
+        $artists = collect($body->artists->items)->map(function ($item) {
+            return new Artist(
+                $item->id,
+                $item->name,
+                $item->external_urls->spotify,
+                null,
+                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+            );
         });
 
         /** @var Track[] $albums */
-        $tracks = collect($body->tracks->items)->map(function ($track) {
-            return new Track($track->id, $track->name, $track->external_urls->spotify);
+        $tracks = collect($body->tracks->items)->map(function ($item) {
+            return new Track(
+                $item->id,
+                $item->name,
+                $item->external_urls->spotify,
+                null,
+                null,
+                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+            );
         });
 
         /** @var Playlist[] $albums */
-        $playlists = collect($body->playlists->items)->map(function ($playlist) {
-            return new Playlist($playlist->id, $playlist->name, $playlist->external_urls->spotify);
+        $playlists = collect($body->playlists->items)->map(function ($item) {
+            return new Playlist(
+                $item->id,
+                $item->name,
+                $item->external_urls->spotify,
+                null,
+                null,
+                isset($item->images) && isset($item->images[0]) ? new Picture($item->images[0]->url, $item->images[0]->width, $item->images[0]->height) : null,
+            );
         });
 
         return new PlatformSearchResponse([

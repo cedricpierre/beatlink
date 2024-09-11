@@ -4,7 +4,7 @@ import {Link} from '@inertiajs/vue3';
 
 <template>
     <Background>
-        <div class="navbar bg-gradient-to-br from-bg-white to-bg-blue-100 dark:from-bg-black dark:to-bg-blue-950">
+        <div class="navbar bg-white dark:bg-black dark:bg-opacity-30">
             <div class="container mx-auto  lg:max-w-screen-lg">
                 <div class="flex shrink-0 mr-2">
                     <Logo/>
@@ -38,13 +38,13 @@ import {Link} from '@inertiajs/vue3';
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-blue-900 dark:bg-blue-600 dark:text-white "
+            class="h-20 flex items-center bg-blue-100 dark:bg-black dark:bg-opacity-10 text-blue-900 dark:text-white "
             v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
                 <div class="flex flex-1 items-center">
                     <div class="flex space-between items-center">
-                        <span class="leading-tight font-extrabold font-2xl text-white" v-if="$slots.header">
+                        <span class="leading-tight font-extrabold font-2xl" v-if="$slots.header">
                             <slot name="header"/>
                         </span>
                         <span class="ml-4 font-sm text-blue-300" v-if="$slots.subtitle">
