@@ -24,6 +24,7 @@ const form = useForm({
     platform_id: null,
     url: 'https://',
     name: '',
+    type: '',
 })
 
 const addLink = () => {
@@ -75,6 +76,7 @@ const search = async (lookup: string) => {
 const onSelect = (event: any) => {
     form.url = event.url
     form.name = event.name
+    form.type = event.type
 }
 
 
@@ -88,9 +90,9 @@ watch(isAddingLink, (value) => {
 })
 
 const columns = ref([
-    {key: 'icon', name: 'Icon'},
     {key: 'platform', name: 'Platform'},
-    {key: 'url', name: 'Url'},
+    {key: 'name', name: 'name'},
+    {key: 'type', name: 'type', align: 'center'},
     {key: 'views', name: 'Views', align: 'center'},
     {key: 'actions', name: '', align: 'right'},
 ])
@@ -102,24 +104,33 @@ const columns = ref([
         </template>
 
         <Table :columns="columns" :items="props.campaign?.links" v-if="props.campaign?.links.length">
-            <template #item.icon="{item}">
-                <div class="w-4" v-html="item.platform?.icon"></div>
+
+            <template #item.name="{item}">
+                {{ item.name }}
             </template>
-            <template #item.url="{item}">
-                <a class="text-blue-600" :href="item.url" target="_blank"><strong>{{ item.name }}</strong></a>
+
+            <template #item.type="{item}">
+                {{ item.type }}
             </template>
+
             <template #item.platform="{item}">
-                <Badge>{{ item.platform?.name }}</Badge>
+                <div class="flex items-center">
+                    <div class="w-4 mr-2" v-html="item.platform?.icon"></div>
+                    <span>{{ item.platform?.name }}</span>
+                </div>
             </template>
             <template #item.views="{item}">
                 <Badge>{{ item.leads_count }}</Badge>
             </template>
             <template #item.actions="{item}">
+                <div class="space-x-2">
+                    <a class="btn btn-primary btn-outline btn-sm" :href="item.url" target="_blank">Preview</a>
                 <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" method="DELETE"
                       as="button"
                       preserve-scroll>
                     Delete
                 </Link>
+                </div>
             </template>
         </Table>
         <Alert v-else>No links found</Alert>

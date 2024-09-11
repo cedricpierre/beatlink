@@ -91,7 +91,7 @@ watch(() => props.items, (values) => {
                         <template v-if="item.children && item.children.length">
                             <ul>
                                 <li v-for="child in item.children">
-	                                <a href="#" @click.prevent="select(child)"
+                                    <a href="#" @click.prevent="select({type: item.name, ...child})"
 	                                   class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-600 dark:hover:text-white">
 		                                <div class="flex">
 			                                <div class="flex-shrink mr-2" v-if="child.picture">

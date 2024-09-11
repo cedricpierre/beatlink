@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignUlid('campaign_id');
             $table->string('title')->nullable();
+            $table->string('type');
             $table->foreignUlid('platform_id');
             $table->unsignedBigInteger('leads_count')->default(0);
             $table->timestamps();

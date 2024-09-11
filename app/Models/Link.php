@@ -16,6 +16,7 @@ class Link extends Model
         'platform_id',
         'url',
         'name',
+        'type',
         'leads_count',
     ];
 
