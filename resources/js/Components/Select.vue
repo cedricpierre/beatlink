@@ -12,6 +12,10 @@ const props = defineProps({
     autofocus: Boolean,
     autocomplete: String,
     type: String,
+    nullable: {
+        type: Boolean,
+        default: true,
+    },
     textKey: {
         type: String,
         default: 'text',
@@ -43,6 +47,7 @@ const props = defineProps({
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"
         >
+            <option :value="null" v-if="props.nullable">None</option>
             <option v-for="(option,i) in props.options" :key="i" :value="option[props.valueKey]">{{ option[props.textKey] }}</option>
         </select>
         <div v-if="props.errorMessage" class="text-xs my-2" :class="{

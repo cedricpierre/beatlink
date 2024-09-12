@@ -47,7 +47,7 @@ import Badge from "@/Components/Badge.vue";
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-blue-700 dark:bg-black dark:bg-opacity-10 text-blue-100 dark:text-white "
+            class="h-20 flex items-center bg-gradient-to-r from-blue-900 to-blue-700 dark:bg-black dark:bg-opacity-10 text-blue-100 dark:text-white "
             v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">

@@ -51,6 +51,8 @@ class CampaignsController extends Controller
 
         $campaign->loadCount(['links']);
 
+        $platforms = Platform::all();
+
         $leads = $campaign->leads()
                           ->with(['platform'])
                           ->when($request->input('from'), function ($query, $from) {
@@ -59,18 +61,23 @@ class CampaignsController extends Controller
                           ->when($request->input('to'), function ($query, $to) {
                               $query->where('created_at', '<=', $to);
                           })
+            ->when($request->input('platform_id'), function ($query, $platformId) {
+                $query->where('platform_id', $platformId);
+            })
                           ->when($search, function ($query, $search) {
                               $query->where('ip', $search);
                               $query->orWhere('user_agent', 'like', '%' . $search . '%');
                               $query->orWhere('referer', 'like', '%' . $search . '%');
                           })
-                          ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
                           ->paginate();
 
         return Inertia::render('Campaigns/View', [
-            'campaign' => $campaign,
-            'leads'    => $leads,
-            'search'   => $search,
+            'campaign'    => $campaign,
+            'platforms'   => $platforms,
+            'leads'       => $leads,
+            'search'      => $search,
+            'platform_id' => $request->input('platform_id'),
         ]);
     }
 
