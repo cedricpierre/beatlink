@@ -14,11 +14,6 @@ const form = useForm({
 </script>
 
 <template>
-
-    <Alert v-if="$page.props.auth.user.is_premium">
-        You have an active subscription.
-    </Alert>
-
     <Card>
         <template #header>
             Subscription Information

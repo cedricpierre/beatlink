@@ -7,6 +7,7 @@ use App\Http\Controllers\LinksController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionsController;
+use App\Http\Middleware\CanCreateCampaign;
 use App\Http\Middleware\HasActiveSubscription;
 use App\Http\Middleware\HasSubscription;
 use Illuminate\Support\Facades\Route;
@@ -47,8 +48,10 @@ Route::prefix('backend')->group(function () {
 
                 Route::group(['prefix' => 'campaigns', 'as' => 'campaigns.'], static function () {
                     Route::get('/', [CampaignsController::class, 'list'])->name('list');
-                    Route::get('/create', [CampaignsController::class, 'create'])->name('create');
-                    Route::post('/create', [CampaignsController::class, 'store'])->name('store');
+                    Route::middleware(CanCreateCampaign::class)->group(function () {
+                        Route::get('/create', [CampaignsController::class, 'create'])->name('create');
+                        Route::post('/create', [CampaignsController::class, 'store'])->name('store');
+                    });
                     Route::get('/{campaign}', [CampaignsController::class, 'view'])->name('view');
                     Route::post('/{campaign}/upload', [CampaignsController::class, 'upload'])->name('upload');
                     Route::get('/{campaign}/edit', [CampaignsController::class, 'edit'])->name('edit');

@@ -7,14 +7,15 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CanCreateCampaign
+class HasActiveSubscription
 {
     /**
      * Handle an incoming request.
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()?->campaigns()->count() >= $request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)->quantity) {
+        if (!$request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)?->active()) {
+            // Redirect user to billing page and ask them to subscribe...
             return redirect()->route('subscriptions.edit');
         }
 

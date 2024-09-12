@@ -7,4 +7,6 @@ export interface ILink {
     is_premium: boolean
     is_subscribed: boolean
     is_trial: boolean
+    campaigns_count: number
+    subscription: object
 }
