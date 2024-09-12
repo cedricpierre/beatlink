@@ -52,9 +52,16 @@ const props = defineProps({
         </tr>
         </tbody>
         <template v-if="$slots.footer">
+            <tfoot>
             <slot name="footer"></slot>
+            </tfoot>
         </template>
     </table>
+    <template v-if="$slots.empty">
+        <div class="flex items-center justify-center py-4 text-gray-500 font-bold text-sm">
+            <slot name="empty"></slot>
+        </div>
+    </template>
     <div v-if="$slots.pagination">
         <slot name="pagination"></slot>
     </div>

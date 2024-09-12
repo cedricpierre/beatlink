@@ -82,6 +82,13 @@ const columns = ref([
                         </Link>
                     </div>
                 </template>
+
+                <template #empty>
+                    <div class="flex space-y-6 flex-col justify-center items-center">
+                        <span>No item found</span>
+                        <Link class="btn btn-primary btn-sm btn-outline" :href="route('campaigns.create')">Create a campaign now</Link>
+                    </div>
+                </template>
             </Table>
         </Card>
 
