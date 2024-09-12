@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\Campaign;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @property Campaign $campaign
@@ -19,5 +21,12 @@ class CampaignUpdateRequest extends FormRequest
             'image_url'      => ['sometimes', 'nullable', 'string'],
             'background_url' => ['sometimes', 'nullable', 'string'],
         ];
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+                         'slug' => Str::slug($this->slug),
+                     ]);
     }
 }

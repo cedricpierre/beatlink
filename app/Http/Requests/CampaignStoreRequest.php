@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CampaignStoreRequest extends FormRequest
 {
@@ -19,5 +19,12 @@ class CampaignStoreRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:campaigns,slug'],
         ];
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+                         'slug' => Str::slug($this->slug),
+                     ]);
     }
 }

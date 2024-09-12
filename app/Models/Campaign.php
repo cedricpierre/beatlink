@@ -44,7 +44,7 @@ class Campaign extends Model
 
     public function links(): HasMany
     {
-        return $this->hasMany(Link::class)->orderBy('id', 'desc');
+        return $this->hasMany(Link::class)->orderBy('id', 'asc');
     }
 
     public function leads(): HasMany
