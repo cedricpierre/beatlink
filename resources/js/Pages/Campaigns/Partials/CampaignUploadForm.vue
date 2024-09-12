@@ -4,10 +4,11 @@ import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import InputFile from "@/Components/InputFile.vue";
+import {PropType} from "vue";
 
-const props = defineProps<{
-    campaign: ICampaign
-}>()
+const props = defineProps({
+    campaign: Object as PropType<ICampaign>
+})
 
 const form = useForm({
     background: null,
@@ -19,12 +20,14 @@ const form = useForm({
         <template #header>
             Upload image
         </template>
-        <form @submit.prevent="form.post(route('campaigns.upload', {campaign: campaign.id}),{forceFormData: true, preserveScroll: true})" class="space-y-6">
+        <form @submit.prevent="form.post(route('campaigns.upload', {campaign: props.campaign.id}),{forceFormData: true, preserveScroll: true})"
+              class="space-y-6">
             <div class="flex">
-                <div v-if="campaign.background_url">
+                <div v-if="props.campaign.background_url">
                     <h2 class="mb-2 text-gray-400 dark:text-white">Background</h2>
-                    <img :src="'/storage/'+campaign.background_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
-                    <Link :href="route('campaigns.update', {campaign: campaign.id})" :data="{background_url: null}" as="button" method="put" preserve-scroll>
+                    <img :src="'/storage/'+props.campaign.background_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
+                    <Link :href="route('campaigns.update', {campaign: props.campaign.id})" :data="{background_url: null}" as="button" method="put"
+                          preserve-scroll>
                         <Button variant="error" size="sm">Delete</button>
                     </Link>
                 </div>
@@ -37,10 +40,10 @@ const form = useForm({
                 />
             </div>
             <div class="flex">
-                <div v-if="campaign.image_url">
+                <div v-if="props.campaign.image_url">
                     <h2 class="mb-2 text-gray-400 dark:text-white">Image</h2>
-                    <img :src="'/storage/'+campaign.image_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
-                    <Link class="btn btn-error btn-sm" :href="route('campaigns.update', {campaign: campaign.id})" :data="{image_url: null}" as="button"
+                    <img :src="'/storage/'+props.campaign.image_url" class="h-40 mb-4 rounded rounded-2xl" alt="">
+                    <Link class="btn btn-error btn-sm" :href="route('campaigns.update', {campaign: props.campaign.id})" :data="{image_url: null}" as="button"
                           method="put" preserve-scroll>
                         Delete
                     </Link>

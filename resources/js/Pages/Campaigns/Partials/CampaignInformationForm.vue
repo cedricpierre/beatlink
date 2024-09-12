@@ -7,10 +7,11 @@ import Saved from "@/Components/Saved.vue";
 import Input from "@/Components/Input.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import Textarea from "@/Components/Textarea.vue";
+import {PropType} from "vue";
 
-const props = defineProps<{
-    campaign?: ICampaign
-}>()
+const props = defineProps({
+	campaign: Object as PropType<ICampaign>
+})
 
 const form = useForm({
     name: props.campaign?.name,

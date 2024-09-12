@@ -3,10 +3,10 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
 
-const props = defineProps<{
-    email: string;
-    token: string;
-}>();
+const props = defineProps({
+    email: String,
+    token: String,
+});
 
 const form = useForm({
     token: props.token,

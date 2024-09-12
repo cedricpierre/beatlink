@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {useStyleProps} from "@/Compasable/variant.js";
-import {ref, watch} from "vue";
+import {ref} from "vue";
 
 const props = defineProps({
     ...useStyleProps(),

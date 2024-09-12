@@ -5,10 +5,11 @@ import {ICampaign} from "@/Interfaces/Campaign";
 import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import Textarea from "@/Components/Textarea.vue";
+import {PropType} from "vue";
 
-const props = defineProps<{
-    campaign: ICampaign,
-}>()
+const props = defineProps({
+    campaign: Object as PropType<ICampaign>
+})
 
 const form = useForm({
     custom_script: '',
@@ -26,7 +27,7 @@ const form = useForm({
             You can customize your landing page by adding javascript and css.
         </template>
 
-        <form @submit.prevent="form.put(route('campaigns.update',{campaign: campaign?.id}))" class="space-y-6">
+        <form @submit.prevent="form.put(route('campaigns.update',{campaign: props.campaign?.id}))" class="space-y-6">
             <Textarea
                 v-model="form.custom_script"
                 label="Script"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {Link} from '@inertiajs/vue3';
-import {ref} from 'vue';
+import {PropType, ref} from 'vue';
 import {FwbButton, FwbModal} from "flowbite-vue";
 import Card from "@/Components/Card.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -8,9 +8,9 @@ import Modal from "@/Components/Modal.vue";
 
 const confirmingDeletion = ref(false);
 
-const props = defineProps<{
-    campaign: ICampaign
-}>()
+const props = defineProps({
+    campaign: Object as PropType<ICampaign>
+})
 
 const confirmDeletion = () => {
     confirmingDeletion.value = true;

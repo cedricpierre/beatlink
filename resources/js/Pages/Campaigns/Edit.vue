@@ -9,11 +9,12 @@ import CampaignCustomsForm from "@/Pages/Campaigns/Partials/CampaignCustomsForm.
 import {IPlatform} from "@/Interfaces/Platform";
 import {FwbButton} from "flowbite-vue";
 import CampaignUploadForm from "@/Pages/Campaigns/Partials/CampaignUploadForm.vue";
+import {PropType} from "vue";
 
-const props = defineProps<{
-    campaign: ICampaign;
-    platforms: Array<IPlatform>
-}>()
+const props = defineProps({
+    campaign: Object as PropType<ICampaign>,
+    platforms: Array<IPlatform>,
+})
 </script>
 <template>
 
@@ -24,15 +25,15 @@ const props = defineProps<{
             <h2>Edit campaign</h2>
         </template>
         <template #subtitle>
-            <p>Modify your campaign "<strong>{{ campaign.name }}</strong>"</p>
+            <p>Modify your campaign "<strong>{{ props.campaign.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link :href="route('campaigns.view', {id: campaign.id})">
+            <Link :href="route('campaigns.view', {id: props.campaign.id})">
                 <Button variant="primary">
                     View campain
                 </button>
             </Link>
-            <a :href="route('landing', {slug: campaign.slug})" target="_blank">
+            <a :href="route('landing', {slug: props.campaign.slug})" target="_blank">
 	            <Button>
                     View page
                 </button>
@@ -40,7 +41,7 @@ const props = defineProps<{
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">
-            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: campaign.id}))"/>
+            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: props.campaign.id}))"/>
 
             <CampaignLinksForm :campaign="campaign" :platforms="platforms"/>
 

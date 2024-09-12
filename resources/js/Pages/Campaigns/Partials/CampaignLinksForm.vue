@@ -2,7 +2,7 @@
 
 import {Link, router, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
-import {computed, ComputedRef, onMounted, ref, watch} from "vue";
+import {computed, ComputedRef, onMounted, PropType, ref, watch} from "vue";
 import Card from "@/Components/Card.vue";
 import {IPlatform} from "@/Interfaces/Platform";
 import Autocomplete from "@/Components/Autocomplete.vue";
@@ -10,10 +10,10 @@ import Modal from "@/Components/Modal.vue";
 import Select from "@/Components/Select.vue";
 import Alert from "@/Components/Alert.vue";
 
-const props = defineProps<{
-    campaign: ICampaign,
-    platforms: Array<IPlatform>
-}>()
+const props = defineProps({
+    campaign: Object as PropType<ICampaign>,
+    platforms: Array<IPlatform>,
+})
 
 const isAddingLink = ref(false)
 
@@ -45,7 +45,7 @@ const fetchPlatforms = () => {
 }
 
 const selectedPlatform: ComputedRef<IPlatform | undefined> = computed(() => {
-    return props.platforms.find((p) => p.id === form.platform_id)
+    return props.platforms?.find((p: IPlatform) => p.id === form.platform_id)
 })
 
 const loading = ref(false)
