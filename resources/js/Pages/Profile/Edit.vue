@@ -3,7 +3,14 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import {Head} from '@inertiajs/vue3';
+import {Head, usePage} from '@inertiajs/vue3';
+
+const user = usePage().props.auth.user;
+
+const props = defineProps({
+    must_verify_email: Boolean,
+    status: String,
+})
 </script>
 
 <template>
@@ -17,10 +24,10 @@ import {Head} from '@inertiajs/vue3';
             <p>Edit your profile informations</p>
         </template>
 
-        <div class="container mx-auto lg:max-w-screen-sm">
-            <UpdateProfileInformationForm class="mb-4"/>
-            <UpdatePasswordForm class="mb-4"/>
-            <DeleteUserForm class="mb-4"/>
+        <div class="lg:max-w-screen-sm mx-auto space-y-6">
+            <UpdateProfileInformationForm :user="user" :must_verify_email="props.must_verify_email" :status="props.status"/>
+            <UpdatePasswordForm/>
+            <DeleteUserForm/>
         </div>
     </AuthenticatedLayout>
 </template>

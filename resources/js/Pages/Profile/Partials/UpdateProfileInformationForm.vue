@@ -4,16 +4,15 @@ import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import Input from "@/Components/Input.vue";
 
-const props = defineProps<{
-    mustVerifyEmail?: Boolean;
-    status?: String;
-}>();
-
-const user = usePage().props.auth.user;
+const props = defineProps({
+    user: Object,
+    must_verify_email: Boolean,
+    status: String,
+});
 
 const form = useForm({
-    name: user.name,
-    email: user.email,
+    name: props.user?.name,
+    email: props.user?.email,
 });
 </script>
 
@@ -27,26 +26,26 @@ const form = useForm({
 
             <Input
                 v-model="form.name"
-                :error-message="form.errors.name"
-                :validation-status="form.errors.name ? 'error' : 'success'"
                 autocomplete="name"
                 autofocus
                 label="Name"
                 required
                 type="text"
+                :validation-status="form.errors.name ? 'error' : 'success'"
+                :error-message="form.errors.name"
             />
 
             <Input
                 v-model="form.email"
-                :error-message="form.errors.email"
-                :validation-status="form.errors.email ? 'error' : 'success'"
                 autocomplete="username"
                 label="E-mail"
                 required
                 type="email"
+                :validation-status="form.errors.email ? 'error' : 'success'"
+                :error-message="form.errors.email"
             />
 
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
+            <div v-if="props.must_verify_email && props.user?.email_verified_at === null">
                 <p class="text-sm mt-2 text-blue-800 dark:text-blue-200">
                     Your email address is unverified.
                     <Link
@@ -60,7 +59,7 @@ const form = useForm({
                 </p>
 
                 <div
-                    v-show="status === 'verification-link-sent'"
+                    v-show="props.status === 'verification-link-sent'"
                     class="mt-2 font-medium text-sm text-green-600 dark:text-green-400"
                 >
                     A new verification link has been sent to your email address.

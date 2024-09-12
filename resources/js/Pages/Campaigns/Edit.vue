@@ -39,16 +39,16 @@ const props = defineProps<{
             </a>
         </template>
 
-        <div class="container lg:max-w-screen-sm mx-auto">
-            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: campaign.id}))" class="mb-4"/>
+        <div class="lg:max-w-screen-sm mx-auto space-y-6">
+            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: campaign.id}))"/>
 
-            <CampaignLinksForm :campaign="campaign" :platforms="platforms" class="mb-4"/>
+            <CampaignLinksForm :campaign="campaign" :platforms="platforms"/>
 
-            <CampaignCustomsForm :campaign="campaign" class="mb-4"/>
+            <CampaignCustomsForm :campaign="campaign"/>
 
-            <CampaignUploadForm :campaign="campaign" class="mb-4"/>
+            <CampaignUploadForm :campaign="campaign"/>
 
-            <DeleteCampaignForm :campaign="campaign" class="mb-4"/>
+            <DeleteCampaignForm :campaign="campaign"/>
         </div>
     </AuthenticatedLayout>
 </template>

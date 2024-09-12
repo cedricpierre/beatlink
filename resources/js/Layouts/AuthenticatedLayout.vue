@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {Link} from '@inertiajs/vue3';
+import Dropdown from "@/Components/Dropdown.vue";
+import Badge from "@/Components/Badge.vue";
 </script>
 
 <template>
@@ -17,19 +19,26 @@ import {Link} from '@inertiajs/vue3';
                     </ul>
                 </div>
                 <div class="flex shrink-0 justify-end">
-                    <ul class="menu menu-horizontal justify-end">
+                    <ul class="menu menu-horizontal justify-end space-x-2">
+                        <li v-if="$page.props.auth.user.is_subscribed && !$page.props.auth.user.is_premium">
+                            <Link class="bg-blue-600 text-white hover:bg-blue-100 hover:text-blue-600">Subscribe now</Link>
+                        </li>
                         <li>
-                            <details>
-                                <summary class="text-blue-600 bg-blue-100">{{ $page.props.auth.user.name }}</summary>
-                                <ul class="bg-base-100 rounded-t-none p-2">
-                                    <li>
-                                        <Link class="text-blue-600" :href="route('profile.edit')">Profile</Link>
-                                    </li>
-                                    <li>
-                                        <Link class="text-blue-600" :href="route('logout')" method="post" as="button">Log Out</Link>
-                                    </li>
-                                </ul>
-                            </details>
+                            <Dropdown align="right">
+                                <template #trigger>
+                                    <Badge size="sm" outline variant="primary" v-if="$page.props.auth.user.is_premium" class="uppercase mr-2">premium</Badge>
+                                    <strong class="first-letter:uppercase font-bold">{{ $page.props.auth.user.name }}</strong>
+                                </template>
+                                <li>
+                                    <Link class="text-blue-600" :href="route('profile.edit')">Profile</Link>
+                                </li>
+                                <li>
+                                    <Link class="text-blue-600" :href="route('subscriptions.edit')">Subscription</Link>
+                                </li>
+                                <li>
+                                    <Link class="text-blue-600" :href="route('logout')" method="post" as="button">Log Out</Link>
+                                </li>
+                            </Dropdown>
                         </li>
                     </ul>
                 </div>
@@ -57,6 +66,16 @@ import {Link} from '@inertiajs/vue3';
                 </div>
             </div>
         </header>
+
+        <div class="container mx-auto mt-4 lg:max-w-screen-sm">
+            <Alert v-if="$page.props.auth.user.is_trial">
+                You are on your trial period.
+
+                <template #action>
+                    <Link method="post" as="button" class="btn btn-error btn-sm" :href="route('subscriptions.cancel')">Cancel</Link>
+                </template>
+            </Alert>
+        </div>
 
         <!-- Page Content -->
         <main class="container mx-auto mt-4">

@@ -19,6 +19,7 @@ module.exports = {
                     "primary": colors.blue['700'],
                     "secondary": colors.gray['800'],
                     "error": colors.red['600'],
+                    "error-content": colors.red['100'],
                     "secondary-content": colors.gray['300'],
                     "accent": colors.blue['100'],
                     "neutral": colors.blue['900'],
@@ -33,6 +34,9 @@ module.exports = {
                     "primary": colors.blue['600'],
                     "secondary": colors.gray['100'],
                     "error": colors.red['600'],
+                    "success": colors.green['600'],
+                    "success-content": colors.white,
+                    "error-content": colors.red['100'],
                     "secondary-content": colors.gray['900'],
                     "accent": colors.blue['600'],
                     "neutral": colors.white,
@@ -49,5 +53,3 @@ module.exports = {
         require('daisyui'),
     ],
 };
-
-console.log(colors.blue)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Head, useForm} from "@inertiajs/vue3";
+import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CampaignInformationForm from "@/Pages/Campaigns/Partials/CampaignInformationForm.vue";
 
@@ -17,7 +17,9 @@ import CampaignInformationForm from "@/Pages/Campaigns/Partials/CampaignInformat
         </template>
 
         <div class="container lg:max-w-screen-sm mx-auto">
-            <CampaignInformationForm @save="$event.post(route('campaigns.create'))"/>
+            <template v-if="$page.props.auth.user.can_create_campaign">
+                <CampaignInformationForm @save="$event.post(route('campaigns.create'))"/>
+            </template>
         </div>
     </AuthenticatedLayout>
 </template>

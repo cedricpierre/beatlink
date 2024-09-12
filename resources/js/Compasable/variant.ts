@@ -12,6 +12,10 @@ export function useStyleProps() {
                 return ['xs', 'sm', 'md', 'lg'].includes(value);
             }
         },
+        outline: {
+            type: Boolean,
+            default: false,
+        },
         className: {
             type: Array,
             default: [],

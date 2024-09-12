@@ -39,7 +39,7 @@ const form = useForm({
             </Link>
         </template>
 
-        <div class="container w-full mx-auto">
+	    <div class="lg:max-w-screen-sm mx-auto">
             <Card>
                 <template #header>
                     <div class="flex flex-row space-between items-center">

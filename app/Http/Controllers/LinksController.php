@@ -21,20 +21,20 @@ class LinksController extends Controller
     {
         $campaign->links()->create($request->all());
 
-        return Redirect::route('campaigns.edit', ['campaign' => $campaign]);
+        return redirect()->route('campaigns.edit', ['campaign' => $campaign]);
     }
 
     public function update(LinkUpdateRequest $request, Campaign $campaign, Link $link): RedirectResponse
     {
         $link->update($request->all());
 
-        return Redirect::route('campaigns.edit', ['campaign' => $campaign]);
+        return redirect()->route('campaigns.edit', ['campaign' => $campaign]);
     }
 
     public function destroy(Request $request, Campaign $campaign, Link $link): RedirectResponse
     {
         $link->delete();
 
-        return Redirect::route('campaigns.edit', ['campaign' => $campaign]);
+        return redirect()->route('campaigns.edit', ['campaign' => $campaign]);
     }
 }

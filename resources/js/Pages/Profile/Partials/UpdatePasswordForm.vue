@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import {useForm} from '@inertiajs/vue3';
-import {ref} from 'vue';
 import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import Input from "@/Components/Input.vue";
-
-const passwordInput = ref<HTMLInputElement | null>(null);
-const currentPasswordInput = ref<HTMLInputElement | null>(null);
 
 const form = useForm({
     current_password: '',
@@ -45,7 +41,6 @@ const updatePassword = () => {
         <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
             <Input
                 label="Current password"
-                ref="currentPasswordInput"
                 v-model="form.current_password"
                 type="password"
                 autocomplete="current-password"
@@ -55,7 +50,6 @@ const updatePassword = () => {
 
             <Input
                 label="New Password"
-                ref="passwordInput"
                 v-model="form.password"
                 type="password"
                 :validation-status="form.errors.password ? 'error' : 'success'"

@@ -8,6 +8,11 @@ use Illuminate\Validation\Rule;
 
 class CampaignStoreRequest extends FormRequest
 {
+    public function authorize(): bool
+    {
+        return auth()->user()->canCreateCampaign();
+    }
+
     public function rules(): array
     {
         return [

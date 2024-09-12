@@ -23,7 +23,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in"/>
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="space-y-6">
             <div>
                 <Input
                     v-model="form.email"
@@ -38,7 +38,7 @@ const submit = () => {
 
             </div>
 
-            <div class="mt-4">
+            <div>
                 <Input
                     v-model="form.password"
                     label="Password"
@@ -50,7 +50,7 @@ const submit = () => {
                 />
             </div>
 
-            <div class="block mt-4">
+            <div>
                 <label class="flex items-center">
                     <Checkbox
                         v-model="form.remember"

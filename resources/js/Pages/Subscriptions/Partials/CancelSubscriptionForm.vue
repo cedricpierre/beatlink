@@ -16,7 +16,7 @@ const confirmUserDeletion = () => {
 };
 
 const destroy = () => {
-    form.delete(route('profile.destroy'), {
+    form.post(route('subscriptions.cancel'), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onFinish: () => {
@@ -38,21 +38,20 @@ const closeModal = () => {
         </template>
 
         <template #subtitle>
-            Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
-            your account, please download any data or information that you wish to retain.
+            If you choose to cancel your subscription, your campaigns will be terminated too. But you will still have access to your account and no data will
+            be lost. You can resume anytime.
         </template>
 
-        <Button variant="error" class="mt-4" @click="confirmUserDeletion">Delete Account</button>
+        <Button variant="error" class="mt-4" @click="confirmUserDeletion">Cancel subscription</button>
 
         <Modal v-model="confirmingDeletion">
             <template #header>
-                Are you sure you want to delete your account?
+                Are you sure you want to cancel your subscription ?
             </template>
             <template #body>
 
                 <p class="mt-1 text-sm text-blue-600 dark:text-blue-400">
-                    Once your account is deleted, all of its resources and data will be permanently deleted. Please
-                    enter your password to confirm you would like to permanently delete your account.
+                    If you choose to cancel your subscription, your campaigns will be terminated too.
                 </p>
 
                 <div class="mt-6">
@@ -74,7 +73,7 @@ const closeModal = () => {
                         :disabled="form.processing"
                         @click="destroy"
                 >
-                    Delete Account
+                    Cancel subscription
                 </button>
             </template>
         </Modal>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampaignCreateRequest;
 use App\Http\Requests\CampaignStoreRequest;
 use App\Http\Requests\CampaignUpdateRequest;
 use App\Http\Requests\CampaignUploadRequest;
 use App\Models\Campaign;
-use App\Models\Lead;
 use App\Models\Platform;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +30,7 @@ class CampaignsController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    public function create(): Response
     {
         return Inertia::render('Campaigns/Create');
     }
@@ -38,7 +39,7 @@ class CampaignsController extends Controller
     {
         auth()->user()->campaigns()->create($request->all());
 
-        return Redirect::route('campaigns.list');
+        return redirect()->route('campaigns.list');
     }
 
     public function view(Request $request, Campaign $campaign): Response
@@ -95,7 +96,7 @@ class CampaignsController extends Controller
     {
         $campaign->update($request->all());
 
-        return Redirect::route('campaigns.edit', ['campaign' => $campaign->id]);
+        return redirect()->route('campaigns.edit', ['campaign' => $campaign->id]);
     }
 
     public function upload(CampaignUploadRequest $request, Campaign $campaign): RedirectResponse
@@ -111,13 +112,13 @@ class CampaignsController extends Controller
             $campaign->save();
         }
 
-        return Redirect::route('campaigns.edit', ['campaign' => $campaign->id]);
+        return redirect()->route('campaigns.edit', ['campaign' => $campaign->id]);
     }
 
     public function destroy(Request $request, Campaign $campaign): RedirectResponse
     {
         $campaign->delete();
 
-        return Redirect::route('campaigns.list');
+        return redirect()->route('campaigns.list');
     }
 }

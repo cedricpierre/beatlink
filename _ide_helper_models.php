@@ -13,7 +13,7 @@
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property string $id
  * @property string $user_id
@@ -27,11 +27,12 @@ namespace App\Models{
  * @property string|null $custom_css
  * @property array|null $settings
  * @property int $views_count
- * @property int $leads_count
+ * @property-read int|null $leads_count
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read int|float $conversion_rate
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Lead> $leads
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Link> $links
  * @property-read int|null $links_count
  * @method static \Database\Factories\CampaignFactory factory($count = null, $state = [])
@@ -63,7 +64,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property string $id
  * @property string $link_id
@@ -97,7 +98,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead wherePlatformId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Lead wherereferer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lead whereReferer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lead whereUserAgent($value)
  */
@@ -106,12 +107,14 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property string $id
  * @property string $url
+ * @property string $name
  * @property string $campaign_id
  * @property string|null $title
+ * @property string $type
  * @property string $platform_id
  * @property-read int|null $leads_count
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -127,8 +130,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereLeadsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link wherePlatformId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereUrl($value)
  */
@@ -137,7 +142,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property string $id
  * @property string $name
@@ -169,7 +174,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- *
+ * 
  *
  * @property string $id
  * @property string $name
@@ -180,13 +185,24 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $stripe_id
+ * @property string|null $pm_type
+ * @property string|null $pm_last_four
+ * @property string|null $trial_ends_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Campaign> $campaigns
  * @property-read int|null $campaigns_count
+ * @property-read bool $can_create_campaign
+ * @property-read bool $is_premium
+ * @property-read bool $is_trial
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Cashier\Subscription> $subscriptions
+ * @property-read int|null $subscriptions_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User hasExpiredGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User onGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
@@ -196,7 +212,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePmLastFour($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePmType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()

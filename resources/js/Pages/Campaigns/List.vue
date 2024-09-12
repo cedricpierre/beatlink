@@ -45,11 +45,6 @@ const columns = ref([
             <template #header>
                 Campaigns
             </template>
-            <template #actions>
-                <Link class="btn btn-primary" :href="route('campaigns.create')">
-                    Create new campaign
-                </Link>
-            </template>
             <Table :columns="columns" :items="props.campaigns?.data">
 
                 <template #item.slug="{item}">

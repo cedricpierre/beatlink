@@ -36,7 +36,7 @@ class Tidal implements PlatformServiceConcern
                 ],
             ]);
         } catch (RequestException $e) {
-            dd($e);
+
         }
 
         $body = Json::decode((string)$response->getBody(), false);
@@ -99,7 +99,6 @@ class Tidal implements PlatformServiceConcern
 
             $message = $errorResponse->error;
 
-            dd($e->getMessage());
             throw new RuntimeException($message, $status);
         }
 

@@ -2,17 +2,20 @@
 const props = defineProps({
     align: {
         type: String,
-        validator(value, props) {
-            return ['start', 'end'].includes(value)
+        default: 'left',
+        validator(value: string) {
+            return ['left', 'right'].includes(value)
         }
     }
 })
 </script>
 <template>
-    <div class="dropdown " :class="`dropdown-${align}`">
-        <slot name="trigger"></slot>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+    <details class="dropdown ">
+        <summary class="text-blue-600">
+            <slot name="trigger"></slot>
+        </summary>
+        <ul tabindex="0" :class="[`${align}-0`]" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow min-w-60">
             <slot></slot>
         </ul>
-    </div>
+    </details>
 </template>

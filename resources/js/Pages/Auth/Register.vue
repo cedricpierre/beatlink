@@ -24,7 +24,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register"/>
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="space-y-6">
             <div>
                 <Input
                     v-model="form.name"
@@ -37,7 +37,7 @@ const submit = () => {
                 />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <Input
                     v-model="form.email"
                     label="Email"
@@ -48,7 +48,7 @@ const submit = () => {
                 />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <Input
                     v-model="form.password"
                     label="Password"
@@ -59,7 +59,7 @@ const submit = () => {
                 />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <Input
                     label="Confirm Password"
                     v-model="form.password_confirmation"
@@ -78,7 +78,6 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <
                 <Button variant="primary" class="ms-3" :disabled="form.processing" :loading="form.processing">
                     Register
                 </button>

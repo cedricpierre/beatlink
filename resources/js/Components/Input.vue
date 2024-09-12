@@ -13,6 +13,9 @@ const props = defineProps({
     autofocus: Boolean,
     autocomplete: String,
     type: String,
+    min: Number,
+    max: Number,
+    maxLength: Number,
     disabled: {
         type: Boolean,
         default: false,
@@ -35,6 +38,9 @@ const emits = defineEmits(['update:modelValue'])
             <input
                 class="input input-bordered w-full"
                 v-model="model"
+                :min="props.min"
+                :max="props.max"
+                :maxlength="props.maxLength"
                 :disabled="props.disabled"
                 :placeholder="props.placeholder"
                 :name="props.name"
