@@ -143,7 +143,7 @@ const columns = ref([
                 leave-active-class="transition ease-in-out"
                 leave-to-class="opacity-0"
             >
-                <p v-if="form.recentlySuccessful" class="text-sm text-blue-600 dark:text-blue-400">Saved.</p>
+                <p v-if="form.recentlySuccessful" class="text-sm text-primary-600 dark:text-primary-400">Saved.</p>
             </Transition>
         </div>
 

@@ -22,7 +22,7 @@ const props = defineProps({
                 <slot name="footer"></slot>
             </div>
         </div>
-        <form method="dialog" class="modal-backdrop bg-blue-800 bg-opacity-40">
+        <form method="dialog" class="modal-backdrop bg-primary-800 bg-opacity-40">
 	        <Button>close</Button>
         </form>
     </dialog>

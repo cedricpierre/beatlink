@@ -50,7 +50,7 @@ const closeModal = () => {
             </template>
             <template #body>
 
-                <p class="mt-1 text-sm text-blue-600 dark:text-blue-400">
+                <p class="mt-1 text-sm text-primary-600 dark:text-primary-400">
                     If you choose to cancel your subscription, your campaigns will be terminated too.
                 </p>
 

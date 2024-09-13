@@ -1,15 +1,26 @@
 import colors from "tailwindcss/colors.js";
 
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
     darkMode: ['class', '[data-theme="beatlink-dark"]'],
+    theme: {
+        extend: {
+            colors: {
+                "primary": colors.blue,
+                "secondary": colors.gray,
+                "neutral": colors.white,
+                "accent": colors.blue,
+            }
+        }
+    },
     safelist: [
-        {pattern: /(alert|badge|btn|loading|progress|radial-progress|toast|tooltip|input|checkbox|radio|range|mask|select|textarea|toggle|text)-+/},
+        {
+            pattern: /(alert|badge|btn|loading|progress|radial-progress|toast|tooltip|input|checkbox|radio|range|mask|select|textarea|toggle)/
+        },
     ],
     daisyui: {
         base: false,

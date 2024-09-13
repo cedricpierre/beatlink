@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 <template>
     <details class="dropdown ">
-        <summary class="text-blue-600">
+        <summary class="text-primary-600">
             <slot name="trigger"></slot>
         </summary>
         <ul tabindex="0" :class="[`${align}-0`]" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow min-w-60">

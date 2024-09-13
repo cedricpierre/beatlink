@@ -3,9 +3,6 @@ export function useStyleProps() {
         variant: {
             type: String,
             required: false,
-            validator(value: unknown): boolean {
-                return ['error', 'success'].includes(value as string);
-            }
         },
         size: {
             type: String,

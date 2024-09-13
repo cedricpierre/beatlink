@@ -24,7 +24,7 @@ import Badge from "@/Components/Badge.vue";
                 <div class="flex shrink-0 justify-end">
                     <ul class="menu menu-horizontal justify-end space-x-2">
                         <li v-if="$page.props.auth.user.is_subscribed && !$page.props.auth.user.is_premium">
-                            <Link class="bg-blue-600 text-white hover:bg-blue-100 hover:text-blue-600">Subscribe now</Link>
+                            <Link class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">Subscribe now</Link>
                         </li>
                         <li>
                             <Dropdown align="right">
@@ -35,13 +35,13 @@ import Badge from "@/Components/Badge.vue";
                                     <strong class="first-letter:uppercase font-bold">{{ $page.props.auth.user.name }}</strong>
                                 </template>
                                 <li>
-                                    <Link class="text-blue-600" :href="route('profile.edit')">Profile</Link>
+                                    <Link class="text-primary-600" :href="route('profile.edit')">Profile</Link>
                                 </li>
                                 <li>
-                                    <Link class="text-blue-600" :href="route('subscriptions.edit')">Subscription</Link>
+                                    <Link class="text-primary-600" :href="route('subscriptions.edit')">Subscription</Link>
                                 </li>
                                 <li>
-                                    <Link class="text-blue-600" :href="route('logout')" method="post" as="button">Log Out</Link>
+                                    <Link class="text-primary-600" :href="route('logout')" method="post" as="button">Log Out</Link>
                                 </li>
                             </Dropdown>
                         </li>
@@ -52,7 +52,7 @@ import Badge from "@/Components/Badge.vue";
 
         <!-- Page Heading -->
         <header
-            class="h-20 flex items-center bg-gradient-to-r from-blue-900 to-blue-700 dark:bg-black dark:bg-opacity-10 text-blue-100 dark:text-white "
+            class="h-20 flex items-center bg-gradient-to-r from-primary-900 to-primary-700 dark:bg-black dark:bg-opacity-10 text-primary-100 dark:text-white "
             v-if="$slots.header"
         >
             <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
@@ -61,7 +61,7 @@ import Badge from "@/Components/Badge.vue";
                         <span class="leading-tight font-extrabold font-2xl" v-if="$slots.header">
                             <slot name="header"/>
                         </span>
-                        <span class="ml-4 font-sm text-blue-300" v-if="$slots.subtitle">
+                        <span class="ml-4 font-sm text-primary-300" v-if="$slots.subtitle">
                             <slot name="subtitle"/>
                         </span>
                     </div>

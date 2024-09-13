@@ -23,9 +23,9 @@ onMounted(() => {
     const appareance = {
         theme: 'flat',
         variables: {
-            colorPrimary: colors.blue,
-            colorBackground: colors.blue,
-            colorText: colors.blue['900'],
+            colorPrimary: colors.primary,
+            colorBackground: colors.primary,
+            colorText: colors.primary['900'],
             colorDanger: colors.red['600'],
         }
     }

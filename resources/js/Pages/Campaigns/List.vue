@@ -48,7 +48,7 @@ const columns = ref([
             <Table :columns="columns" :items="props.campaigns?.data">
 
                 <template #item.slug="{item}">
-                    <a class="text-blue-600 hover:underline" :href="route('landing', {slug: item.slug})" target="_blank">
+                    <a class="text-primary-600 hover:underline" :href="route('landing', {slug: item.slug})" target="_blank">
                         {{ item.slug }}
                     </a>
                 </template>

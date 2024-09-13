@@ -92,7 +92,7 @@ watch(() => props.items, (values) => {
                             <ul>
                                 <li v-for="child in item.children">
                                     <a href="#" @click.prevent="select({type: item.name, ...child})"
-                                       class="block px-4 py-2 hover:bg-blue-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white">
+                                       class="block px-4 py-2 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white">
 		                                <div class="flex">
 			                                <div class="flex-shrink mr-2" v-if="child.picture">
 				                                <img class="h-10 w-10 rounded" :src="child.picture.url" alt="">
@@ -106,7 +106,7 @@ watch(() => props.items, (values) => {
                                 </li>
                             </ul>
                         </template>
-                        <div v-else class="text-blue-300 py-2 px-4 text-sm">
+                        <div v-else class="text-primary-300 py-2 px-4 text-sm">
                             No items to display
                         </div>
                     </li>

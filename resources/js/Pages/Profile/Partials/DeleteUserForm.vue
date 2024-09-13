@@ -50,7 +50,7 @@ const closeModal = () => {
             </template>
             <template #body>
 
-                <p class="mt-1 text-sm text-blue-600 dark:text-blue-400">
+                <p class="mt-1 text-sm text-primary-600 dark:text-primary-400">
                     Once your account is deleted, all of its resources and data will be permanently deleted. Please
                     enter your password to confirm you would like to permanently delete your account.
                 </p>
