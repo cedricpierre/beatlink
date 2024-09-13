@@ -25,7 +25,7 @@ onMounted(() => {
 
 
     // @ts-ignore
-    stripe = Stripvape(props.stripe_key);
+    stripe = Stripe(props.stripe_key);
 
     const elements = stripe.elements({
         clientSecret: props.stripe_intent?.client_secret,
