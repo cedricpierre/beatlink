@@ -14,4 +14,4 @@ environments:
       - 'php artisan view:cache'
       - 'npm ci && npm run build && rm -rf node_modules'
     deploy:
-      - 'php artisan migrate --force --seed'
+      - 'php artisan migrate --force'
