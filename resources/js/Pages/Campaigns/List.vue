@@ -58,15 +58,15 @@ const columns = ref([
                 </template>
 
                 <template #item.views_count="{item}">
-                    <Badge>{{ item.views_count }}</Badge>
+                    <Badge variant="primary" outline>{{ item.views_count }}</Badge>
                 </template>
 
                 <template #item.leads_count="{item}">
-                    <Badge>{{ item.leads_count }}</Badge>
+                    <Badge variant="primary" outline>{{ item.leads_count }}</Badge>
                 </template>
 
                 <template #item.conversion_rate="{item}">
-                    <Badge>{{ item.conversion_rate }}%</Badge>
+                    <Badge variant="primary" outline>{{ item.conversion_rate }}%</Badge>
                 </template>
 
                 <template #item.actions="{item}">

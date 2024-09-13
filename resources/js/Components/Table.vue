@@ -63,7 +63,7 @@ const props = defineProps({
             </tfoot>
         </template>
     </table>
-    <template v-if="$slots.empty">
+    <template v-if="$slots.empty && !props.items.length">
         <div class="flex items-center justify-center py-4 text-gray-500 font-bold text-sm">
             <slot name="empty"></slot>
         </div>

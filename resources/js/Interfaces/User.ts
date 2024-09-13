@@ -1,5 +1,6 @@
 import {IPlatform} from "@/Interfaces/Platform";
 import {ILead} from "@/Interfaces/Lead";
+import {ISubscription} from "@/Interfaces/Subscription";
 
 export interface ILink {
     id: string
@@ -8,5 +9,5 @@ export interface ILink {
     is_subscribed: boolean
     is_trial: boolean
     campaigns_count: number
-    subscription: object
+    subscription: ISubscription
 }

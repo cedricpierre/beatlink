@@ -36,8 +36,10 @@ class SubscriptionsController extends BaseController
 
         $quantity = 1;
 
-        if ($user->subscription(User::STRIPE_SUBSCRIPTION_NAME)) {
-            $quantity = $user->subscription(User::STRIPE_SUBSCRIPTION_NAME)->quantity;
+        $subscription = $user->subscription(User::STRIPE_SUBSCRIPTION_NAME);
+
+        if ($subscription) {
+            $quantity = $subscription->quantity;
         }
 
         $user->newSubscription(User::STRIPE_SUBSCRIPTION_NAME, 'price_1PxxcE08YIxHX5obOKN4rBeH')
@@ -45,7 +47,9 @@ class SubscriptionsController extends BaseController
              ->create($request->input('payment_method'));
 
 
-        return redirect()->route('subscriptions.view');
+        return redirect()->route('subscriptions.view', [
+            'subscription' => $subscription,
+        ]);
     }
 
     public function view(): Response

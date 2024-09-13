@@ -14,7 +14,10 @@ import Badge from "@/Components/Badge.vue";
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">
                         <li>
-                            <Link class="text-blue-600" :href="route('campaigns.list')">Campaigns</Link>
+                            <Link :href="route('dashboard')">Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link :href="route('campaigns.list')">Campaigns</Link>
                         </li>
                     </ul>
                 </div>

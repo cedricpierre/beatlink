@@ -65,11 +65,16 @@ const onSubmit = async () => {
 
         <form @submit.prevent="onSubmit" class="space-y-6">
 
-            <div id="card-element"></div>
+	        <div class="text-gray-500">
+		        Subscribe now for <strong>3$</strong> per campaign. You will be able to upgrade your subscription later to add more campaigns.
+	        </div>
 
             <Alert variant="error" v-if="errors">{{ errors.message }}</Alert>
 
-            <div class="flex items-center justify-end mt-4">
+	        <div id="card-element"></div>
+
+
+	        <div class="flex items-center justify-end mt-4">
                 <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
                     Subscribe
                 </Button>
