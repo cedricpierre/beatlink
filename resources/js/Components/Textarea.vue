@@ -30,7 +30,11 @@ const emits = defineEmits(['update:modelValue'])
             v-model="model"
             :name="props.name"
             :type="props.type"
-            :class="[...props.className, `textarea-${props.variant}`]"
+            :class="{
+                  ...props.className,
+                  [`textarea-${props.variant}`]: props.variant,
+                  [`textarea-${props.size}`]: props.size,
+                }"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

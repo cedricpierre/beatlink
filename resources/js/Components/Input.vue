@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {useStyleProps} from '@/Compasable/variant.js';
+import Button from "@/Components/Button.vue";
 
 const model = defineModel()
 
@@ -45,7 +46,12 @@ const emits = defineEmits(['update:modelValue'])
                 :placeholder="props.placeholder"
                 :name="props.name"
                 :type="props.type"
-                :class="[...props.className, `input-${props.variant}`]"
+                :class="{
+                  ...props.className,
+                  [`input-${props.variant}`]: props.variant,
+                  [`input-outline`]: props.outline,
+                  [`input-${props.size}`]: props.size,
+                }"
                 :required="props.required"
                 :autocomplete="props.autocomplete"
                 :autofocus="props.autofocus"

@@ -40,7 +40,11 @@ const emits = defineEmits(['update:modelValue'])
             :multiple="props.multiple"
             :disabled="props.disabled"
             type="file"
-            :class="[...props.className, `input-${props.variant}`]"
+            :class="{
+                  ...props.className,
+                  [`input-${props.variant}`]: props.variant,
+                  [`input-${props.size}`]: props.size,
+                }"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

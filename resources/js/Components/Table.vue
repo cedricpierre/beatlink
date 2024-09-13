@@ -29,7 +29,13 @@ const props = defineProps({
 
 </script>
 <template>
-    <table class="table">
+    <table class="table"
+           :class="{
+              ...props.className,
+              [`table-${props.variant}`]: props.variant,
+              [`table-${props.size}`]: props.size,
+            }"
+    >
         <thead>
         <tr>
             <th v-for="(column,h) in props.columns"

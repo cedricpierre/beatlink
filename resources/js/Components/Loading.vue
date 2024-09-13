@@ -9,7 +9,13 @@ const props = defineProps({
 
 </script>
 <template>
-    <div v-if="active" class="loading" :class="[`loading-${props.variant}`, `loading-${props.size}`]">
+    <div v-if="active" class="loading"
+         :class="{
+          ...props.className,
+          [`loading-${props.variant}`]: props.variant,
+          [`loading-${props.size}`]: props.size,
+        }"
+    >
         <slot></slot>
     </div>
 </template>

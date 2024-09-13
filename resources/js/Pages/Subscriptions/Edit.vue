@@ -4,6 +4,7 @@ import {Head} from '@inertiajs/vue3';
 import UpdateSubscriptionForm from "@/Pages/Subscriptions/Partials/UpdateSubscriptionForm.vue";
 import CancelSubscriptionForm from "@/Pages/Subscriptions/Partials/CancelSubscriptionForm.vue";
 import ResumeSubscriptionForm from "@/Pages/Subscriptions/Partials/ResumeSubscriptionForm.vue";
+import Alert from "@/Components/Alert.vue";
 
 const props = defineProps({
     subscription: Object,
@@ -26,7 +27,7 @@ const props = defineProps({
                 You have an active subscription.
             </Alert>
 
-            <Alert closable v-if="$page.props.auth.user?.campaigns_count >= subscription.quantity">
+            <Alert variant="success" closable v-if="$page.props.auth.user?.campaigns_count >= subscription.quantity">
                 You need to upgrade your account to continue creating new campaigns.
             </Alert>
 

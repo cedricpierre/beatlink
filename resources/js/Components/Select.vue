@@ -42,7 +42,11 @@ const props = defineProps({
             v-model="model"
             :name="props.name"
             :type="props.type"
-            :class="[...props.className, `select-${props.variant}`]"
+            :class="{
+                  ...props.className,
+                  [`select-${props.variant}`]: props.variant,
+                  [`select-${props.size}`]: props.size,
+                }"
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"

@@ -8,7 +8,12 @@ const props = defineProps({
 
 </script>
 <template>
-    <div class="badge" :class="[`badge-${props.variant}`, `badge-${props.size}`, props.outline ? 'badge-outline' : '']">
+    <div class="badge" :class="{
+       ...props.className,
+      [`badge-${props.variant}`]: props.variant,
+      [`badge-outline`]: props.outline,
+      [`badge-${props.size}`]: props.size,
+    }">
         <slot></slot>
     </div>
 </template>

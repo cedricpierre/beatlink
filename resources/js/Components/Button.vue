@@ -25,7 +25,14 @@ watch(() => props.loading, (value) => {
 })
 </script>
 <template>
-    <button class="btn" :class="[...props.className, `btn-${props.variant}`, `btn-${props.size}`]">
+    <button class="btn"
+            :class="{
+          ...props.className,
+          [`btn-${props.variant}`]: props.variant,
+          [`btn-outline`]: props.outline,
+          [`btn-${props.size}`]: props.size,
+        }"
+    >
         <Loading :active="loading" variant="dots"></Loading>
         <slot></slot>
     </button>

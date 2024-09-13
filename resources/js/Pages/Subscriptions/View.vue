@@ -17,7 +17,7 @@ import Alert from "@/Components/Alert.vue";
 
         <div class="lg:max-w-screen-sm mx-auto">
             <Alert v-if="$page.props.auth.user.is_premium" variant="success">Congratulations ! You are now subscribed !</Alert>
-            <Alert v-else>
+            <Alert variant="success" v-else>
                 Your subscription is canceled. You need to upgrade your subscription.
                 <template #action>
                     <Link class="btn btn-primary btn-sm" :href="route('subscriptions.edit')">Upgrade</Link>

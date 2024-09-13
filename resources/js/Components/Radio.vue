@@ -37,7 +37,11 @@ const emits = defineEmits(['update:modelValue'])
                 :name="props.name"
                 @input="emits('update:modelValue', modelValue)"
                 type="radio"
-                :class="[...props.className, `checkbox-${props.variant}`]"
+                :class="{
+                  ...props.className,
+                  [`radio-${props.variant}`]: props.variant,
+                  [`radio-${props.size}`]: props.size,
+                }"
                 :required="props.required"
                 :autofocus="props.autofocus"
             />

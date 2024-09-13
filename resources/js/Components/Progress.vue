@@ -3,7 +3,7 @@ import {useStyleProps} from "@/Compasable/variant.js";
 
 
 const props = defineProps({
-	...useStyleProps(),
+    ...useStyleProps(),
     label: String,
     progress: Number,
     max: {
@@ -14,7 +14,14 @@ const props = defineProps({
 
 </script>
 <template>
-	<progress :class="[...props.className, `progress-${props.variant}`]" :max="props.max" :value="props.progress" class="progress w-full">
+    <progress
+        :max="props.max" :value="props.progress" class="progress w-full"
+        :class="{
+                  ...props.className,
+                  [`progress-${props.variant}`]: props.variant,
+                  [`progress-${props.size}`]: props.size,
+                }"
+    >
         <slot></slot>
     </progress>
 </template>
