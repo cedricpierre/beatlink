@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Nette\Utils\FileSystem;
 
 class Campaign extends Model
 {
@@ -22,7 +24,11 @@ class Campaign extends Model
         'image_url',
     ];
 
-    protected $appends = ['conversion_rate'];
+    protected $appends = [
+        'conversion_rate',
+        'background_url',
+        'image_url',
+    ];
 
     public function setNameAttribute($value): void
     {
@@ -52,11 +58,32 @@ class Campaign extends Model
         return $this->hasMany(Lead::class)->orderBy('id', 'desc');
     }
 
+    public function setSlugAttribute($value): void
+    {
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
     public function getConversionRateAttribute(): float|int
     {
         if ($this->views_count) {
             return round(100 / $this->views_count * $this->leads_count, 2);
         }
         return 0;
+    }
+
+    public function getBackgroundUrlAttribute(): string|null
+    {
+        if ($this->attributes['background_url']) {
+            return Storage::disk('s3')->url($this->attributes['background_url']);
+        }
+        return null;
+    }
+
+    public function getImageUrlAttribute(): string|null
+    {
+        if ($this->attributes['image_url']) {
+            return Storage::disk('s3')->url($this->attributes['image_url']);
+        }
+        return null;
     }
 }

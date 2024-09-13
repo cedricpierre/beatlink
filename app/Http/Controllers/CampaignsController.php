@@ -99,6 +99,8 @@ class CampaignsController extends Controller
 
     public function update(CampaignUpdateRequest $request, Campaign $campaign): RedirectResponse
     {
+
+        dd($request->all());
         $campaign->update($request->all());
 
         return redirect()->route('campaigns.edit', ['campaign' => $campaign->id]);

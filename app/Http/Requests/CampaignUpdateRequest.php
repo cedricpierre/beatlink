@@ -19,11 +19,4 @@ class CampaignUpdateRequest extends FormRequest
             'background_url' => ['sometimes', 'nullable', 'string'],
         ];
     }
-
-    public function prepareForValidation(): void
-    {
-        $this->merge([
-                         'slug' => Str::slug($this->slug),
-                     ]);
-    }
 }

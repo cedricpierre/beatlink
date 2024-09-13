@@ -15,7 +15,8 @@ const props = defineProps({
     <Background
         v-if="props.campaign"
         class="flex flex-col min-h-screen">
-        <div v-if="props.campaign.background_url || props.campaign.image_url" :style="{backgroundImage:`url(/storage/${props.campaign.background_url || props.campaign.image_url})`}"
+        <div v-if="props.campaign.background_url || props.campaign.image_url"
+             :style="{backgroundImage:`url(${props.campaign.background_url || props.campaign.image_url})`}"
              class="fixed top-0 left-0 w-full h-full z-0 blur bg-cover opacity-20"></div>
 
         <div class="py-8 px-4 z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col  justify-center">
@@ -32,7 +33,7 @@ const props = defineProps({
                         }}
                     </div>
                     <div v-if="props.campaign.image_url" class="animation-fade-in delay-400 w-full flex justify-center my-8">
-                        <img :src="`/storage/${props.campaign.image_url}`" alt=""
+                        <img :src="`${props.campaign.image_url}`" alt=""
                              class="w-60 h-60 object-cover rounded-2xl shadow-2xl">
                     </div>
 
