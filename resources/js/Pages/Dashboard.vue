@@ -78,12 +78,12 @@ const columns = ref([
                             </div>
                             <Link class="btn btn-primary btn-sm" :href="route('subscriptions.edit')">Upgrade</Link>
                         </template>
-                        <div v-else>
+                        <div v-else class="space-y-6">
                             <div>
                                 <p>Your subscription is inactive.</p>
                                 <p>You need to subscribe to reactivate your campaigns.</p>
-                                <Link class="btn btn-primary btn-sm" :href="route('subscriptions.subscribe')">Subscribe</Link>
                             </div>
+                            <Link class="btn btn-primary btn-sm" :href="route('subscriptions.subscribe')">Subscribe</Link>
                         </div>
 
                     </Card>
