@@ -22,7 +22,7 @@ module.exports = {
                     "primary": colors.blue['600'],
                     "secondary": colors.gray['100'],
                     "error": colors.red['600'],
-                    "success": colors.green['600'],
+                    "success": colors.green['500'],
                     "success-content": colors.white,
                     "error-content": colors.red['100'],
                     "secondary-content": colors.gray['900'],

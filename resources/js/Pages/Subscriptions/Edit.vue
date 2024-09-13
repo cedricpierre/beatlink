@@ -23,11 +23,11 @@ const props = defineProps({
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">
-            <Alert closable v-if="$page.props.auth.user?.is_premium">
+            <Alert variant="success" closable v-if="$page.props.auth.user?.is_premium">
                 You have an active subscription.
             </Alert>
 
-            <Alert variant="success" closable v-if="$page.props.auth.user?.campaigns_count >= subscription.quantity">
+            <Alert variant="warning" closable v-if="$page.props.auth.user?.campaigns_count >= subscription.quantity">
                 You need to upgrade your account to continue creating new campaigns.
             </Alert>
 

@@ -26,7 +26,9 @@ import Badge from "@/Components/Badge.vue";
                         <li>
                             <Dropdown align="right">
                                 <template #trigger>
-                                    <Badge size="sm" outline variant="primary" v-if="$page.props.auth.user.is_premium" class="uppercase mr-2">premium</Badge>
+                                    <Badge size="sm" outline variant="success" v-if="$page.props.auth.user.is_premium" class="uppercase mr-2">
+                                        premium
+                                    </Badge>
                                     <strong class="first-letter:uppercase font-bold">{{ $page.props.auth.user.name }}</strong>
                                 </template>
                                 <li>
