@@ -41,11 +41,17 @@ const props = defineProps({
                                 class="btn btn-neutral w-full h-full justify-start px-6 py-4 rounded-xl "
                                 :href="route('landing.open',{campaign: props.campaign.slug, link: link.platform_id})">
 
-                                <div class="flex flex-row items-center">
+                                <div class="flex flex-row items-center flex-1">
                                     <div class="h-6 flex" v-html="link.platform.icon"></div>
-                                    <h3 class="ml-3 text-xl leading-tight">
+                                    <h3 class="ml-3 flex flex-grow text-xl leading-tight">
                                         {{ link.platform.name }}
                                     </h3>
+                                    <div class="flex flex-shrink">
+                                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path
+                                                d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </a>
                         </li>

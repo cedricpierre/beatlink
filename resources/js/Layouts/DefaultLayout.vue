@@ -7,7 +7,7 @@ import {Link} from "@inertiajs/vue3";
         <div class="navbar bg-white dark:bg-primary-950">
             <div class="container mx-auto lg:max-w-screen-lg">
                 <div class="flex shrink-0 mr-2">
-	                <Logo/>
+                    <Logo/>
                 </div>
                 <div class="flex flex-grow">
                     <ul class="menu menu-horizontal space-x-2">
@@ -17,12 +17,19 @@ import {Link} from "@inertiajs/vue3";
                 </div>
                 <div class="flex justify-end">
                     <ul class="menu menu-horizontal space-x-2">
-                        <li>
-                            <Link :href="route('register')" class="btn btn-primary btn-outline">Register</Link>
-                        </li>
-                        <li>
-                            <Link :href="route('login')" class="btn btn-primary">Login</Link>
-                        </li>
+                        <template v-if="!$page.props.auth.user">
+                            <li>
+                                <Link :href="route('register')" class="btn btn-primary btn-outline">Register</Link>
+                            </li>
+                            <li>
+                                <Link :href="route('login')" class="btn btn-primary">Login</Link>
+                            </li>
+                        </template>
+                        <template v-else>
+                            <li>
+                                <Link :href="route('dashboard')" class="btn btn-primary">Dashboard</Link>
+                            </li>
+                        </template>
                     </ul>
                 </div>
             </div>
