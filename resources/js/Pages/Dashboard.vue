@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, Link} from '@inertiajs/vue3';
+import {Head, Link, usePage} from '@inertiajs/vue3';
 import {ICampaign} from "@/Interfaces/Campaign";
 import {PropType, ref} from "vue";
 import {ISubscription} from "@/Interfaces/Subscription";
 import Alert from "@/Components/Alert.vue";
 import Badge from "@/Components/Badge.vue";
+import {IUser} from "@/Interfaces/User";
+
+const user = usePage().props.auth.user as IUser
 
 const props = defineProps({
     campaigns: Array<ICampaign>,
@@ -69,8 +72,8 @@ const columns = ref([
                             Subscription
                         </template>
 
-                        <template v-if="$page.props.auth.user.is_premium">
-                            <div>You are subscribed ! You can create up to {{ subscription.quantity }} campaigns. If you want more, you should consider
+                        <template v-if="user.is_premium">
+                            <div>You are subscribed ! You can create up to {{ props.subscription?.quantity }} campaigns. If you want more, you should consider
                                 upgrading your plan.
                             </div>
                             <Link class="btn btn-primary btn-sm" :href="route('subscriptions.edit')">Upgrade</Link>

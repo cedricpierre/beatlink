@@ -7,9 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-/**
- * @property Campaign $campaign
- */
 class CampaignUpdateRequest extends FormRequest
 {
     public function rules(): array

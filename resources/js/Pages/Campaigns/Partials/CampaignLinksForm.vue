@@ -60,10 +60,10 @@ const search = async (lookup: string) => {
         items.value = []
 
         for (const key in results) {
-            const obj: any = {
+            const obj = {
                 name: key,
                 children: results[key]
-            }
+            } as never
 
             items.value.push(obj)
         }
@@ -124,8 +124,8 @@ const columns = ref([
             <template #item.actions="{item}">
                 <div class="space-x-2 whitespace-nowrap">
                     <a class="btn btn-primary btn-outline btn-sm" :href="item.url" target="_blank">Preview</a>
-                    <Link class="btn btn-error btn-sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" method="DELETE"
-                          as="button"
+                    <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" class="btn btn-error btn-sm"
+                          method="delete"
                           preserve-scroll>
                         Delete
                     </Link>
@@ -158,7 +158,7 @@ const columns = ref([
                     <div class="space-y-6">
                         <Select
                             v-model="form.platform_id"
-                            :options="platforms.map((platform) => {
+                            :options="props.platforms?.map((platform) => {
                                 return {
                                     value: platform.id,
                                     text: platform.name,

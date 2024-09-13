@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
+import {Link, usePage} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Alert from "@/Components/Alert.vue";
+import {IUser} from "@/Interfaces/User";
+
+const user = usePage().props.auth.user as IUser
+
 </script>
 
 <template>
@@ -16,7 +20,7 @@ import Alert from "@/Components/Alert.vue";
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto">
-            <Alert v-if="$page.props.auth.user.is_premium" variant="success">Congratulations ! You are now subscribed !</Alert>
+	        <Alert v-if="user.is_premium" variant="success">Congratulations ! You are now subscribed !</Alert>
             <Alert v-else>
                 Your subscription is canceled. You need to subscribe to reactivate your campaigns.
                 <template #action>

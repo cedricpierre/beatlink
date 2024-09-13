@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Card from "@/Components/Card.vue";
-import {Link} from "@inertiajs/vue3";
+import {Link, usePage} from "@inertiajs/vue3";
+import {IUser} from "@/Interfaces/User";
+
+const user = usePage().props.auth.user as IUser
+
 </script>
 
 <template>
@@ -10,7 +14,7 @@ import {Link} from "@inertiajs/vue3";
         </template>
 
         <template #subtitle>
-            <template v-if="$page.props.auth.user.is_on_grace_period">
+            <template v-if="user.is_on_grace_period">
                 By resuming your subscription, you will reactive all your campaigns.
             </template>
             <template v-else>
@@ -18,7 +22,7 @@ import {Link} from "@inertiajs/vue3";
             </template>
         </template>
 
-        <Link v-if="$page.props.auth.user.is_on_grace_period" class="btn btn-success" :href="route('subscriptions.resume')" as="button" method="post">Resume
+        <Link v-if="user.is_on_grace_period" class="btn btn-success" :href="route('subscriptions.resume')" method="post">Resume
             subscription
         </Link>
 

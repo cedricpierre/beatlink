@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
+import {Link, usePage} from "@inertiajs/vue3";
+import {IUser} from "@/Interfaces/User";
+
+const user = usePage().props.auth.user as IUser
+
 </script>
 
 <template>
@@ -17,7 +21,7 @@ import {Link} from "@inertiajs/vue3";
                 </div>
                 <div class="flex justify-end">
                     <ul class="menu menu-horizontal space-x-2">
-                        <template v-if="!$page.props.auth.user">
+                        <template v-if="!user">
                             <li>
                                 <Link :href="route('register')" class="btn btn-primary btn-outline">Register</Link>
                             </li>

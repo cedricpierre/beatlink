@@ -11,11 +11,12 @@ const props = defineProps({
 
 </script>
 <template>
-    <Head :title="props.campaign.name"></Head>
+    <Head :title="props.campaign?.name"></Head>
     <Background
+        v-if="props.campaign"
         class="flex flex-col min-h-screen">
-        <div class="fixed top-0 left-0 w-full h-full z-0 blur bg-cover opacity-20" v-if="props.campaign.background_url"
-             :style="{backgroundImage:`url(/storage/${props.campaign.background_url})`}"></div>
+        <div class="fixed top-0 left-0 w-full h-full z-0 blur bg-cover opacity-20" v-if="props.campaign.background_url || props.campaign.image_url"
+             :style="{backgroundImage:`url(/storage/${props.campaign.background_url || props.campaign.image_url})`}"></div>
 
         <div class="py-8 px-4 z-1 fixed top-0 left-0 w-full h-full overflow-auto flex flex-col  justify-center">
             <div class="flex flex-col max-w-screen-sm mx-auto h-full w-full">

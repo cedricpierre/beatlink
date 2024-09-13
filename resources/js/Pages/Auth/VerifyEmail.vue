@@ -9,6 +9,10 @@ const submit = () => {
     form.post(route('verification.send'));
 };
 
+const props = defineProps({
+    status: String,
+})
+
 const verificationLinkSent = computed(() => props.status === 'verification-link-sent');
 </script>
 
@@ -33,7 +37,6 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
                 <Link
                     :href="route('logout')"
-                    as="button"
                     class="underline text-sm text-primary-600 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-primary-800"
                     method="post"
                 >Log Out

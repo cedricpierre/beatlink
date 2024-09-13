@@ -5,6 +5,7 @@ interface Column {
     name: string;
     key: string;
     size: number;
+    className: string;
     align: 'left' | 'right' | 'center';
 }
 
@@ -21,7 +22,7 @@ const props = defineProps({
         required: true,
     },
     items: {
-        type: Array,
+        type: Array<any>,
         default: () => [],
         required: true,
     },

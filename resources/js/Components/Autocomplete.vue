@@ -19,7 +19,7 @@ const props = defineProps({
         default: false,
     },
     items: {
-        type: Array,
+        type: Array<any>,
         required: true,
     },
     textKey: {

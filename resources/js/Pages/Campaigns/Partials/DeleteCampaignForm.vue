@@ -42,7 +42,7 @@ const confirmDeletion = () => {
                 <Button @click="confirmingDeletion = false"> Cancel</button>
                 <Button variant="error" class="ms-3"
                 >
-                    <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete" as="button">
+                    <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete">
                         Delete
                     </Link>
                 </button>

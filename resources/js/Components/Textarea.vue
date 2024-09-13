@@ -27,7 +27,6 @@ const emits = defineEmits(['update:modelValue'])
         <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
         <textarea
             class="textarea textarea-bordered w-full"
-            v-model="model"
             :name="props.name"
             :type="props.type"
             :class="{
@@ -38,7 +37,9 @@ const emits = defineEmits(['update:modelValue'])
             :required="props.required"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"
-        />
+        >
+            {{model}}
+        </textarea>
         <div v-if="props.errorMessage" class="text-xs my-2" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',

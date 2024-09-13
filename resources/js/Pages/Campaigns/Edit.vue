@@ -25,13 +25,13 @@ const props = defineProps({
             <h2>Edit campaign</h2>
         </template>
         <template #subtitle>
-            <p>Modify your campaign "<strong>{{ props.campaign.name }}</strong>"</p>
+            <p>Modify your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link class="btn btn-primary" :href="route('campaigns.view', {id: props.campaign.id})">
+            <Link class="btn btn-primary" :href="route('campaigns.view', {id: props.campaign?.id})">
                 View campain
             </Link>
-            <a :href="route('landing', {slug: props.campaign.slug})" target="_blank">
+            <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
 	            <Button>
                     View page
                 </button>
@@ -39,7 +39,7 @@ const props = defineProps({
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">
-            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: props.campaign.id}))"/>
+            <CampaignInformationForm :campaign="campaign" @save="$event.put(route('campaigns.update',{campaign: props.campaign?.id}))"/>
 
             <CampaignLinksForm :campaign="campaign" :platforms="platforms"/>
 

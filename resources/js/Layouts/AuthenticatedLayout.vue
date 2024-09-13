@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import {Link} from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
 import Dropdown from "@/Components/Dropdown.vue";
 import Badge from "@/Components/Badge.vue";
+import {IUser} from "@/Interfaces/User";
+
+const user = usePage().props.auth.user as IUser
 </script>
 
 <template>
@@ -23,16 +26,18 @@ import Badge from "@/Components/Badge.vue";
                 </div>
                 <div class="flex shrink-0 justify-end">
                     <ul class="menu menu-horizontal justify-end space-x-2">
-                        <li v-if="$page.props.auth.user.is_subscribed && !$page.props.auth.user.is_premium">
-                            <Link class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">Subscribe now</Link>
+                        <li v-if="user.is_subscribed && !user.is_premium">
+                            <Link :href="route('subscriptions.subscribe')" class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">
+                                Subscribe now
+                            </Link>
                         </li>
                         <li>
                             <Dropdown align="right">
                                 <template #trigger>
-                                    <Badge size="sm" outline variant="success" v-if="$page.props.auth.user.is_premium" class="uppercase mr-2">
+                                    <Badge size="sm" outline variant="success" v-if="user.is_premium" class="uppercase mr-2">
                                         premium
                                     </Badge>
-                                    <strong class="first-letter:uppercase font-bold">{{ $page.props.auth.user.name }}</strong>
+                                    <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>
                                 </template>
                                 <li>
                                     <Link class="text-primary-600" :href="route('profile.edit')">Profile</Link>
@@ -41,7 +46,7 @@ import Badge from "@/Components/Badge.vue";
                                     <Link class="text-primary-600" :href="route('subscriptions.edit')">Subscription</Link>
                                 </li>
                                 <li>
-                                    <Link class="text-primary-600" :href="route('logout')" method="post" as="button">Log Out</Link>
+                                    <Link class="text-primary-600" :href="route('logout')" method="post">Log Out</Link>
                                 </li>
                             </Dropdown>
                         </li>
@@ -66,18 +71,18 @@ import Badge from "@/Components/Badge.vue";
                         </span>
                     </div>
                     <div class="flex flex-grow space-x-2 justify-end" v-if="$slots.actions">
-                            <slot name="actions"/>
+                        <slot name="actions"/>
                     </div>
                 </div>
             </div>
         </header>
 
         <div class="container mx-auto mt-4 lg:max-w-screen-sm">
-            <Alert v-if="$page.props.auth.user.is_trial">
+            <Alert v-if="user.is_trial">
                 You are on your trial period.
 
                 <template #action>
-                    <Link method="post" as="button" class="btn btn-error btn-sm" :href="route('subscriptions.cancel')">Cancel</Link>
+                    <Link method="post" class="btn btn-error btn-sm" :href="route('subscriptions.cancel')">Cancel</Link>
                 </template>
             </Alert>
         </div>

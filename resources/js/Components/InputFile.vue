@@ -25,8 +25,8 @@ const props = defineProps({
     errorMessage: String
 })
 
-const onFile = (event) => {
-    emits('update:modelValue', props.multiple ? event.target.files : event.target.files[0])
+const onFile = (event: InputEvent | any) => {
+    emits('update:modelValue', props.multiple ? event.target?.files : event.target?.files[0])
 }
 
 const emits = defineEmits(['update:modelValue'])

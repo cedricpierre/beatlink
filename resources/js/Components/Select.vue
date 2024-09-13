@@ -7,7 +7,9 @@ const props = defineProps({
 	...useStyleProps(),
     label: String,
     name: String,
-    options: Array,
+    options: {
+        type: Array<any>
+    },
     required: Boolean,
     autofocus: Boolean,
     autocomplete: String,

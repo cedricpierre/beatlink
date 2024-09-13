@@ -40,13 +40,13 @@ const form = useForm({
             <h2>View campaign</h2>
         </template>
         <template #subtitle>
-            <p>View your campaign "<strong>{{ campaign.name }}</strong>"</p>
+            <p>View your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link class="btn btn-primary" :href="route('campaigns.edit', {campaign: campaign.id})" target="_blank">
+            <Link class="btn btn-primary" :href="route('campaigns.edit', {campaign: props.campaign?.id})" target="_blank">
                 Edit campain
             </Link>
-            <a :href="route('landing', {slug: props.campaign.slug})" target="_blank">
+            <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
                 <Button>
                     View page
                 </button>
@@ -57,9 +57,9 @@ const form = useForm({
             <Card>
                 <template #header>
                     <div class="flex flex-row space-between items-center">
-                        <h2 class="flex flex-grow">{{ props.leads.total }} leads</h2>
+                        <h2 class="flex flex-grow">{{ props.leads?.total }} leads</h2>
                         <div class="flex flex-shrink">
-                            <form @submit.prevent="form.get(route('campaigns.view',{campaign: campaign.id}))">
+                            <form @submit.prevent="form.get(route('campaigns.view',{campaign: props.campaign?.id}))">
                                 <div class="flex flex-row space-x-2">
                                     <Select :options="props.platforms" value-key="id" text-key="name" v-model="form.platform_id"/>
                                     <Input type="search" v-model="form.search" placeholder="Search"></Input>

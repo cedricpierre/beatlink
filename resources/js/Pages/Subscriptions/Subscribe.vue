@@ -4,7 +4,6 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import {onMounted, ref} from "vue";
 import Alert from "@/Components/Alert.vue";
-import colors from "tailwindcss/colors";
 
 const props = defineProps({
     stripe_intent: Object,
@@ -20,20 +19,17 @@ let stripe: any, card: any
 
 onMounted(() => {
 
-    const appareance = {
+    const appearance = {
         theme: 'flat',
-        variables: {
-            colorPrimary: colors.primary,
-            colorBackground: colors.primary,
-            colorText: colors.primary['900'],
-            colorDanger: colors.red['600'],
-        }
     }
-    stripe = Stripe(props.stripe_key);
+
+
+    // @ts-ignore
+    stripe = Stripvape(props.stripe_key);
 
     const elements = stripe.elements({
-        clientSecret: props.stripe_intent.client_secret,
-        appareance: appareance
+        clientSecret: props.stripe_intent?.client_secret,
+        appearance
     });
 
     card = elements.create('card')
@@ -44,7 +40,7 @@ onMounted(() => {
 const errors = ref()
 
 const onSubmit = async () => {
-    const {setupIntent, error} = await stripe.confirmCardSetup(props.stripe_intent.client_secret, {
+    const {setupIntent, error} = await stripe.confirmCardSetup(props.stripe_intent?.client_secret, {
         payment_method: {
             card,
         }
@@ -65,16 +61,16 @@ const onSubmit = async () => {
 
         <form @submit.prevent="onSubmit" class="space-y-6">
 
-	        <div class="text-gray-500">
-		        Subscribe now for <strong>3$</strong> per campaign. You will be able to upgrade your subscription later to add more campaigns.
-	        </div>
+            <div class="text-gray-500">
+                Subscribe now for <strong>3$</strong> per campaign. You will be able to upgrade your subscription later to add more campaigns.
+            </div>
 
             <Alert variant="error" v-if="errors">{{ errors.message }}</Alert>
 
-	        <div id="card-element"></div>
+            <div id="card-element"></div>
 
 
-	        <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end mt-4">
                 <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
                     Subscribe
                 </Button>

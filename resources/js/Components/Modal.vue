@@ -2,7 +2,7 @@
 import {useStyleProps} from "@/Compasable/variant.js";
 import {watch} from "vue";
 
-const model = defineModel<Boolean>()
+const model = defineModel<Boolean | any>()
 
 const props = defineProps({
 	...useStyleProps(),
