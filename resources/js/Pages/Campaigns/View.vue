@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Head, Link, useForm} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -43,7 +43,7 @@ const form = useForm({
             <p>View your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link class="btn btn-primary" :href="route('campaigns.edit', {campaign: props.campaign?.id})" target="_blank">
+            <Link :href="route('campaigns.edit', {campaign: props.campaign?.id})" class="btn btn-primary" target="_blank">
                 Edit campain
             </Link>
             <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
@@ -61,8 +61,8 @@ const form = useForm({
                         <div class="flex flex-shrink">
                             <form @submit.prevent="form.get(route('campaigns.view',{campaign: props.campaign?.id}))">
                                 <div class="flex flex-row space-x-2">
-                                    <Select :options="props.platforms" value-key="id" text-key="name" v-model="form.platform_id"/>
-                                    <Input type="search" v-model="form.search" placeholder="Search"></Input>
+                                    <Select v-model="form.platform_id" :options="props.platforms" text-key="name" value-key="id"/>
+                                    <Input v-model="form.search" placeholder="Search" type="search"></Input>
                                     <Button variant="primary">Ok</Button>
                                 </div>
                             </form>

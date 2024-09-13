@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, Link, usePage} from '@inertiajs/vue3';
 import {ICampaign} from "@/Interfaces/Campaign";
 import {PropType, ref} from "vue";
 import {ISubscription} from "@/Interfaces/Subscription";
-import Alert from "@/Components/Alert.vue";
 import Badge from "@/Components/Badge.vue";
 import {IUser} from "@/Interfaces/User";
 
@@ -38,27 +37,27 @@ const columns = ref([
                     <Card>
                         <template #header>Latest campains</template>
 
-                        <Table :items="props.campaigns" :columns="columns">
+                        <Table :columns="columns" :items="props.campaigns">
                             <template #item.views_count="{item}">
-                                <Badge variant="primary" outline>{{ item.views_count }}</Badge>
+                                <Badge outline variant="primary">{{ item.views_count }}</Badge>
                             </template>
 
                             <template #item.leads_count="{item}">
-                                <Badge variant="primary" outline>{{ item.leads_count }}</Badge>
+                                <Badge outline variant="primary">{{ item.leads_count }}</Badge>
                             </template>
 
                             <template #item.conversion_rate="{item}">
-                                <Badge variant="primary" outline>{{ item.conversion_rate }}%</Badge>
+                                <Badge outline variant="primary">{{ item.conversion_rate }}%</Badge>
                             </template>
                             <template #item.actions="{item}">
                                 <div class="space-x-2 whitespace-nowrap">
-                                    <a class="btn btn-sm" :href="route('landing', {slug: item.slug})" target="_blank">
+                                    <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
                                         Page
                                     </a>
-                                    <Link class="btn btn-sm" :href="route('campaigns.view', {id: item.id})">
+                                    <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-sm">
                                         View
                                     </Link>
-                                    <Link class="btn btn-sm btn-primary" :href="route('campaigns.edit', {id: item.id})">
+                                    <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-sm btn-primary">
                                         Edit
                                     </Link>
                                 </div>
@@ -76,14 +75,14 @@ const columns = ref([
                             <div>You are subscribed ! You can create up to {{ props.subscription?.quantity }} campaigns. If you want more, you should consider
                                 upgrading your plan.
                             </div>
-                            <Link class="btn btn-primary btn-sm" :href="route('subscriptions.edit')">Upgrade</Link>
+                            <Link :href="route('subscriptions.edit')" class="btn btn-primary btn-sm">Upgrade</Link>
                         </template>
                         <div v-else class="space-y-6">
                             <div>
                                 <p>Your subscription is inactive.</p>
                                 <p>You need to subscribe to reactivate your campaigns.</p>
                             </div>
-                            <Link class="btn btn-primary btn-sm" :href="route('subscriptions.subscribe')">Subscribe</Link>
+                            <Link :href="route('subscriptions.subscribe')" class="btn btn-primary btn-sm">Subscribe</Link>
                         </div>
 
                     </Card>

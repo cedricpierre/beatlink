@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
 interface Column {
@@ -30,12 +30,12 @@ const props = defineProps({
 
 </script>
 <template>
-    <table class="table"
-           :class="{
+    <table :class="{
               ...props.className,
               [`table-${props.variant}`]: props.variant,
               [`table-${props.size}`]: props.size,
             }"
+           class="table"
     >
         <thead>
         <tr>

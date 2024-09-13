@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
@@ -25,7 +25,7 @@ const props = defineProps({
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">
-            <UpdateProfileInformationForm :user="user" :must_verify_email="props.must_verify_email" :status="props.status"/>
+            <UpdateProfileInformationForm :must_verify_email="props.must_verify_email" :status="props.status" :user="user"/>
             <UpdatePasswordForm/>
             <DeleteUserForm/>
         </div>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
@@ -31,39 +31,39 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <Input
-                    type="email"
                     v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="email"
-                    :validation-status="form.errors.email ? 'error' : 'success'"
                     :error-message="form.errors.email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    autocomplete="email"
+                    autofocus
+                    required
+                    type="email"
                 />
             </div>
 
             <div class="mt-4">
                 <Input
-                    type="password"
                     v-model="form.password"
-                    required
-                    :validation-status="form.errors.password ? 'error' : 'success'"
                     :error-message="form.errors.password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    required
+                    type="password"
                 />
             </div>
 
             <div class="mt-4">
                 <Input
                     id="password_confirmation"
-                    type="password"
                     v-model="form.password_confirmation"
-                    required
-                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
                     :error-message="form.errors.password_confirmation"
+                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
+                    required
+                    type="password"
                 />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-	            <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" class="ms-3" variant="primary">
                     Reset Password
                 </button>
             </div>

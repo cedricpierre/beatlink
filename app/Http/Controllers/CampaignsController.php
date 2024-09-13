@@ -107,13 +107,13 @@ class CampaignsController extends Controller
     public function upload(CampaignUploadRequest $request, Campaign $campaign): RedirectResponse
     {
         if ($request->hasFile('background')) {
-            $campaign->background_url = $request->file('background')?->store('backgrounds', 'public');
+            $campaign->background_url = $request->file('background')?->store('backgrounds', 's3');
             $campaign->save();
 
         }
 
         if ($request->hasFile('image')) {
-            $campaign->image_url = $request->file('image')?->store('backgrounds', 'public');
+            $campaign->image_url = $request->file('image')?->store('backgrounds', 's3');
             $campaign->save();
         }
 

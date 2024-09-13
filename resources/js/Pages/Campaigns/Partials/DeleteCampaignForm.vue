@@ -1,7 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Link} from '@inertiajs/vue3';
 import {PropType, ref} from 'vue';
-import {FwbButton, FwbModal} from "flowbite-vue";
 import Card from "@/Components/Card.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
 import Modal from "@/Components/Modal.vue";
@@ -29,7 +28,7 @@ const confirmDeletion = () => {
             your campaign, be sure you wish to retain.
         </template>
 
-        <Button variant="error" class="mt-4" @click="confirmDeletion">Delete campaign</button>
+        <Button class="mt-4" variant="error" @click="confirmDeletion">Delete campaign</button>
 
         <Modal v-model="confirmingDeletion" @close="confirmingDeletion = false">
             <template #header>
@@ -40,7 +39,7 @@ const confirmDeletion = () => {
             </template>
             <template #footer>
                 <Button @click="confirmingDeletion = false"> Cancel</button>
-                <Button variant="error" class="ms-3"
+                <Button class="ms-3" variant="error"
                 >
                     <Link :href="route('campaigns.destroy', {campaign: props.campaign?.id})" method="delete">
                         Delete

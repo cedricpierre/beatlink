@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps({
     align: {
         type: String,
@@ -14,7 +14,7 @@ const props = defineProps({
         <summary class="text-primary-600">
             <slot name="trigger"></slot>
         </summary>
-        <ul tabindex="0" :class="[`${align}-0`]" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow min-w-60">
+        <ul :class="[`${align}-0`]" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow min-w-60" tabindex="0">
             <slot></slot>
         </ul>
     </details>

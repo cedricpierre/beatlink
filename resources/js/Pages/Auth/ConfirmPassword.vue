@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
@@ -27,18 +27,18 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <Input
-                    type="password"
                     v-model="form.password"
-                    required
+                    :error-message="form.errors.password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
                     autocomplete="current-password"
                     autofocus
-                    :validation-status="form.errors.password ? 'error' : 'success'"
-                    :error-message="form.errors.password"
+                    required
+                    type="password"
                 />
             </div>
 
             <div class="flex justify-end mt-4">
-                <Button variant="primary" :loading="form.processing" :disabled="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">
                     Confirm
                 </Button>
             </div>

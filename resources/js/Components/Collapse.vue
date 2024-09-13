@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useStyleProps} from "@/Compasable/variant.js";
 
@@ -8,7 +8,7 @@ const props = defineProps({
 
 </script>
 <template>
-    <div tabindex="0" class="collapse" :class="[`bg-${props.variant}`]">
+    <div :class="[`bg-${props.variant}`]" class="collapse" tabindex="0">
         <div class="collapse-title text-xl font-medium">
             <slot name="title"></slot>
         </div>

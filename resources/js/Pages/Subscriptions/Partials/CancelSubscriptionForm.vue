@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useForm} from '@inertiajs/vue3';
 import {ref} from 'vue';
 import Card from "@/Components/Card.vue";
@@ -42,7 +42,7 @@ const closeModal = () => {
             be lost. You can resume anytime.
         </template>
 
-        <Button variant="error" class="mt-4" @click="confirmUserDeletion">Cancel subscription</button>
+        <Button class="mt-4" variant="error" @click="confirmUserDeletion">Cancel subscription</button>
 
         <Modal v-model="confirmingDeletion">
             <template #header>
@@ -56,21 +56,21 @@ const closeModal = () => {
 
                 <div class="mt-6">
                     <Input
-                        label="Password"
                         v-model="form.password"
-                        type="password"
-                        placeholder="Password"
-                        @keyup.enter="destroy"
-                        :validation-status="form.errors.password ? 'error' : 'success'"
                         :error-message="form.errors.password"
+                        :validation-status="form.errors.password ? 'error' : 'success'"
+                        label="Password"
+                        placeholder="Password"
+                        type="password"
+                        @keyup.enter="destroy"
                     />
                 </div>
             </template>
             <template #footer>
                 <Button @click="closeModal"> Cancel</button>
-                <Button variant="error" class="ms-3"
-                        :loading="form.processing"
-                        :disabled="form.processing"
+                <Button :disabled="form.processing" :loading="form.processing"
+                        class="ms-3"
+                        variant="error"
                         @click="destroy"
                 >
                     Cancel subscription

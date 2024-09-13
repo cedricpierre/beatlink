@@ -22,19 +22,19 @@ const form = useForm({
         <form class="space-y-6" @submit.prevent="form.put(route('subscriptions.update'))">
             <Input
                 v-model="form.quantity"
+                :error-message="form.errors.quantity"
+                :max="999"
+                :min="1"
+                :validation-status="form.errors.quantity ? 'error' : 'success'"
                 autocomplete="quantity"
                 autofocus
                 label="Quantity"
                 required
                 type="number"
-                :min="1"
-                :max="999"
-                :error-message="form.errors.quantity"
-                :validation-status="form.errors.quantity ? 'error' : 'success'"
             />
 
             <div class="flex items-center gap-4">
-                <Button variant="primary" :disabled="form.processing" :loading="form.processing">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

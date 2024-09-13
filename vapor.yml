@@ -3,6 +3,7 @@ name: Beatlink
 environments:
   production:
     database: beatlink
+    storage: aws-beatlink
     memory: 1024
     cli-memory: 512
     runtime: 'php-8.3:al2'

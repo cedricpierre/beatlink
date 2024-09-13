@@ -10,7 +10,7 @@ import Textarea from "@/Components/Textarea.vue";
 import {PropType} from "vue";
 
 const props = defineProps({
-	campaign: Object as PropType<ICampaign>
+    campaign: Object as PropType<ICampaign>
 })
 
 const form = useForm({
@@ -56,7 +56,7 @@ const form = useForm({
 
 
             <div class="flex items-center gap-4">
-                <Button variant="primary" :disabled="form.processing" :loading="form.processing">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

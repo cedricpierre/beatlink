@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
 
@@ -15,12 +15,12 @@ const props = defineProps({
 </script>
 <template>
     <progress
-        :max="props.max" :value="props.progress" class="progress w-full"
         :class="{
                   ...props.className,
                   [`progress-${props.variant}`]: props.variant,
                   [`progress-${props.size}`]: props.size,
-                }"
+                }" :max="props.max" :value="props.progress"
+        class="progress w-full"
     >
         <slot></slot>
     </progress>

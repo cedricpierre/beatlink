@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useStyleProps} from "@/Compasable/variant.js";
 import {ref, watch} from "vue";
@@ -25,13 +25,13 @@ watch(() => props.loading, (value) => {
 })
 </script>
 <template>
-    <button class="btn"
-            :class="{
+    <button :class="{
           ...props.className,
           [`btn-${props.variant}`]: props.variant,
           [`btn-outline`]: props.outline,
           [`btn-${props.size}`]: props.size,
         }"
+            class="btn"
     >
         <Loading :active="loading" variant="dots"></Loading>
         <slot></slot>

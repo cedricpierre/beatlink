@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Link, usePage} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Alert from "@/Components/Alert.vue";
@@ -20,11 +20,11 @@ const user = usePage().props.auth.user as IUser
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto">
-	        <Alert v-if="user.is_premium" variant="success">Congratulations ! You are now subscribed !</Alert>
+            <Alert v-if="user.is_premium" variant="success">Congratulations ! You are now subscribed !</Alert>
             <Alert v-else>
                 Your subscription is canceled. You need to subscribe to reactivate your campaigns.
                 <template #action>
-                    <Link class="btn btn-primary btn-sm" :href="route('subscriptions.subscribe')">Subscribe</Link>
+                    <Link :href="route('subscriptions.subscribe')" class="btn btn-primary btn-sm">Subscribe</Link>
                 </template>
             </Alert>
         </div>

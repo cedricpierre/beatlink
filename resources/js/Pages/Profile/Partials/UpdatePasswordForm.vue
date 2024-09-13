@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useForm} from '@inertiajs/vue3';
 import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
@@ -38,34 +38,34 @@ const updatePassword = () => {
             Ensure your account is using a long, random password to stay secure.
         </template>
 
-        <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
+        <form class="mt-6 space-y-6" @submit.prevent="updatePassword">
             <Input
-                label="Current password"
                 v-model="form.current_password"
-                type="password"
-                autocomplete="current-password"
-                :validation-status="form.errors.current_password ? 'error' : 'success'"
                 :error-message="form.errors.current_password"
+                :validation-status="form.errors.current_password ? 'error' : 'success'"
+                autocomplete="current-password"
+                label="Current password"
+                type="password"
             />
 
             <Input
-                label="New Password"
                 v-model="form.password"
-                type="password"
-                :validation-status="form.errors.password ? 'error' : 'success'"
                 :error-message="form.errors.password"
+                :validation-status="form.errors.password ? 'error' : 'success'"
+                label="New Password"
+                type="password"
             />
 
             <Input
-                label="Confirm Password"
                 v-model="form.password_confirmation"
-                type="password"
-                :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
                 :error-message="form.errors.password_confirmation"
+                :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
+                label="Confirm Password"
+                type="password"
             />
 
             <div class="flex items-center gap-4">
-                <Button variant="primary" :loading="form.processing" :disabled="form.processing">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

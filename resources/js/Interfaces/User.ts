@@ -1,5 +1,3 @@
-import {IPlatform} from "@/Interfaces/Platform";
-import {ILead} from "@/Interfaces/Lead";
 import {ISubscription} from "@/Interfaces/Subscription";
 import {User} from "@/types";
 

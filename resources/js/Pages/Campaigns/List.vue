@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -37,7 +37,7 @@ const columns = ref([
             <p>Create or update your campaigns</p>
         </template>
         <template #actions>
-            <Link class="btn btn-primary" :href="route('campaigns.create')">
+            <Link :href="route('campaigns.create')" class="btn btn-primary">
                 Create new campaign
             </Link>
         </template>
@@ -48,7 +48,7 @@ const columns = ref([
             <Table :columns="columns" :items="props.campaigns?.data">
 
                 <template #item.slug="{item}">
-                    <a class="text-primary-600 hover:underline" :href="route('landing', {slug: item.slug})" target="_blank">
+                    <a :href="route('landing', {slug: item.slug})" class="text-primary-600 hover:underline" target="_blank">
                         {{ item.slug }}
                     </a>
                 </template>
@@ -58,26 +58,26 @@ const columns = ref([
                 </template>
 
                 <template #item.views_count="{item}">
-                    <Badge variant="primary" outline>{{ item.views_count }}</Badge>
+                    <Badge outline variant="primary">{{ item.views_count }}</Badge>
                 </template>
 
                 <template #item.leads_count="{item}">
-                    <Badge variant="primary" outline>{{ item.leads_count }}</Badge>
+                    <Badge outline variant="primary">{{ item.leads_count }}</Badge>
                 </template>
 
                 <template #item.conversion_rate="{item}">
-                    <Badge variant="primary" outline>{{ item.conversion_rate }}%</Badge>
+                    <Badge outline variant="primary">{{ item.conversion_rate }}%</Badge>
                 </template>
 
                 <template #item.actions="{item}">
                     <div class="space-x-2 whitespace-nowrap">
-                        <a class="btn btn-sm" :href="route('landing', {slug: item.slug})" target="_blank">
+                        <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
                             View page
                         </a>
-                        <Link class="btn btn-sm" :href="route('campaigns.view', {id: item.id})">
+                        <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-sm">
                             Stats
                         </Link>
-                        <Link class="btn btn-sm btn-primary" :href="route('campaigns.edit', {id: item.id})">
+                        <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-sm btn-primary">
                             Edit
                         </Link>
                     </div>
@@ -86,7 +86,7 @@ const columns = ref([
                 <template #empty>
                     <div class="flex space-y-6 flex-col justify-center items-center">
                         <span>No item found</span>
-                        <Link class="btn btn-primary btn-sm btn-outline" :href="route('campaigns.create')">Create a campaign now</Link>
+                        <Link :href="route('campaigns.create')" class="btn btn-primary btn-sm btn-outline">Create a campaign now</Link>
                     </div>
                 </template>
             </Table>

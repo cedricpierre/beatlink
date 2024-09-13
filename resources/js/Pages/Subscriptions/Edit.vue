@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, usePage} from '@inertiajs/vue3';
 import UpdateSubscriptionForm from "@/Pages/Subscriptions/Partials/UpdateSubscriptionForm.vue";
@@ -26,11 +26,11 @@ const props = defineProps({
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">
-            <Alert variant="success" v-if="user.is_premium">
+            <Alert v-if="user.is_premium" variant="success">
                 You have an active subscription.
             </Alert>
 
-            <Alert variant="warning" v-if="user.campaigns_count >= props.subscription?.quantity">
+            <Alert v-if="user.campaigns_count >= props.subscription?.quantity" variant="warning">
                 You need to upgrade your account to continue creating new campaigns.
             </Alert>
 

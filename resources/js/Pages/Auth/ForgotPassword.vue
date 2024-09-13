@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
@@ -24,18 +24,18 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <Input
-                    type="email"
                     v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                    :validation-status="form.errors.email ? 'error' : 'success'"
                     :error-message="form.errors.email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    autocomplete="username"
+                    autofocus
+                    required
+                    type="email"
                 />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Button variant="primary" :loading="form.processing" :disabled="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">
                     Email Password Reset Link
                 </button>
             </div>

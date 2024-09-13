@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useForm} from "@inertiajs/vue3";
 import {ref, watch} from "vue";
 import Input from "@/Components/Input.vue";
@@ -9,7 +9,7 @@ const emits = defineEmits(['change', 'select']);
 const debounce = useDebounce()
 
 const props = defineProps({
-	loading: Boolean,
+    loading: Boolean,
     label: {
         type: String,
         default: 'Search',
@@ -42,7 +42,7 @@ const form = useForm({
 
 const select = (data: any) => {
     emits('select', data);
-	lookup.value = data[props.textKey]
+    lookup.value = data[props.textKey]
     isDropdownOpen.value = false
 }
 
@@ -72,15 +72,15 @@ watch(() => props.items, (values) => {
     <div class="form-control">
         <Input
             v-model="lookup"
-            :loading="props.loading"
-            type="search"
             :disabled="props.disabled"
-            :label="props.label"
-            @keyup.prevent.stop="debounce(onChange,500)"
-            :validation-status="form.errors.search ? 'error' : 'success'"
             :error-message="form.errors.search"
+            :label="props.label"
+            :loading="props.loading"
+            :validation-status="form.errors.search ? 'error' : 'success'"
+            type="search"
+            @keyup.prevent.stop="debounce(onChange,500)"
         />
-        <div class="relative" v-if="isDropdownOpen">
+        <div v-if="isDropdownOpen" class="relative">
             <ul class="dropdown-content bg-base-100 rounded-box z-[1] mt-2 w-full max-h-60 shadow-lg flex-col overflow-auto">
                 <template v-for="item in props.items">
                     <li>
@@ -91,18 +91,18 @@ watch(() => props.items, (values) => {
                         <template v-if="item.children && item.children.length">
                             <ul>
                                 <li v-for="child in item.children">
-                                    <a href="#" @click.prevent="select({type: item.name, ...child})"
-                                       class="block px-4 py-2 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white">
-		                                <div class="flex">
-			                                <div class="flex-shrink mr-2" v-if="child.picture">
-				                                <img class="h-10 w-10 rounded" :src="child.picture.url" alt="">
-			                                </div>
+                                    <a class="block px-4 py-2 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white" href="#"
+                                       @click.prevent="select({type: item.name, ...child})">
+                                        <div class="flex">
+                                            <div v-if="child.picture" class="flex-shrink mr-2">
+                                                <img :src="child.picture.url" alt="" class="h-10 w-10 rounded">
+                                            </div>
                                             <div class="flex-grow-1 flex justify-center items-start flex-col flex-1">
-				                                <div>{{ child[textKey] }}</div>
+                                                <div>{{ child[textKey] }}</div>
                                                 <div v-if="child.author" class="text-gray-400 text-xs">{{ child.author.name }}</div>
-			                                </div>
-		                                </div>
-	                                </a>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
                             </ul>
                         </template>

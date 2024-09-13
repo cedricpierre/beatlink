@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useStyleProps} from "@/Compasable/variant.js";
 import {ref} from "vue";
@@ -15,14 +15,14 @@ const closed = ref(false);
 
 </script>
 <template>
-    <div role="alert" class="alert shadow flex"
-         :class="{
+    <div v-if="!closed" :class="{
           ...props.className,
           [`alert-${props.variant}`]: props.variant,
           [`alert-outline`]: props.outline,
           [`alert-${props.size}`]: props.size,
         }"
-         v-if="!closed">
+         class="alert shadow flex"
+         role="alert">
         <div class="w-full items-center justify-start flex">
             <div class="flex-grow">
                 <slot></slot>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
 const model = defineModel()
@@ -32,25 +32,25 @@ const emits = defineEmits(['update:modelValue'])
         <label class="label cursor-pointer justify-start">
             <input
                 v-model="model"
-                class="checkbox "
-                :disabled="props.disabled"
-                :name="props.name"
-                @input="emits('update:modelValue', modelValue)"
-                type="checkbox"
+                :autofocus="props.autofocus"
                 :class="{
                   ...props.className,
                   [`checkbox-${props.variant}`]: props.variant,
                   [`checkbox-${props.size}`]: props.size,
                 }"
+                :disabled="props.disabled"
+                :name="props.name"
                 :required="props.required"
-                :autofocus="props.autofocus"
+                class="checkbox "
+                type="checkbox"
+                @input="emits('update:modelValue', modelValue)"
             />
             <div v-if="props.label" class="text-neutral-500 text-sm ml-2 justify-items-start">{{ props.label }}</div>
         </label>
-        <div v-if="props.errorMessage" class="text-xs my-2" :class="{
+        <div v-if="props.errorMessage" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',
-        }">
+        }" class="text-xs my-2">
             {{ props.errorMessage }}
         </div>
     </div>

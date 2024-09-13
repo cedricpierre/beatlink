@@ -2,7 +2,6 @@
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
-import Checkbox from "@/Components/Checkbox.vue";
 
 const form = useForm({
     name: '',
@@ -24,49 +23,49 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register"/>
 
-        <form @submit.prevent="submit" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="submit">
             <div>
                 <Input
                     v-model="form.name"
+                    :error-message="form.errors.name"
+                    :validation-status="form.errors.name ? 'error' : 'success'"
                     autocomplete="name"
                     autofocus
                     label="name"
                     required
-                    :validation-status="form.errors.name ? 'error' : 'success'"
-                    :error-message="form.errors.name"
                 />
             </div>
 
             <div>
                 <Input
                     v-model="form.email"
+                    :error-message="form.errors.email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
                     label="Email"
                     required
                     type="email"
-                    :validation-status="form.errors.email ? 'error' : 'success'"
-                    :error-message="form.errors.email"
                 />
             </div>
 
             <div>
                 <Input
                     v-model="form.password"
+                    :error-message="form.errors.password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
                     label="Password"
                     required
                     type="password"
-                    :validation-status="form.errors.password ? 'error' : 'success'"
-                    :error-message="form.errors.password"
                 />
             </div>
 
             <div>
                 <Input
-                    label="Confirm Password"
                     v-model="form.password_confirmation"
+                    :error-message="form.errors.password_confirmation"
+                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
+                    label="Confirm Password"
                     required
                     type="password"
-                    :validation-status="form.errors.password_confirmation ? 'error' : 'success'"
-                    :error-message="form.errors.password_confirmation"
                 />
             </div>
 
@@ -78,7 +77,7 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <Button variant="primary" class="ms-3" :disabled="form.processing" :loading="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" class="ms-3" variant="primary">
                     Register
                 </button>
             </div>

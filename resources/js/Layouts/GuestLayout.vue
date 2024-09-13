@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Footer from "@/Components/Footer.vue";
 import Card from "@/Components/Card.vue";
 </script>

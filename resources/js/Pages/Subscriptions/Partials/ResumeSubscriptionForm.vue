@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Card from "@/Components/Card.vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import {IUser} from "@/Interfaces/User";
@@ -22,11 +22,11 @@ const user = usePage().props.auth.user as IUser
             </template>
         </template>
 
-        <Link v-if="user.is_on_grace_period" class="btn btn-success" :href="route('subscriptions.resume')" method="post">Resume
+        <Link v-if="user.is_on_grace_period" :href="route('subscriptions.resume')" class="btn btn-success" method="post">Resume
             subscription
         </Link>
 
-        <Link v-else class="btn btn-success" :href="route('subscriptions.subscribe')">Start a new subscription</Link>
+        <Link v-else :href="route('subscriptions.subscribe')" class="btn btn-success">Start a new subscription</Link>
 
     </Card>
 </template>

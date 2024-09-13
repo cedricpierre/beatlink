@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -27,26 +27,26 @@ const form = useForm({
             You can customize your landing page by adding javascript and css.
         </template>
 
-        <form @submit.prevent="form.put(route('campaigns.update',{campaign: props.campaign?.id}))" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="form.put(route('campaigns.update',{campaign: props.campaign?.id}))">
             <Textarea
                 v-model="form.custom_script"
+                :error-message="form.errors.custom_script"
+                :validation-status="form.errors.custom_script ? 'error' : 'success'"
                 label="Script"
                 placeholder="Place your javascript script here"
-                :validation-status="form.errors.custom_script ? 'error' : 'success'"
-                :error-message="form.errors.custom_script"
             />
 
             <Textarea
                 v-model="form.custom_css"
+                :error-message="form.errors.custom_css"
+                :validation-status="form.errors.custom_css ? 'error' : 'success'"
                 label="CSS"
                 placeholder="Place your CSS here"
-                :validation-status="form.errors.custom_css ? 'error' : 'success'"
-                :error-message="form.errors.custom_css"
             />
 
 
             <div class="flex items-center gap-4">
-                <Button variant="primary" :loading="form.processing" :disabled="form.processing">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

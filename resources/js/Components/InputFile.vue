@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from '@/Compasable/variant.js';
 
 const props = defineProps({
@@ -35,26 +35,26 @@ const emits = defineEmits(['update:modelValue'])
     <div class="form-control">
         <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
         <input
-            class="file-input input-bordered w-full"
-            :name="props.name"
-            :multiple="props.multiple"
-            :disabled="props.disabled"
-            type="file"
+            :autocomplete="props.autocomplete"
+            :autofocus="props.autofocus"
             :class="{
                   ...props.className,
                   [`input-${props.variant}`]: props.variant,
                   [`input-${props.size}`]: props.size,
                 }"
+            :disabled="props.disabled"
+            :multiple="props.multiple"
+            :name="props.name"
             :required="props.required"
-            :autocomplete="props.autocomplete"
-            :autofocus="props.autofocus"
+            class="file-input input-bordered w-full"
             placeholder="Click to select a file"
+            type="file"
             @change="onFile"
         />
-        <div v-if="props.errorMessage" class="text-xs my-2" :class="{
+        <div v-if="props.errorMessage" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',
-        }">
+        }" class="text-xs my-2">
             {{ props.errorMessage }}
         </div>
     </div>

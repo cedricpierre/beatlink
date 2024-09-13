@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -7,7 +7,6 @@ import DeleteCampaignForm from "@/Pages/Campaigns/Partials/DeleteCampaignForm.vu
 import CampaignLinksForm from "@/Pages/Campaigns/Partials/CampaignLinksForm.vue";
 import CampaignCustomsForm from "@/Pages/Campaigns/Partials/CampaignCustomsForm.vue";
 import {IPlatform} from "@/Interfaces/Platform";
-import {FwbButton} from "flowbite-vue";
 import CampaignUploadForm from "@/Pages/Campaigns/Partials/CampaignUploadForm.vue";
 import {PropType} from "vue";
 
@@ -28,11 +27,11 @@ const props = defineProps({
             <p>Modify your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link class="btn btn-primary" :href="route('campaigns.view', {id: props.campaign?.id})">
+            <Link :href="route('campaigns.view', {id: props.campaign?.id})" class="btn btn-primary">
                 View campain
             </Link>
             <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
-	            <Button>
+                <Button>
                     View page
                 </button>
             </a>

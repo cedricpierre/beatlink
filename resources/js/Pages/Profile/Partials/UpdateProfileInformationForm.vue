@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {Link, useForm, usePage} from '@inertiajs/vue3';
+import {Link, useForm} from '@inertiajs/vue3';
 import Card from "@/Components/Card.vue";
 import Saved from "@/Components/Saved.vue";
 import Input from "@/Components/Input.vue";
@@ -26,23 +26,23 @@ const form = useForm({
 
             <Input
                 v-model="form.name"
+                :error-message="form.errors.name"
+                :validation-status="form.errors.name ? 'error' : 'success'"
                 autocomplete="name"
                 autofocus
                 label="Name"
                 required
                 type="text"
-                :validation-status="form.errors.name ? 'error' : 'success'"
-                :error-message="form.errors.name"
             />
 
             <Input
                 v-model="form.email"
+                :error-message="form.errors.email"
+                :validation-status="form.errors.email ? 'error' : 'success'"
                 autocomplete="username"
                 label="E-mail"
                 required
                 type="email"
-                :validation-status="form.errors.email ? 'error' : 'success'"
-                :error-message="form.errors.email"
             />
 
             <div v-if="props.must_verify_email && props.user?.email_verified_at === null">
@@ -66,7 +66,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <Button variant="primary" :disabled="form.processing" :loading="form.processing">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
 
                 <Saved :form="form"/>
             </div>

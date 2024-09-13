@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useStyleProps} from "@/Compasable/variant.js";
 
@@ -8,12 +8,12 @@ const props = defineProps({
 
 </script>
 <template>
-    <div class="badge" :class="{
+    <div :class="{
        ...props.className,
       [`badge-${props.variant}`]: props.variant,
       [`badge-outline`]: props.outline,
       [`badge-${props.size}`]: props.size,
-    }">
+    }" class="badge">
         <slot></slot>
     </div>
 </template>

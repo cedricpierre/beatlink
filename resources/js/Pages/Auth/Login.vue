@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import Input from "@/Components/Input.vue";
@@ -23,17 +23,17 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in"/>
 
-        <form @submit.prevent="submit" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="submit">
             <div>
                 <Input
                     v-model="form.email"
-                    label="Email"
-                    type="email"
-                    required
-                    autofocus
-                    autocomplete="email"
-                    :validation-status="form.errors.email ? 'error' : 'success'"
                     :error-message="form.errors.email"
+                    :validation-status="form.errors.email ? 'error' : 'success'"
+                    autocomplete="email"
+                    autofocus
+                    label="Email"
+                    required
+                    type="email"
                 />
 
             </div>
@@ -41,12 +41,12 @@ const submit = () => {
             <div>
                 <Input
                     v-model="form.password"
-                    label="Password"
-                    type="password"
-                    required
-                    autocomplete="current-password"
-                    :validation-status="form.errors.password ? 'error' : 'success'"
                     :error-message="form.errors.password"
+                    :validation-status="form.errors.password ? 'error' : 'success'"
+                    autocomplete="current-password"
+                    label="Password"
+                    required
+                    type="password"
                 />
             </div>
 
@@ -68,7 +68,7 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" class="ms-3" variant="primary">
                     Log in
                 </Button>
             </div>

@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
 const model = defineModel()
 
 const props = defineProps({
-	...useStyleProps(),
+    ...useStyleProps(),
     label: String,
     name: String,
     options: {
@@ -40,26 +40,26 @@ const props = defineProps({
     <div class="form-control">
         <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
         <select
-            class="select select-bordered w-full"
             v-model="model"
-            :name="props.name"
-            :type="props.type"
+            :autocomplete="props.autocomplete"
+            :autofocus="props.autofocus"
             :class="{
                   ...props.className,
                   [`select-${props.variant}`]: props.variant,
                   [`select-${props.size}`]: props.size,
                 }"
+            :name="props.name"
             :required="props.required"
-            :autocomplete="props.autocomplete"
-            :autofocus="props.autofocus"
+            :type="props.type"
+            class="select select-bordered w-full"
         >
-            <option :value="null" v-if="props.nullable">None</option>
+            <option v-if="props.nullable" :value="null">None</option>
             <option v-for="(option,i) in props.options" :key="i" :value="option[props.valueKey]">{{ option[props.textKey] }}</option>
         </select>
-        <div v-if="props.errorMessage" class="text-xs my-2" :class="{
+        <div v-if="props.errorMessage" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',
-        }">
+        }" class="text-xs my-2">
             {{ props.errorMessage }}
         </div>
     </div>

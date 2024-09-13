@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {Link, router, useForm} from "@inertiajs/vue3";
 import {ICampaign} from "@/Interfaces/Campaign";
@@ -102,7 +102,7 @@ const columns = ref([
             Add links to your campaign
         </template>
 
-        <Table :columns="columns" :items="props.campaign?.links" v-if="props.campaign?.links.length">
+        <Table v-if="props.campaign?.links.length" :columns="columns" :items="props.campaign?.links">
 
             <template #item.name="{item}">
                 {{ item.name }}
@@ -123,7 +123,7 @@ const columns = ref([
             </template>
             <template #item.actions="{item}">
                 <div class="space-x-2 whitespace-nowrap">
-                    <a class="btn btn-primary btn-outline btn-sm" :href="item.url" target="_blank">Preview</a>
+                    <a :href="item.url" class="btn btn-primary btn-outline btn-sm" target="_blank">Preview</a>
                     <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" class="btn btn-error btn-sm"
                           method="delete"
                           preserve-scroll>
@@ -135,7 +135,7 @@ const columns = ref([
         <Alert v-else>No links found</Alert>
 
         <div class="flex items-center gap-4 mt-4">
-            <Button variant="primary" :loading="form.processing" @click="isAddingLink = true" :disabled="form.processing">Add link</button>
+            <Button :disabled="form.processing" :loading="form.processing" variant="primary" @click="isAddingLink = true">Add link</button>
 
             <Transition
                 enter-active-class="transition ease-in-out"
@@ -158,6 +158,7 @@ const columns = ref([
                     <div class="space-y-6">
                         <Select
                             v-model="form.platform_id"
+                            :error-message="form.errors.platform_id"
                             :options="props.platforms?.map((platform) => {
                                 return {
                                     value: platform.id,
@@ -165,13 +166,12 @@ const columns = ref([
                                 }
                             })"
                             :validation-status="form.errors.platform_id ? 'error' : 'success'"
-                            :error-message="form.errors.platform_id"
                         />
 
                         <Autocomplete
-                            :loading="loading"
-                            :items="items"
                             :disabled="!form.platform_id"
+                            :items="items"
+                            :loading="loading"
                             @change="search"
                             @select="onSelect"
                         />
@@ -179,7 +179,7 @@ const columns = ref([
                 </template>
                 <template #footer>
                     <Button @click="isAddingLink = false">Cancel</button>
-                    <Button variant="primary" class="ms-3" :loading="form.processing">
+                    <Button :loading="form.processing" class="ms-3" variant="primary">
                         Save
                     </button>
                 </template>

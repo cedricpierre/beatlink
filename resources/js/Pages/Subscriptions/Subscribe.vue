@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import 'https://js.stripe.com/v3/'
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
@@ -59,19 +59,19 @@ const onSubmit = async () => {
     <GuestLayout>
         <Head title="Subscribe"/>
 
-        <form @submit.prevent="onSubmit" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="onSubmit">
 
             <div class="text-gray-500">
                 Subscribe now for <strong>3$</strong> per campaign. You will be able to upgrade your subscription later to add more campaigns.
             </div>
 
-            <Alert variant="error" v-if="errors">{{ errors.message }}</Alert>
+            <Alert v-if="errors" variant="error">{{ errors.message }}</Alert>
 
             <div id="card-element"></div>
 
 
             <div class="flex items-center justify-end mt-4">
-                <Button variant="primary" class="ms-3" :loading="form.processing" :disabled="form.processing">
+                <Button :disabled="form.processing" :loading="form.processing" class="ms-3" variant="primary">
                     Subscribe
                 </Button>
             </div>

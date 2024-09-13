@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
 const model = defineModel()
 
 const props = defineProps({
-	...useStyleProps(),
+    ...useStyleProps(),
     label: String,
     name: String,
     required: Boolean,
@@ -26,24 +26,24 @@ const emits = defineEmits(['update:modelValue'])
     <div class="form-control">
         <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
         <textarea
-            class="textarea textarea-bordered w-full"
-            :name="props.name"
-            :type="props.type"
+            :autocomplete="props.autocomplete"
+            :autofocus="props.autofocus"
             :class="{
                   ...props.className,
                   [`textarea-${props.variant}`]: props.variant,
                   [`textarea-${props.size}`]: props.size,
                 }"
+            :name="props.name"
             :required="props.required"
-            :autocomplete="props.autocomplete"
-            :autofocus="props.autofocus"
+            :type="props.type"
+            class="textarea textarea-bordered w-full"
         >
             {{model}}
         </textarea>
-        <div v-if="props.errorMessage" class="text-xs my-2" :class="{
+        <div v-if="props.errorMessage" :class="{
             'text-red-600': props.validationStatus === 'error',
             'text-green-600': props.validationStatus === 'success',
-        }">
+        }" class="text-xs my-2">
             {{ props.errorMessage }}
         </div>
     </div>
