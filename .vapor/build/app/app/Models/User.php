@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
-use Laravel\Cashier\Subscription;
 
 class User extends Authenticatable
 {
@@ -51,18 +50,12 @@ class User extends Authenticatable
 
     public function getIsTrialAttribute(): bool
     {
-        if ($subscription = $this->getSubscription()) {
-            return $subscription->onTrial();
-        }
-        return false;
+        return $this->onTrial(self::STRIPE_SUBSCRIPTION_NAME);
     }
 
     public function getIsPremiumAttribute(): bool
     {
-        if ($subscription = $this->getSubscription()) {
-            return $subscription->active();
-        }
-        return false;
+        return $this->subscription(self::STRIPE_SUBSCRIPTION_NAME)?->active();
     }
 
     public function getIsSubscribedAttribute(): bool
@@ -72,10 +65,7 @@ class User extends Authenticatable
 
     public function getIsOnGracePeriodAttribute(): bool
     {
-        if ($subscription = $this->getSubscription()) {
-            return $subscription->onGracePeriod();
-        }
-        return false;
+        return $this->subscription(self::STRIPE_SUBSCRIPTION_NAME)?->onGracePeriod();
     }
 
     public function campaigns(): HasMany
@@ -91,11 +81,6 @@ class User extends Authenticatable
     public function canCreateCampaign(): bool
     {
         return $this->subscribed(self::STRIPE_SUBSCRIPTION_NAME) &&
-               $this->campaigns()->count() < $this->getSubscription()?->quantity;
-    }
-
-    private function getSubscription(): ?Subscription
-    {
-        return $this->subscription(self::STRIPE_SUBSCRIPTION_NAME);
+               $this->campaigns()->count() < $this->subscription(self::STRIPE_SUBSCRIPTION_NAME)->quantity;
     }
 }
