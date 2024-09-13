@@ -20,7 +20,7 @@ const columns = ref([
     {key: 'created_at', name: 'Created at', align: 'center'},
     {key: 'views_count', name: 'Views', align: 'center'},
     {key: 'leads_count', name: 'Leads', align: 'center'},
-    {key: 'conversion_rate', name: 'Conversion rate'},
+    {key: 'conversion_rate', name: 'Conversion rate', align: 'center'},
     {key: 'actions', name: 'Actions', align: 'right'},
 ])
 </script>
