@@ -41,7 +41,11 @@ const props = defineProps({
         <tr>
             <th v-for="(column,h) in props.columns"
                 :key="h"
-                :class="[`text-${column.align ?? 'left'}`]"
+                class="first-letter:uppercase"
+                :class="{
+                    ...props.className,
+                    [`text-${column.align}`]: column.align
+                }"
             >
                 {{ column.name ?? column.key }}
             </th>

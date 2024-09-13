@@ -19,7 +19,7 @@ const columns = ref([
     {key: 'leads_count', name: 'Leads', align: 'center'},
     {key: 'views_count', name: 'Views', align: 'center'},
     {key: 'conversion_rate', name: 'CR', align: 'center'},
-    {key: 'actions', name: 'Actions', align: 'right'},
+    {key: 'actions', className: 'w-40', align: 'right'},
 ])
 </script>
 
@@ -50,7 +50,7 @@ const columns = ref([
                                 <Badge outline variant="primary">{{ item.conversion_rate }}%</Badge>
                             </template>
                             <template #item.actions="{item}">
-                                <div class="space-x-2 whitespace-nowrap">
+                                <div class="space-x-2 whitespace-nowrap flex justify-end">
                                     <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
                                         Page
                                     </a>

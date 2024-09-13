@@ -21,7 +21,7 @@ const columns = ref([
     {key: 'views_count', name: 'Views', align: 'center'},
     {key: 'leads_count', name: 'Leads', align: 'center'},
     {key: 'conversion_rate', name: 'Conversion rate', align: 'center'},
-    {key: 'actions', name: 'Actions', align: 'right'},
+    {key: 'actions', className: 'w-40', align: 'right'},
 ])
 </script>
 
@@ -70,7 +70,7 @@ const columns = ref([
                 </template>
 
                 <template #item.actions="{item}">
-                    <div class="space-x-2 whitespace-nowrap">
+                    <div class="space-x-2 whitespace-nowrap flex justify-end">
                         <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
                             View page
                         </a>
