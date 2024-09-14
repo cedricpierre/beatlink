@@ -4,7 +4,8 @@
     "scripts": {
         "dev": "vite",
         "stripe": "stripe listen --forward-to=http://localhost:3080/stripe/webhook",
-        "build": "vue-tsc && vite build && vite build --ssr"
+        "build": "vue-tsc && vite build && vite build --ssr",
+        "deploy": "vendor/bin/vapor deploy production"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
