@@ -7,12 +7,12 @@ const props = defineProps({
 })
 </script>
 <template>
-    <div class="navbar" :class="{
+	<div class="navbar flex" :class="{
         ...props.className,
         [`btn-${props.variant}`]: props.variant
     }">
 
-        <div class="navbar-start">
+		<div class="flex flex-shrink">
             <Dropdown align="start" class="mr-2">
                 <template #trigger>
                     <div class="btn btn-ghost btn-sm btn-square lg:hidden">
@@ -37,12 +37,12 @@ const props = defineProps({
 
             <slot name="left"></slot>
         </div>
-        <div class="navbar-center lg:flex hidden">
+		<div class="lg:flex hidden">
             <ul class="menu menu-horizontal space-x-2">
                 <slot name="center"></slot>
             </ul>
         </div>
-        <div class="navbar-end">
+		<div class="flex justify-end flex-grow">
             <ul class="menu menu-horizontal space-x-2">
                 <slot name="right"></slot>
             </ul>

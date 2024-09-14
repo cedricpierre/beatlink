@@ -97,7 +97,7 @@ class Spotify implements PlatformServiceConcern
                                           ]);
     }
 
-    public function getAccessToken(): string
+    private function getAccessToken(): string
     {
         if (!Cache::has(self::CACHE_PREFIX . '.accessToken')) {
             $this->generateAccessToken();

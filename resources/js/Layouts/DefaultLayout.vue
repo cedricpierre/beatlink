@@ -24,10 +24,10 @@ const user = usePage().props.auth.user as IUser
             <template #right>
                 <template v-if="!user">
                     <li>
-                        <Link :href="route('register')" class="btn btn-primary btn-outline">Register</Link>
+                        <Link class="text-primary" :href="route('register')">Register</Link>
                     </li>
                     <li>
-                        <Link :href="route('login')" class="btn btn-primary">Login</Link>
+                        <Link :href="route('login')">Login</Link>
                     </li>
                 </template>
                 <template v-else>
@@ -44,7 +44,7 @@ const user = usePage().props.auth.user as IUser
             </div>
         </header>
 
-        <main>
+        <main class="container px-2 mx-auto lg:max-w-screen-lg">
             <slot/>
         </main>
     </Background>

@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "stripe": "stripe listen --forward-to=http://localhost:3080/stripe/webhook",
         "build": "vue-tsc && vite build && vite build --ssr"
     },
     "devDependencies": {

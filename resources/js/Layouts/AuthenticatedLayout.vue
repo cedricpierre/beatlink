@@ -63,11 +63,11 @@ const user = usePage().props.auth.user as IUser
         <!-- Page Heading -->
         <header
             v-if="$slots.header"
-            class="h-20 flex items-center bg-gradient-to-r from-primary-900 to-primary-700 dark:bg-black dark:bg-opacity-10 text-primary-100 dark:text-white "
+            class="flex items-center bg-gradient-to-r from-primary-900 to-primary-700 dark:bg-black dark:bg-opacity-10 text-primary-100 dark:text-white "
         >
-            <div class="flex flex-row items-center container mx-auto lg:max-w-screen-lg px-2">
-                <div class="flex flex-1 items-center">
-                    <div class="flex space-between items-center">
+            <div class="flex flex-row container mx-auto lg:max-w-screen-lg p-2">
+                <div class="flex flex-1 items-center flex-col md:flex-row space-y-2">
+                    <div class="flex justify-center items-center w-full flex-col md:justify-start lg:flex-row">
                         <span v-if="$slots.header" class="leading-tight font-extrabold font-2xl">
                             <slot name="header"/>
                         </span>
@@ -75,7 +75,7 @@ const user = usePage().props.auth.user as IUser
                             <slot name="subtitle"/>
                         </span>
                     </div>
-                    <div v-if="$slots.actions" class="flex flex-grow space-x-2 justify-end">
+                    <div v-if="$slots.actions" class="flex flex-grow space-x-2 justify-center md:justify-end w-full">
                         <slot name="actions"/>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ const user = usePage().props.auth.user as IUser
         </div>
 
         <!-- Page Content -->
-        <main class="container mx-auto mt-4 flex-grow">
+        <main class="container px-2 mx-auto lg:max-w-screen-lg">
             <slot/>
         </main>
 
