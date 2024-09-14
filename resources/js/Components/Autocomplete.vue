@@ -81,7 +81,7 @@ watch(() => props.items, (values) => {
             @keyup.prevent.stop="debounce(onChange,500)"
         />
         <div v-if="isDropdownOpen" class="relative">
-            <ul class="dropdown-content bg-base-100 rounded-box z-[1] mt-2 w-full max-h-60 shadow-lg flex-col overflow-auto">
+            <ul class="dropdown-content rounded-box z-[1] mt-2 w-full max-h-60 shadow-lg flex-col overflow-auto">
                 <template v-for="item in props.items">
                     <li>
                         <h4

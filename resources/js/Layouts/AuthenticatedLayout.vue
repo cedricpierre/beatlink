@@ -41,7 +41,7 @@ const user = usePage().props.auth.user as IUser
                     <Dropdown align="end">
                         <template #trigger>
                             <div>
-                                    <Badge v-if="user.is_premium" class="uppercase mr-2" outline size="sm" variant="success">
+                                <Badge v-if="user.is_premium" class="uppercase mr-2" size="sm">
                                         premium
                                     </Badge>
                                     <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>

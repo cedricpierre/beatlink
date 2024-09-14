@@ -39,15 +39,15 @@ const columns = ref([
 
                         <Table :columns="columns" :items="props.campaigns">
                             <template #item.views_count="{item}">
-                                <Badge outline variant="primary">{{ item.views_count }}</Badge>
+                                <Badge>{{ item.views_count }}</Badge>
                             </template>
 
                             <template #item.leads_count="{item}">
-                                <Badge outline variant="primary">{{ item.leads_count }}</Badge>
+                                <Badge>{{ item.leads_count }}</Badge>
                             </template>
 
                             <template #item.conversion_rate="{item}">
-                                <Badge outline variant="primary">{{ item.conversion_rate }}%</Badge>
+                                <Badge>{{ item.conversion_rate }}%</Badge>
                             </template>
                             <template #item.actions="{item}">
                                 <div class="space-x-2 whitespace-nowrap flex justify-end">

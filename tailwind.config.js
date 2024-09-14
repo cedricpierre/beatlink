@@ -1,4 +1,5 @@
 import colors from "tailwindcss/colors.js";
+import defaultTheme from "tailwindcss/defaultTheme.js";
 
 
 /** @type {import('tailwindcss').Config} */
@@ -14,6 +15,19 @@ module.exports = {
                 "secondary": colors.gray,
                 "neutral": colors.white,
                 "accent": colors.blue,
+            },
+            fontFamily: {
+                "sans": ['Poppins', defaultTheme.fontFamily.sans],
+            },
+            fontWeight: {
+                thin: '100',
+                hairline: '100',
+                light: '300',
+                normal: '400',
+                medium: '500',
+                semibold: '600',
+                bold: '700',
+                black: '900',
             }
         }
     },
