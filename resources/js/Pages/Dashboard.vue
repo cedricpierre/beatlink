@@ -62,6 +62,12 @@ const columns = ref([
                                     </Link>
                                 </div>
                             </template>
+                            <template #empty>
+                                <div class="flex space-y-6 flex-col justify-center items-center">
+                                    <span>No campaigns found</span>
+                                    <Link :href="route('campaigns.create')" class="btn btn-primary btn-sm btn-outline">Create a campaign now</Link>
+                                </div>
+                            </template>
                         </Table>
                     </Card>
                 </div>
