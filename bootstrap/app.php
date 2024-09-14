@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Inertia\Inertia;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -18,13 +21,24 @@ return Application::configure(basePath: dirname(__DIR__))
                                                 ]);
 
         $middleware->web(append: [
-            \App\Http\Middleware\HandleInertiaRequests::class,
-            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+                                     HandleInertiaRequests::class,
+                                     AddLinkHeadersForPreloadedAssets::class,
         ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
-            return $request->expectsJson();
+
+        $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
+            if (!app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [500, 503, 404, 403])) {
+                return Inertia::render('Error', ['status' => $response->getStatusCode()])
+                              ->toResponse($request)
+                              ->setStatusCode($response->getStatusCode());
+            } else if ($response->getStatusCode() === 419) {
+                return back()->with([
+                                        'message' => 'The page expired, please try again.',
+                                    ]);
+            }
+
+            return $response;
         });
     })->create();
