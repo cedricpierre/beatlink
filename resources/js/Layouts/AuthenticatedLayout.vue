@@ -3,58 +3,63 @@ import {Link, usePage} from '@inertiajs/vue3';
 import Dropdown from "@/Components/Dropdown.vue";
 import Badge from "@/Components/Badge.vue";
 import {IUser} from "@/Interfaces/User";
+import Navbar from "@/Components/Navbar.vue";
 
 const user = usePage().props.auth.user as IUser
 </script>
 
 <template>
     <Background>
-        <div class="navbar bg-white dark:bg-black dark:bg-opacity-30">
-            <div class="container mx-auto  lg:max-w-screen-lg">
-                <div class="flex shrink-0 mr-2">
-                    <Logo/>
-                </div>
-                <div class="flex flex-grow">
-                    <ul class="menu menu-horizontal space-x-2">
-                        <li>
-                            <Link :href="route('dashboard')">Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link :href="route('campaigns.list')">Campaigns</Link>
-                        </li>
-                    </ul>
-                </div>
-                <div class="flex shrink-0 justify-end">
-                    <ul class="menu menu-horizontal justify-end space-x-2">
-                        <li v-if="user.is_subscribed && !user.is_premium">
-                            <Link :href="route('subscriptions.subscribe')" class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">
-                                Subscribe now
-                            </Link>
-                        </li>
-                        <li>
-                            <Dropdown align="right">
-                                <template #trigger>
+
+        <Navbar class="bg-white">
+            <template #left>
+                <Logo/>
+            </template>
+            <template #responsive>
+                <li>
+                    <Link :href="route('dashboard')">Dashboard</Link>
+                </li>
+                <li>
+                    <Link :href="route('campaigns.list')">Campaigns</Link>
+                </li>
+            </template>
+            <template #center>
+                <li>
+                    <Link :href="route('dashboard')">Dashboard</Link>
+                </li>
+                <li>
+                    <Link :href="route('campaigns.list')">Campaigns</Link>
+                </li>
+            </template>
+            <template #right>
+                <li v-if="user.is_subscribed && !user.is_premium">
+                    <Link :href="route('subscriptions.subscribe')" class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">
+                        Subscribe now
+                    </Link>
+                </li>
+                <li>
+                    <Dropdown align="end">
+                        <template #trigger>
+                            <div>
                                     <Badge v-if="user.is_premium" class="uppercase mr-2" outline size="sm" variant="success">
                                         premium
                                     </Badge>
                                     <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>
-                                </template>
-                                <li>
-                                    <Link :href="route('profile.edit')" class="text-primary-600">Profile</Link>
-                                </li>
-                                <li>
-                                    <Link :href="route('subscriptions.edit')" class="text-primary-600">Subscription</Link>
-                                </li>
-                                <li>
-                                    <Link :href="route('logout')" class="text-primary-600" method="post">Log Out</Link>
-                                </li>
-                            </Dropdown>
+                            </div>
+                        </template>
+                        <li>
+                            <Link :href="route('profile.edit')" class="text-primary-600">Profile</Link>
                         </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+                        <li>
+                            <Link :href="route('subscriptions.edit')" class="text-primary-600">Subscription</Link>
+                        </li>
+                        <li>
+                            <Link :href="route('logout')" class="text-primary-600" method="post">Log Out</Link>
+                        </li>
+                    </Dropdown>
+                </li>
+            </template>
+        </Navbar>
         <!-- Page Heading -->
         <header
             v-if="$slots.header"
@@ -88,7 +93,7 @@ const user = usePage().props.auth.user as IUser
         </div>
 
         <!-- Page Content -->
-        <main class="container mx-auto mt-4">
+        <main class="container mx-auto mt-4 flex-grow">
             <slot/>
         </main>
 

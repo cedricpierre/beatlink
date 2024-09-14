@@ -132,7 +132,7 @@ const columns = ref([
                 </div>
             </template>
         </Table>
-        <Alert v-else>No links found</Alert>
+        <Alert variant="warning" v-else>No links found</Alert>
 
         <div class="flex items-center gap-4 mt-4">
             <Button :disabled="form.processing" :loading="form.processing" variant="primary" @click="isAddingLink = true">Add link</button>

@@ -32,8 +32,8 @@ const columns = ref([
         </template>
 
         <div class="lg:max-w-screen-lg mx-auto">
-            <div class="flex space-x-4">
-                <div class="flex flex-grow">
+	        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+		        <div class="col-span-2">
                     <Card>
                         <template #header>Latest campains</template>
 
@@ -51,10 +51,10 @@ const columns = ref([
                             </template>
                             <template #item.actions="{item}">
                                 <div class="space-x-2 whitespace-nowrap flex justify-end">
-                                    <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
+	                                <a :href="route('landing', {slug: item.slug})" class="btn btn-neutral btn-sm" target="_blank">
                                         Page
                                     </a>
-                                    <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-sm">
+	                                <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-neutral btn-sm">
                                         View
                                     </Link>
                                     <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-sm btn-primary">
@@ -65,7 +65,7 @@ const columns = ref([
                         </Table>
                     </Card>
                 </div>
-                <div class="flex flex-shrink w-80">
+		        <div class="col-span-1">
                     <Card>
                         <template #header>
                             Subscription

@@ -23,6 +23,7 @@ const columns = ref([
     {key: 'conversion_rate', name: 'Conversion rate', align: 'center'},
     {key: 'actions', className: 'w-40', align: 'right'},
 ])
+
 </script>
 
 <template>
@@ -71,13 +72,13 @@ const columns = ref([
 
                 <template #item.actions="{item}">
                     <div class="space-x-2 whitespace-nowrap flex justify-end">
-                        <a :href="route('landing', {slug: item.slug})" class="btn btn-sm" target="_blank">
+                        <a :href="route('landing', {slug: item.slug})" class="btn btn-neutral btn-sm" target="_blank">
                             View page
                         </a>
-                        <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-sm">
+                        <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-neutral btn-sm">
                             Stats
                         </Link>
-                        <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-sm btn-primary">
+                        <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-primary btn-sm">
                             Edit
                         </Link>
                     </div>

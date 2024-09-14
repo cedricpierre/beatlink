@@ -21,7 +21,7 @@ const closed = ref(false);
           [`alert-outline`]: props.outline,
           [`alert-${props.size}`]: props.size,
         }"
-         class="alert shadow flex"
+         class="alert flex"
          role="alert">
         <div class="w-full items-center justify-start flex">
             <div class="flex-grow">

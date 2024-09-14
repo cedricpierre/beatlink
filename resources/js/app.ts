@@ -25,6 +25,7 @@ import Textarea from "@/Components/Textarea.vue";
 import Table from "@/Components/Table.vue";
 import Alert from "@/Components/Alert.vue";
 import Loading from "@/Components/Loading.vue";
+import Navbar from "@/Components/Navbar.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -51,6 +52,7 @@ createInertiaApp({
             .component('Loading', Loading)
             .component('Logo', Logo)
             .component('Modal', Modal)
+            .component('Navbar', Navbar)
             .component('Pagination', Pagination)
             .component('Progress', Progress)
             .component('Saved', Saved)
