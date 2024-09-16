@@ -26,7 +26,7 @@ const emits = defineEmits(['update:modelValue'])
     <div class="form-control">
         <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
         <textarea
-		        v-model="model"
+            v-model="model"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"
             :class="{
