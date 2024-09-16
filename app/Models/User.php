@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'trial_ends_at',
     ];
 
     protected $hidden = [
@@ -46,14 +46,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            'trial_ends_at' => 'datetime',
             'password'          => 'hashed',
         ];
     }
 
     public function getIsTrialAttribute(): bool
     {
-        if ($subscription = $this->getSubscription()) {
-            return $subscription->onTrial();
+        if (!$this->getSubscription()) {
+            return $this->onTrial();
         }
         return false;
     }

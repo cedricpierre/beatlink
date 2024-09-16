@@ -10,4 +10,5 @@ export interface IUser extends User {
     subscription: ISubscription
     can_create_campaign: boolean
     is_on_grace_period: boolean
+    trial_ends_at: Date
 }
