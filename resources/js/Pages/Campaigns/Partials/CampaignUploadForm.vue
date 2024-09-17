@@ -22,6 +22,9 @@ const form = useForm({
         </template>
         <form class="space-y-6"
               @submit.prevent="form.post(route('campaigns.upload', {campaign: props.campaign?.id}),{forceFormData: true, preserveScroll: true})">
+            <Alert variant="error">
+                Maximum file size is 4096Ko.
+            </Alert>
             <div class="flex">
                 <div v-if="props.campaign?.background_url">
                     <h2 class="mb-2 text-gray-400 dark:text-white">Background</h2>
