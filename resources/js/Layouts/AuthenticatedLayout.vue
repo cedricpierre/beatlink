@@ -94,7 +94,7 @@ const user = usePage().props.auth.user as IUser
         </div>
 
         <!-- Page Content -->
-        <main class="container px-2 my-4 mx-auto lg:max-w-screen-lg">
+	    <main class="container px-2 my-4 mx-auto">
             <slot/>
         </main>
 

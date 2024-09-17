@@ -25,7 +25,7 @@ const props = defineProps({
                 <div class="flex flex-col flex-grow items-center justify-center">
                     <div v-if="props.campaign.image_url" class="animation-fade-in delay-400 w-full flex justify-center my-8">
                         <img :src="`${props.campaign.image_url}`" alt=""
-                             class="w-60 h-60 object-cover rounded-2xl shadow-2xl">
+                             class="md:w-60 w-full aspect-square object-cover rounded-2xl shadow-2xl">
                     </div>
                     <div class="animation-fade-in delay-200 leading-tight font-extrabold text-2xl text-center mb-4 text-black dark:text-white">{{
                             props.campaign.name
@@ -37,7 +37,7 @@ const props = defineProps({
                         }}
                     </div>
 
-                    <ul class="min-w-80 flex justify-center flex-col">
+                    <ul class="w-full flex justify-center flex-col">
                         <li v-for="link in props.campaign.links" :key="link.id" class="w-full my-2">
                             <a
                                 :href="route('landing.open',{campaign: props.campaign.slug, link: link.platform_id})"
