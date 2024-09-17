@@ -23,18 +23,18 @@ const props = defineProps({
             <div class="flex flex-col max-w-screen-sm mx-auto h-full w-full">
 
                 <div class="flex flex-col flex-grow items-center justify-center">
-                    <div class="animation-fade-in delay-200 leading-tight font-extrabold text-3xl text-center mb-4 text-black dark:text-white">{{
+                    <div v-if="props.campaign.image_url" class="animation-fade-in delay-400 w-full flex justify-center my-8">
+                        <img :src="`${props.campaign.image_url}`" alt=""
+                             class="w-60 h-60 object-cover rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="animation-fade-in delay-200 leading-tight font-extrabold text-2xl text-center mb-4 text-black dark:text-white">{{
                             props.campaign.name
                         }}
                     </div>
                     <div v-if="props.campaign.description"
-                         class="animation-fade-in delay-400 leading-tight font-light text-xl text-center mb-4 text-black dark:text-white">{{
+                         class="animation-fade-in delay-400 leading-tight font-light text-lg text-center mb-4 text-black dark:text-white">{{
                             props.campaign.description
                         }}
-                    </div>
-                    <div v-if="props.campaign.image_url" class="animation-fade-in delay-400 w-full flex justify-center my-8">
-                        <img :src="`${props.campaign.image_url}`" alt=""
-                             class="w-60 h-60 object-cover rounded-2xl shadow-2xl">
                     </div>
 
                     <ul class="min-w-80 flex justify-center flex-col">

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
 
-const model = defineModel<boolean>()
+const model = defineModel<boolean | null>()
 
 const props = defineProps({
     ...useStyleProps(),
