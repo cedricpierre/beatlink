@@ -14,11 +14,10 @@ class HasActiveSubscription
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)?->active()) {
-            // Redirect user to billing page and ask them to subscribe...
-            return redirect()->route('subscriptions.edit');
+        if ($request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)?->active() || $request->user()->onTrial()) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect()->route('subscriptions.edit');
     }
 }

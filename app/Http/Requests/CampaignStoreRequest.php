@@ -8,11 +8,6 @@ use Illuminate\Support\Str;
 
 class CampaignStoreRequest extends FormRequest
 {
-    public function authorize(): bool
-    {
-        return auth()->user()->canCreateCampaign();
-    }
-
     public function rules(): array
     {
         return [

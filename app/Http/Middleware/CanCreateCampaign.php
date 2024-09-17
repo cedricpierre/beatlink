@@ -14,7 +14,11 @@ class CanCreateCampaign
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()?->campaigns()->count() >= $request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)->quantity) {
+        if ($request->user()->onTrial() && $request->user()?->campaigns()->count()) {
+            return redirect()->route('subscriptions.subscribe');
+        }
+
+        if ($request->user()?->subscription(User::STRIPE_SUBSCRIPTION_NAME)?->quantity <= $request->user()?->campaigns()->count()) {
             return redirect()->route('subscriptions.edit');
         }
 

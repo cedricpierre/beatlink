@@ -19,9 +19,7 @@ const user = usePage().props.auth.user as IUser
         </template>
 
         <div class="container lg:max-w-screen-sm mx-auto">
-            <template v-if="user.can_create_campaign">
-                <CampaignInformationForm @save="$event.post(route('campaigns.create'))"/>
-            </template>
+            <CampaignInformationForm @save="$event.post(route('campaigns.create'))"/>
         </div>
     </AuthenticatedLayout>
 </template>
