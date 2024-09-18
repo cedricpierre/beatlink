@@ -15,9 +15,9 @@ const asset = useAsset()
 </script>
 <template>
     <Head :title="props.campaign?.name"></Head>
-    <Background
+    <div
         v-if="props.campaign"
-        class="flex flex-col min-h-screen">
+        class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-950">
         <div v-if="props.campaign.background_url || props.campaign.image_url"
              :style="{backgroundImage:`url(${props.campaign.background_url || props.campaign.image_url})`}"
              class="fixed top-0 left-0 w-full h-full z-0 blur bg-cover opacity-40"></div>
@@ -75,7 +75,7 @@ const asset = useAsset()
                 </div>
             </div>
         </div>
-    </Background>
+    </div>
 </template>
 
 <style lang="scss" scoped>
