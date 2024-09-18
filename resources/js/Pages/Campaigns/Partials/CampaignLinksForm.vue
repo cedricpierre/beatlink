@@ -9,6 +9,9 @@ import Autocomplete from "@/Components/Autocomplete.vue";
 import Modal from "@/Components/Modal.vue";
 import Select from "@/Components/Select.vue";
 import Alert from "@/Components/Alert.vue";
+import {useAsset} from "@/Compasable/asset";
+
+const asset = useAsset()
 
 const props = defineProps({
     campaign: Object as PropType<ICampaign>,
@@ -114,7 +117,7 @@ const columns = ref([
 
             <template #item.platform="{item}">
                 <div class="flex items-center">
-                    <img class="w-4 mr-2" :src="item.platform?.icon"/>
+                    <img class="w-4 mr-2" :src="asset(item.platform?.icon)"/>
                     <span>{{ item.platform?.name }}</span>
                 </div>
             </template>

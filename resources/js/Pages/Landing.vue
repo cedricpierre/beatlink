@@ -4,10 +4,13 @@ import {Head} from "@inertiajs/vue3";
 import Footer from "@/Components/Footer.vue";
 import Background from "@/Components/Background.vue";
 import {PropType} from "vue";
+import {useAsset} from "@/Compasable/asset";
 
 const props = defineProps({
     campaign: Object as PropType<ICampaign>
 })
+
+const asset = useAsset()
 
 </script>
 <template>
@@ -45,7 +48,7 @@ const props = defineProps({
 
                                 <div class="flex flex-row items-center flex-1">
                                     <div class="flex">
-                                        <img class="aspect-square h-12 w-12" :src="link.platform.icon" alt="">
+                                        <img class="aspect-square h-12 w-12" :src="asset(link.platform.icon)" alt="">
                                     </div>
                                     <h3 class="text-black dark:text-white ml-3 flex flex-grow text-xl leading-tight">
                                         {{ link.platform.name }}

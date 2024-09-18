@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import {Head, Link} from '@inertiajs/vue3';
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
+import {useAsset} from "@/Compasable/asset";
+
+const asset = useAsset()
 </script>
 
 <template>
@@ -27,10 +30,10 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
             <div class="columns-2 gap-4">
 
                 <div class="relative">
-                    <img class="rounded-xl shadow w-40 z-0 blur absolute top-10 right-0" src="/img/screenshot.png" alt="">
-                    <img class="rounded-xl shadow w-40 z-0 blur absolute top-20 left-0" src="/img/screenshot.png" alt="">
+                    <img class="rounded-xl shadow w-40 z-0 blur absolute top-10 right-0" :src="asset('img/screenshot.png')" alt="">
+                    <img class="rounded-xl shadow w-40 z-0 blur absolute top-20 left-0" :src="asset('img/screenshot.png')" alt="">
                     <div class="z-20 w-full relative z-10">
-                        <img class="rounded-xl mx-auto  shadow w-60" src="/img/screenshot.png" alt="">
+                        <img class="rounded-xl mx-auto  shadow w-60" :src="asset('img/screenshot.png')" alt="">
                     </div>
                 </div>
                 <div class="px-8">
@@ -40,15 +43,15 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 
                     <div class="columns-3 gap-8 my-8">
                         <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
-                            <img class="h-8 w-8" src="/brands/spotify.svg" alt="Spotify">
+                            <img class="h-8 w-8" :src="asset('brands/spotify.svg')" alt="Spotify">
                             <h4 class="text-primary-600 py-4 text-xl">Spotify</h4>
                     </div>
                         <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
-                            <img class="h-8 w-8" src="/brands/tidal.svg" alt="Spotify">
+                            <img class="h-8 w-8" :src="asset('brands/tidal.svg')" alt="Spotify">
                             <h4 class="text-primary-600 py-4 text-xl">Tidal</h4>
                         </div>
                         <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
-                            <img class="h-8 w-8" src="/brands/deezer.svg" alt="Spotify">
+                            <img class="h-8 w-8" :src="asset('brands/deezer.svg')" alt="Spotify">
                             <h4 class="text-primary-600 py-4 text-xl">Deezer</h4>
                         </div>
                     </div>
