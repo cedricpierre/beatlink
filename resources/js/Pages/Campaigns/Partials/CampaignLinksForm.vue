@@ -108,7 +108,9 @@ const columns = ref([
         <Table v-if="props.campaign?.links.length" :columns="columns" :items="props.campaign?.links">
 
             <template #item.name="{item}">
-                {{ item.name }}
+	            <div class="whitespace-nowrap">
+		            {{ item.name }}
+	            </div>
             </template>
 
             <template #item.type="{item}">

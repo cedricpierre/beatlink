@@ -6,6 +6,7 @@ import {PropType, ref} from "vue";
 import {ISubscription} from "@/Interfaces/Subscription";
 import Badge from "@/Components/Badge.vue";
 import {IUser} from "@/Interfaces/User";
+import moment from "moment";
 
 const user = usePage().props.auth.user as IUser
 
@@ -38,6 +39,12 @@ const columns = ref([
                     <template #header>Latest campains</template>
 
                     <Table :columns="columns" :items="props.campaigns">
+                        <template #item.name="{item}">
+                            <Link :href="route('campaigns.view', {campaign: item.id})" class="whitespace-nowrap text-primary-600 hover:underline"
+                                  target="_blank">
+                                {{ item.name }}
+                            </Link>
+                        </template>
                         <template #item.views_count="{item}">
                             <Badge>{{ item.views_count }}</Badge>
                         </template>

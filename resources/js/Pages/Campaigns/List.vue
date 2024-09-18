@@ -48,28 +48,30 @@ const columns = ref([
             </template>
             <Table :columns="columns" :items="props.campaigns?.data">
 
+                <template #item.name="{item}">
+                    <Link :href="route('campaigns.view', {campaign: item.id})" class="whitespace-nowrap text-primary-600 hover:underline" target="_blank">
+                        {{ item.name }}
+                    </Link>
+                </template>
                 <template #item.slug="{item}">
-                    <a :href="route('landing', {slug: item.slug})" class="text-primary-600 hover:underline" target="_blank">
+                    <a :href="route('landing', {slug: item.slug})" class="whitespace-nowrap text-primary-600 hover:underline" target="_blank">
                         {{ item.slug }}
                     </a>
                 </template>
-
                 <template #item.created_at="{item}">
-                    {{ moment(item.created_at).format('YYYY-MM-DD HH:mm') }}
+                    <span class="whitespace-nowrap">
+                        {{ moment(item.created_at).format('YYYY-MM-DD HH:mm') }}
+                    </span>
                 </template>
-
                 <template #item.views_count="{item}">
                     <Badge>{{ item.views_count }}</Badge>
                 </template>
-
                 <template #item.leads_count="{item}">
                     <Badge>{{ item.leads_count }}</Badge>
                 </template>
-
                 <template #item.conversion_rate="{item}">
                     <Badge>{{ item.conversion_rate }}%</Badge>
                 </template>
-
                 <template #item.actions="{item}">
                     <div class="space-x-2 whitespace-nowrap flex justify-end">
                         <a :href="route('landing', {slug: item.slug})" class="btn btn-neutral btn-sm" target="_blank">
@@ -83,7 +85,6 @@ const columns = ref([
                         </Link>
                     </div>
                 </template>
-
                 <template #empty>
                     <div class="flex space-y-6 flex-col justify-center items-center">
                         <span>No campaigns found</span>
