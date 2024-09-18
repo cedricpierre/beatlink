@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 <template>
     <Head :title="props.campaign?.name"></Head>
-    <Background
+    <div
         v-if="props.campaign"
         class="flex flex-col min-h-screen">
         <div v-if="props.campaign.background_url || props.campaign.image_url"
@@ -41,11 +41,13 @@ const props = defineProps({
                         <li v-for="link in props.campaign.links" :key="link.id" class="w-full my-2">
                             <a
                                 :href="route('landing.open',{campaign: props.campaign.slug, link: link.platform_id})"
-                                class="btn btn-neutral w-full h-full justify-start px-6 py-4 rounded-xl ">
+                                class="btn btn-base dark:bg-black dark:text-white w-full h-full justify-start px-4 py-2 rounded-xl ">
 
                                 <div class="flex flex-row items-center flex-1">
-                                    <div class="h-6 flex" v-html="link.platform.icon"></div>
-                                    <h3 class="ml-3 flex flex-grow text-xl leading-tight">
+                                    <div class="flex">
+                                        <img class="aspect-square h-12 w-12" :src="link.platform.icon" alt="">
+                                    </div>
+                                    <h3 class="text-black dark:text-white ml-3 flex flex-grow text-xl leading-tight">
                                         {{ link.platform.name }}
                                     </h3>
                                     <div class="flex flex-shrink">
@@ -70,7 +72,7 @@ const props = defineProps({
                 </div>
             </div>
         </div>
-    </Background>
+    </div>
 </template>
 
 <style lang="scss" scoped>

@@ -114,7 +114,7 @@ const columns = ref([
 
             <template #item.platform="{item}">
                 <div class="flex items-center">
-                    <div class="w-4 mr-2" v-html="item.platform?.icon"></div>
+                    <img class="w-4 mr-2" :src="item.platform?.icon"/>
                     <span>{{ item.platform?.name }}</span>
                 </div>
             </template>
