@@ -56,6 +56,7 @@ module.exports = {
                     "neutral-content": colors.black,
                     "base-100": colors.blue['50'],
                     "base-200": colors.white,
+                    "base-300": colors.blue['200'],
                     "base-content": colors.black,
                 },
                 "beatlink-dark": {
