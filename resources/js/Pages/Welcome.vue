@@ -27,7 +27,7 @@ const asset = useAsset()
         <hr class="my-8">
 
         <div class="container mx-auto">
-            <div class="columns-2 gap-4">
+            <div class="columns-1 lg:columns-2 gap-4">
 
                 <div class="relative">
                     <img class="rounded-xl shadow w-40 z-0 blur absolute top-10 right-0" :src="asset('img/screenshot.png')" alt="">
@@ -36,16 +36,16 @@ const asset = useAsset()
                         <img class="rounded-xl mx-auto  shadow w-60" :src="asset('img/screenshot.png')" alt="">
                     </div>
                 </div>
-                <div class="px-8">
+                <div class="px-8 py-8">
                     <h3 class="text-primary-800 text-xl text-center">
                         Create your own landing page and promote your artists.
                     </h3>
 
-                    <div class="columns-3 gap-8 my-8">
+                    <div class="md:columns-3 columns-1 gap-8 my-8 space-y-6">
                         <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
                             <img class="h-8 w-8" :src="asset('brands/spotify.svg')" alt="Spotify">
                             <h4 class="text-primary-600 py-4 text-xl">Spotify</h4>
-                    </div>
+                        </div>
                         <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
                             <img class="h-8 w-8" :src="asset('brands/tidal.svg')" alt="Spotify">
                             <h4 class="text-primary-600 py-4 text-xl">Tidal</h4>
