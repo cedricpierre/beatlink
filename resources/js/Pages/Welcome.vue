@@ -8,8 +8,12 @@ const asset = useAsset()
 
 <template>
     <Head title="Welcome"/>
-    <DefaultLayout>
-        <div class="container mx-auto lg:max-w-screen-lg text-center py-8">
+    <DefaultLayout :style="{
+        backgroundImage: `url(${asset('img/bg.png')})`,
+        backgroundSize: 'fit',
+        backgroundRepeat: 'no-repeat',
+    }">
+        <div class="container mx-auto lg:max-w-screen-lg text-center py-8 mb-12">
 
             <h1 class="text-primary-600 dark:text-primary-200 font-extrabold text-7xl my-8">BeatLink.</h1>
             <h2 class="text-primary-900 dark:text-primary-500 font-bold text-4xl my-8">Music app pages, without headache ! 🤘</h2>
@@ -24,9 +28,7 @@ const asset = useAsset()
 
         </div>
 
-        <hr class="my-8">
-
-        <div class="container mx-auto">
+        <div class="container mx-auto mt-12">
             <div class="columns-1 lg:columns-2 gap-4">
 
                 <div class="relative">
