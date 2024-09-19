@@ -31,7 +31,11 @@ const columns = ref([
         <template #header>
             <h2>Dashboard</h2>
         </template>
-
+	    <template #actions>
+		    <Link :href="route('campaigns.create')" class="btn btn-primary">
+			    Create new campaign
+		    </Link>
+	    </template>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div class="col-span-2">
