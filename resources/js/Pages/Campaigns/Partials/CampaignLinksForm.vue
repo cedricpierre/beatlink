@@ -13,6 +13,8 @@ import {useAsset} from "@/Compasable/asset";
 
 const asset = useAsset()
 
+const lookup = ref('')
+
 const props = defineProps({
     campaign: Object as PropType<ICampaign>,
     platforms: Array<IPlatform>,
@@ -24,9 +26,9 @@ const items = ref([])
 
 const form = useForm({
     platform_id: null,
-    url: 'https://',
-    name: '',
-    type: '',
+    url: null,
+    name: null,
+    type: null,
 })
 
 const addLink = () => {
@@ -76,6 +78,7 @@ const search = async (lookup: string) => {
 }
 
 const onSelect = (event: any) => {
+    console.log(event)
     form.url = event.url
     form.name = event.name
     form.type = event.type
@@ -174,6 +177,7 @@ const columns = ref([
                         />
 
                         <Autocomplete
+                            v-model="lookup"
                             :disabled="!form.platform_id"
                             :items="items"
                             :loading="loading"
@@ -184,7 +188,7 @@ const columns = ref([
                 </template>
                 <template #footer>
                     <Button @click="isAddingLink = false">Cancel</button>
-                    <Button :loading="form.processing" class="ms-3" variant="primary">
+                    <Button :disabled="!lookup" :loading="form.processing" class="ms-3" variant="primary">
                         Save
                     </button>
                 </template>

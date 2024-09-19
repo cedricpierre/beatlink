@@ -32,7 +32,7 @@ const props = defineProps({
     },
 })
 
-const lookup = ref('')
+const lookup = defineModel()
 
 const isDropdownOpen = ref(false)
 
@@ -91,7 +91,8 @@ watch(() => props.items, (values) => {
                         <template v-if="item.children && item.children.length">
                             <ul>
                                 <li v-for="child in item.children">
-                                    <a class="block px-4 py-2 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white" href="#"
+                                    <a class="block px-4 py-2 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-white"
+                                       href="#"
                                        @click.prevent="select({type: item.name, ...child})">
                                         <div class="flex">
                                             <div v-if="child.picture" class="flex-shrink mr-2">
