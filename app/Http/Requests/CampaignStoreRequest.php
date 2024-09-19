@@ -11,8 +11,8 @@ class CampaignStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:campaigns,slug'],
+            'name' => ['required', 'string', 'min:10', 'max:255'],
+            'slug' => ['required', 'string', 'min:10', 'max:255', 'unique:campaigns,slug'],
         ];
     }
 
