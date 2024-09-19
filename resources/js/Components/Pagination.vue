@@ -8,7 +8,7 @@ const props = defineProps({
 })
 
 const onPageChange = (event: number) => {
-    router.get(route(route().current() as string, {page: event}))
+    router.get(window.location.pathname + '?page=' + event)
 }
 </script>
 <template>

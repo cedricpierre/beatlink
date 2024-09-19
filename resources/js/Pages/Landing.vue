@@ -1,15 +1,30 @@
 <script lang="ts" setup>
 import {ICampaign} from "@/Interfaces/Campaign";
-import {Head} from "@inertiajs/vue3";
+import {Head, useForm, usePage} from "@inertiajs/vue3";
 import Footer from "@/Components/Footer.vue";
-import Background from "@/Components/Background.vue";
 import {PropType} from "vue";
 import {useAsset} from "@/Compasable/asset";
+import {ILink} from "@/Interfaces/Link";
 
 const props = defineProps({
-    campaign: Object as PropType<ICampaign>
+    campaign: Object as PropType<ICampaign>,
+    referer: String,
+    token: String,
 })
 
+
+const open = async (link: ILink) => {
+    const url = route('landing.open', {campaign: props.campaign?.slug, link: link.platform_id, referer: props.referer});
+
+    const response = await fetch(url)
+
+    console.log(response)
+
+    if (response.ok) {
+        const data = await response.json()
+        window.open(data.url);
+    }
+}
 const asset = useAsset()
 
 </script>
@@ -42,10 +57,10 @@ const asset = useAsset()
 
                     <ul class="w-full flex justify-center flex-col">
                         <li v-for="link in props.campaign.links" :key="link.id" class="w-full my-2">
-                            <a
-                                :href="route('landing.open',{campaign: props.campaign.slug, link: link.platform_id})"
-                                class="btn btn-base dark:bg-black dark:text-white w-full h-full justify-start px-4 py-2 rounded-xl ">
-
+                            <Button
+                                @click.prevent="open(link)"
+                                class="dark:bg-black dark:text-white w-full h-full justify-start px-4 py-2 rounded-xl "
+                            >
                                 <div class="flex flex-row items-center flex-1">
                                     <div class="flex">
                                         <img class="aspect-square h-12 w-12" :src="asset(link.platform.icon)" alt="">
@@ -60,7 +75,7 @@ const asset = useAsset()
                                         </svg>
                                     </div>
                                 </div>
-                            </a>
+                            </Button>
                         </li>
                     </ul>
                 </div>
