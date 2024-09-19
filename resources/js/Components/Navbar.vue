@@ -4,12 +4,19 @@ import Dropdown from "@/Components/Dropdown.vue";
 
 const props = defineProps({
     ...useStyleProps(),
+    sticky: Boolean,
+    shadow: Boolean,
+    position: String,
 })
 </script>
 <template>
-	<div class="navbar flex" :class="{
+    <div class="navbar flex z-50" :class="{
         ...props.className,
-        [`btn-${props.variant}`]: props.variant
+        [`bg-${props.variant}-950`]: props.variant,
+        [`text-${props.variant}-content`]: props.variant,
+        [`${props.position}-0`]: props.sticky && props.position,
+        'sticky': props.sticky,
+        'shadow-2xl': props.shadow,
     }">
 
 		<div class="flex flex-shrink">

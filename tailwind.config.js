@@ -33,7 +33,7 @@ module.exports = {
     },
     safelist: [
         {
-            pattern: /(alert|badge|btn|loading|progress|radial-progress|toast|tooltip|input|checkbox|radio|range|mask|select|textarea|toggle|text)/
+            pattern: /(alert|badge|btn|loading|progress|radial-progress|toast|tooltip|input|checkbox|radio|range|mask|select|textarea|toggle|text|bg|navbar)/
         },
     ],
     daisyui: {

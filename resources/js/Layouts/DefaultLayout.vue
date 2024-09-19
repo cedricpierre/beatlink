@@ -10,12 +10,12 @@ const asset = useAsset()
 </script>
 
 <template>
-    <Background class="bg-center bg-contain bg-no-repeat bg-top"
+    <Background class="bg-no-repeat bg-top"
                 :style="{
             backgroundImage: `url(${asset('img/bg.png')})`,
         }"
     >
-        <Navbar class="bg-white">
+        <Navbar variant="primary" sticky position="top" shadow>
             <template #left>
                 <Logo/>
             </template>

@@ -7,7 +7,7 @@ const asset = useAsset()
 </script>
 
 <template>
-    <Background class="bg-center bg-contain bg-no-repeat bg-top"
+    <Background class="bg-no-repeat bg-top"
                 :style="{
             backgroundImage: `url(${asset('img/bg.png')})`,
         }"

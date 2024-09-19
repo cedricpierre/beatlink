@@ -12,7 +12,7 @@ const user = usePage().props.auth.user as IUser
 <template>
     <Background>
 
-        <Navbar class="bg-white">
+        <Navbar variant="primary" sticky position="top" shadow>
             <template #left>
                 <Logo/>
             </template>
