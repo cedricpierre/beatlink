@@ -66,7 +66,7 @@ const user = usePage().props.auth.user as IUser
             v-if="$slots.header"
             class="py-4 flex items-center bg-gradient-to-r from-primary-900 to-primary-700 dark:bg-black dark:bg-opacity-10 text-primary-100 dark:text-white "
         >
-            <div class="flex flex-row container mx-auto lg:max-w-screen-lg p-2">
+            <div class="flex flex-row container mx-auto p-2">
                 <div class="flex flex-1 items-center flex-col md:flex-row space-y-2 lg:space-y-0">
                     <div class="flex justify-center items-center w-full flex-col md:justify-start lg:flex-row">
                         <span v-if="$slots.header" class="leading-tight font-extrabold font-2xl">
