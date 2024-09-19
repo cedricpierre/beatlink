@@ -12,8 +12,8 @@ const asset = useAsset()
         <div class="container mx-auto lg:max-w-screen-lg text-center py-8 mb-12">
 
             <h1 class="text-primary-600 dark:text-primary-200 font-extrabold text-7xl my-8">BeatLink.</h1>
-            <h2 class="text-primary-900 dark:text-primary-500 font-bold text-4xl my-8">Music app pages, without headache ! 🤘</h2>
-            <h3 class="text-gray-500 dark:text-primary-700 text-xl my-6">Engage people and grow your audience</h3>
+            <h2 class="text-primary-900 dark:text-primary-500 font-bold text-4xl my-8">Music marketing, without headache ! 🤘</h2>
+            <h3 class="text-gray-600 dark:text-primary-700 text-xl my-6">Engage people and grow your audience</h3>
 
             <Link class="btn btn-success btn-lg my-4" :href="route('register')">
                 Register your 7 days trial
@@ -35,26 +35,29 @@ const asset = useAsset()
                     </div>
                 </div>
                 <div class="px-8 py-8">
-                    <h3 class="text-primary-800 text-xl text-center">
+                    <h3 class="text-gray-600 text-lg lg:text-2xl text-center">
                         Create your own landing page and promote your artists.
                     </h3>
 
-                    <div class="md:columns-3 columns-1 gap-8 my-8 space-y-6">
-                        <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
+                    <div class="columns-3 gap-2 lg:gap-4 my-8 space-y-6">
+                        <div
+                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
                             <img class="h-8 w-8" :src="asset('brands/spotify.svg')" alt="Spotify">
-                            <h4 class="text-primary-600 py-4 text-xl">Spotify</h4>
+                            <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Spotify</h4>
                         </div>
-                        <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
+                        <div
+                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
                             <img class="h-8 w-8" :src="asset('brands/tidal.svg')" alt="Spotify">
-                            <h4 class="text-primary-600 py-4 text-xl">Tidal</h4>
+                            <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Tidal</h4>
                         </div>
-                        <div class="w-full flex items-center justify-center flex-col p-4 rounded-2xl border border-gray-200 bg-white text-center">
+                        <div
+                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
                             <img class="h-8 w-8" :src="asset('brands/deezer.svg')" alt="Spotify">
-                            <h4 class="text-primary-600 py-4 text-xl">Deezer</h4>
+                            <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Deezer</h4>
                         </div>
                     </div>
 
-                    <p class="my-8 text-center text-gray-400">
+                    <p class="my-8 text-center text-gray-600">
                         Share your pages on social medias like Facebook, Tiktok or Instagram. Get insight and statistic about your campaigns.
                     </p>
                     <p class="text-center my-8">
