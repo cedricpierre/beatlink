@@ -8,11 +8,7 @@ const asset = useAsset()
 
 <template>
     <Head title="Welcome"/>
-    <DefaultLayout :style="{
-        backgroundImage: `url(${asset('img/bg.png')})`,
-        backgroundSize: 'fit',
-        backgroundRepeat: 'no-repeat',
-    }">
+    <DefaultLayout>
         <div class="container mx-auto lg:max-w-screen-lg text-center py-8 mb-12">
 
             <h1 class="text-primary-600 dark:text-primary-200 font-extrabold text-7xl my-8">BeatLink.</h1>

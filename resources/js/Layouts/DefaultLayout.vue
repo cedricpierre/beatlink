@@ -2,13 +2,19 @@
 import {Link, usePage} from "@inertiajs/vue3";
 import {IUser} from "@/Interfaces/User";
 import Navbar from "@/Components/Navbar.vue";
+import {useAsset} from "@/Compasable/asset";
 
 const user = usePage().props.auth.user as IUser
 
+const asset = useAsset()
 </script>
 
 <template>
-    <Background>
+    <Background class="bg-center bg-contain bg-no-repeat bg-top"
+                :style="{
+            backgroundImage: `url(${asset('img/bg.png')})`,
+        }"
+    >
         <Navbar class="bg-white">
             <template #left>
                 <Logo/>

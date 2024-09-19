@@ -92,8 +92,8 @@ class User extends Authenticatable
 
     public function canCreateCampaign(): bool
     {
-        return $this->subscribed(self::STRIPE_SUBSCRIPTION_NAME) &&
-               $this->campaigns()->count() < $this->getSubscription()?->quantity;
+        return ($this->onTrial() && $this->campaigns()->count() === 0) ||
+               ($this->subscribed(self::STRIPE_SUBSCRIPTION_NAME) && $this->campaigns()->count() < $this->getSubscription()?->quantity);
     }
 
     private function getSubscription(): ?Subscription
