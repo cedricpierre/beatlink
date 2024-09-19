@@ -6,10 +6,10 @@ use App\Platform\Concerns\PlatformServiceConcern;
 use App\Platform\Responses\PlatformSearchResponse;
 use App\Platform\Types\Album;
 use App\Platform\Types\Artist;
-use App\Platform\Types\Author;
-use App\Platform\Types\Playlist;
+use App\Platform\Types\Picture;
 use App\Platform\Types\Track;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Cache;
@@ -30,13 +30,13 @@ class Tidal implements PlatformServiceConcern
         try {
             $response = $client->get(self::TIDAL_SEARCH_URL . '/' . $lookup . '?countryCode=US&include=artists&include=tracks&include=albums&limit=100',
                                      [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->getAccessToken(),
-                    'Accept'        => 'application/vnd.api+json',
-                ],
-            ]);
-        } catch (RequestException $e) {
-
+                                         'headers' => [
+                                             'Authorization' => 'Bearer ' . $this->getAccessToken(),
+                                             'Accept'        => 'application/vnd.api+json',
+                                         ],
+                                     ]);
+        } catch (GuzzleException $e) {
+            return new PlatformSearchResponse();
         }
 
         $body = Json::decode((string)$response->getBody(), false);
@@ -51,22 +51,37 @@ class Tidal implements PlatformServiceConcern
         $included->each(function ($item) use (&$tracks, &$artists, &$albums) {
             switch ($item->type) {
                 case 'tracks':
-                    $tracks->push(new Track($item->id, $item->attributes->title, $item->attributes->externalLinks[0]->href));
+                    $tracks->push(new Track(
+                                               $item->id,
+                                               $item->attributes->title,
+                                               $item->attributes->externalLinks[0]->href,
+                                      picture: isset($item->attributes->imageLinks[0]) ? new Picture($item->attributes->imageLinks[0]->href) : null,
+                                  ));
                     break;
                 case 'artists':
-                    $artists->push(new Artist($item->id, $item->attributes->name, $item->attributes->externalLinks[0]->href));
+                    $artists->push(new Artist(
+                                                $item->id,
+                                                $item->attributes->name,
+                                                $item->attributes->externalLinks[0]->href,
+                                       picture: isset($item->attributes->imageLinks[0]) ? new Picture($item->attributes->imageLinks[0]->href) : null,
+                                   ));
                     break;
                 case 'albums':
-                    $albums->push(new Album($item->id, $item->attributes->title, $item->attributes->externalLinks[0]->href));
+                    $albums->push(new Album(
+                                               $item->id,
+                                               $item->attributes->title,
+                                               $item->attributes->externalLinks[0]->href,
+                                      picture: isset($item->attributes->imageLinks[0]) ? new Picture($item->attributes->imageLinks[0]->href) : null,
+                                  ));
                     break;
             }
         });
 
 
         return new PlatformSearchResponse([
-                                              'tracks'  => $tracks,
                                               'artists' => $artists,
                                               'albums'  => $albums,
+                                              'tracks'  => $tracks,
                                           ]);
     }
 

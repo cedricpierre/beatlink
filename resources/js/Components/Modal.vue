@@ -9,7 +9,7 @@ const props = defineProps({
 
 </script>
 <template>
-    <dialog :class="[...props.className]" :open="model" class="modal" @close="model = false">
+    <dialog :class="[...props.className]" :open="model" class="modal">
         <div class="modal-box bg-white">
             <div v-if="$slots.header" class="border-b border-b-1 text-gray-400 mb-6 font-bold text-lg dark:text-white">
                 <slot name="header"></slot>
@@ -21,8 +21,6 @@ const props = defineProps({
                 <slot name="footer"></slot>
             </div>
         </div>
-        <form class="modal-backdrop bg-primary-800 bg-opacity-40" method="dialog">
-            <Button>close</Button>
-        </form>
+        <div class="modal-backdrop bg-primary-800 bg-opacity-40" @click="model = false"></div>
     </dialog>
 </template>

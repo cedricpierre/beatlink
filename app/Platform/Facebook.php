@@ -10,6 +10,7 @@ use App\Platform\Types\Group;
 use App\Platform\Types\Page;
 use App\Platform\Types\Picture;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Cache;
@@ -36,8 +37,8 @@ class Facebook implements PlatformServiceConcern
                     'access_token' => $this->getAccessToken(),
                 ]
             ]);
-        } catch (RequestException $e) {
-            dd($e);
+        } catch (GuzzleException $e) {
+            return new PlatformSearchResponse();
         }
 
 

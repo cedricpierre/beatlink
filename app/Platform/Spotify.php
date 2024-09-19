@@ -11,6 +11,7 @@ use App\Platform\Types\Picture;
 use App\Platform\Types\Playlist;
 use App\Platform\Types\Track;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Cache;
@@ -38,8 +39,8 @@ class Spotify implements PlatformServiceConcern
                     'limit' => 30,
                 ]
             ]);
-        } catch (RequestException $e) {
-
+        } catch (GuzzleException $e) {
+            return new PlatformSearchResponse();
         }
 
         $body = Json::decode((string)$response->getBody(), false);

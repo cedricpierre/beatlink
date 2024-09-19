@@ -8,6 +8,7 @@ use App\Platform\Types\Author;
 use App\Platform\Types\Picture;
 use App\Platform\Types\Track;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Casts\Json;
 use RuntimeException;
@@ -27,8 +28,8 @@ class Deezer implements PlatformServiceConcern
                     'q' => $lookup,
                 ]
             ]);
-        } catch (RequestException $e) {
-            throw new RuntimeException($e->getMessage());
+        } catch (GuzzleException $e) {
+            return new PlatformSearchResponse();
         }
 
         $body = Json::decode((string)$response->getBody(), false);
