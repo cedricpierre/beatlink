@@ -1,92 +1,29 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: beatlink
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
-app: beatlink
-service: beatlink
-configValidationMode: error
+service: laravel
+
 provider:
   name: aws
   # The AWS region in which to deploy (us-east-1 is the default)
   region: eu-west-1
-  # The stage of the application,
-  # e.g. dev, production, staging… ('production' is the default)
-  # can be overridden with --stage <stage> on the commandline
-  stage: 'production'
-  runtime: provided.al2
-  iam:
-    role:
-      statements:
-        # Allow Lambda to read and write files in the S3 buckets
-        - Effect: Allow
-          Action: s3:*
-          Resource:
-            - !Sub '${Storage.Arn}' # the storage bucket
-            - !Sub '${Storage.Arn}/*' # and everything inside
+  # Environment variables
   environment:
-    APP_ENV: production
-    BUCKET_NAME: ${construct:reports-bucket.bucketName}
-    SESSION_DRIVER: 'cookie'
-    FILESYSTEM_DRIVER: 's3'
-    DB_CONNECTION: 'mysql'
-    DB_HOST: 'beatlink.c9asqegcspas.eu-west-1.rds.amazonaws.com'
-    DB_PORT: 3306
-    DB_DATABASE: 'vapor'
-    DB_USERNAME: 'vapor'
-    DB_PASSWORD: bref-ssm:/beatlink/secret
-
-    # Laravel App would use this as its filesystem e.g. File::disk('s3')
-    PLATFORM_SPOTIFY_CLIENT_ID: '2748cc31438744368d1465a912e221ef'
-    PLATFORM_SPOTIFY_CLIENT_SECRET: '4ae97de804e54c5cb5a9189ff929a09d'
-    PLATFORM_TIDAL_CLIENT_ID: 'qS8tguALAAsmZyfd'
-    PLATFORM_TIDAL_CLIENT_SECRET: 'EmDtJ10Zw7T1etDMmPPdA4c1PwCYVZdOGaNuEa5YQNk='
-    PLATFORM_FACEBOOK_CLIENT_ID: '13445176755'
-    PLATFORM_FACEBOOK_CLIENT_SECRET: '693af1b5d1f5305541fb3827802b5b6a'
-    STRIPE_KEY: 'pk_test_51PxuO308YIxHX5obWB629ooZL21aOrz7zPsGJewzOlxUyIWrfqAblBdd8RG6XywgxAf6TcQw7D3u40SVzaggm4H800wM3HfaE1'
-    STRIPE_SECRET: 'sk_test_51PxuO308YIxHX5obgwDBtBmbp9BcHTfVilVLl5myky7WYfcKt2dDgJCAACFVblEj8aMdC29KCbKqAw9yox2uaudb00MxE0O5xu'
-    STRIPE_WEBHOOK_SECRET: 'whsec_2cda024c4f10a189a1290dfa52bc6445d8e524f757f7a9be1bc325bed18ce9cb'
+    APP_ENV: production # Or use ${sls:stage} if you want the environment to match the stage
 
 package:
-  # Directories to exclude from deployment feel free to add more as you need
+  # Files and directories to exclude from deployment
   patterns:
     - '!node_modules/**'
     - '!public/storage'
+    - '!resources/assets/**'
     - '!storage/**'
     - '!tests/**'
 
-constructs:
-  reports-bucket:
-    type: storage
-  website:
-    type: server-side-website
-    domain:
-      - beatlink.me
-    # Certificate can be created on AWS ACN and the ARN copied an pasted here
-    certificate: arn:aws:acm:us-east-1:872515253491:certificate/7ffb40aa-33cc-465f-972b-12bb22fea6df
-    assets:
-      # add here any file or directory that needs to be served from S3 / CDN
-      '/build/*': public/build/
-    forwardedHeaders:
-      - Accept
-      - Accept-Language
-      - Content-Type
-      - Origin
-      - Referer
-      - User-Agent
-      - X-Forwarded-Host
-      - X-Requested-With
-      # Laravel Framework Headers
-      - X-Xsrf-Token
-      - X-Csrf-Token
-      - X-Inertia
-      - X-Inertia-Version
-
 functions:
-  # Function to run the main application
-  app:
+
+  # This function runs the Laravel website/API
+  web:
     handler: public/index.php
+    runtime: php-82-fpm
     timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-    layers:
-      - ${bref:layer.php-81-fpm}
     events:
       - httpApi: '*'
     vpc:
@@ -95,29 +32,28 @@ functions:
       subnetIds:
         - subnet-0cedd85a2ce7922c5
         - subnet-0494b7d140f1bc71b
-
-  # Function to run artisan commands in Lambda
+  # This function lets us run artisan commands in Lambda
   artisan:
     handler: artisan
-    timeout: 120 # in seconds
-    layers:
-      - ${bref:layer.php-81} # PHP
-      - ${bref:layer.console} # The "console" layer
-    events:
-      - schedule:
-          description: Running the Laravel Scheduler (schedule:run) each minute
-          rate: rate(1 minute)
-          input: '"schedule:run --verbose"'
-
-resources:
-  Resources:
-    # S3 Storage for Main App Laravel FileSystem Storing
-    Storage:
-      Type: AWS::S3::Bucket
+    runtime: php-82-console
+    timeout: 720 # in seconds
+    # Uncomment to also run the scheduler every minute
+    #events:
+    #    - schedule:
+    #          rate: rate(1 minute)
+    #          input: '"schedule:run"'
+constructs:
+  website:
+    type: server-side-website
+    domain: beatlink.me
+    certificate: arn:aws:acm:us-east-1:872515253491:certificate/7ffb40aa-33cc-465f-972b-12bb22fea6df
+    assets:
+      '/js/*': public/js
+      '/css/*': public/css
+      '/favicon.ico': public/favicon.ico
+      '/robots.txt': public/robots.txt
 
 plugins:
-  # Include Bref plugin. This would of course mean you would run composer require bref/bref
+  # We need to include the Bref plugin
   - ./vendor/bref/bref
-  # Include this plugin to handle deploying our assets to S3 and cloudfront
-
   - serverless-lift

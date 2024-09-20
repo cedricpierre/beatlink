@@ -1,6 +1,5 @@
 import './bootstrap';
 import '../css/app.css';
-import Vapor from 'laravel-vapor'
 
 import {createApp, DefineComponent, h} from 'vue'
 import {createInertiaApp} from '@inertiajs/vue3'
@@ -32,8 +31,6 @@ import NavbarItem from "@/Components/NavbarItem.vue";
 import DropdownItem from "@/Components/DropdownItem.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
-
-Vapor.withBaseAssetUrl(import.meta.env.VITE_VAPOR_ASSET_URL)
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
