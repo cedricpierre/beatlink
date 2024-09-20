@@ -6,13 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bref/bref": "^2.3",
+        "bref/secrets-loader": "^1.1",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/cashier": "^15.4",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "laravel/vapor-cli": "^1.65",
-        "laravel/vapor-core": "^2.37",
+        "league/flysystem-aws-s3-v3": "^3.28",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {

@@ -16,10 +16,10 @@ const asset = useAsset()
             <h3 class="text-gray-600 dark:text-primary-700 text-xl my-6">Engage people and grow your audience</h3>
 
             <Link class="my-4" :href="route('register')">
-                <Button size="lg">Register your 7 days trial</Button>
+                <Button size="lg" class="text-bold">Register your 7 days trial</Button>
             </Link>
-            <div>
-                <strong class="leading-tight text-gray-400">No credit card required. ✅</strong>
+            <div class="py-4">
+                <strong class="text-xs text-gray-400">No credit card required. ✅</strong>
             </div>
 
         </div>

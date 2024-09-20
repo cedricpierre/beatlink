@@ -188,11 +188,13 @@ namespace App\Models{
  * @property string|null $stripe_id
  * @property string|null $pm_type
  * @property string|null $pm_last_four
- * @property string|null $trial_ends_at
+ * @property \Illuminate\Support\Carbon|null $trial_ends_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Campaign> $campaigns
  * @property-read int|null $campaigns_count
  * @property-read bool $can_create_campaign
+ * @property-read bool $is_on_grace_period
  * @property-read bool $is_premium
+ * @property-read bool $is_subscribed
  * @property-read bool $is_trial
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count

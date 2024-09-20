@@ -1,5 +1,6 @@
-import Vapor from 'laravel-vapor'
 
 export function useAsset() {
-    return Vapor.asset
+    return (value: string) => {
+        return '/' + value
+    }
 }
