@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import {useStyleProps} from "@/Compasable/variant.js";
+import Input from "@/Components/Input.vue";
 
 const model = defineModel<string | null>()
 
@@ -24,20 +25,22 @@ const emits = defineEmits(['update:modelValue'])
 </script>
 <template>
     <div class="form-control">
-        <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
+        <Label v-if="props.label">{{ props.label }}</Label>
         <textarea
             v-model="model"
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"
             :class="{
                   ...props.className,
-                  [`textarea-${props.variant}`]: props.variant,
-                  [`textarea-${props.size}`]: props.size,
+                  [`focus:border-${props.variant}-400`]: props.variant,
+                  [`focus:ring-${props.variant}-200`]: props.variant,
+                  [`text-${props.size}`]: props.size,
+                  'border-red-300': props.validationStatus === 'error',
                 }"
+            class="block w-full rounded-md border border-gray-300 shadow-sm focus:ring focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
             :name="props.name"
             :required="props.required"
             :type="props.type"
-            class="textarea textarea-bordered w-full"
         >
         </textarea>
         <div v-if="props.errorMessage" :class="{

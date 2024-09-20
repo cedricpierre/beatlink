@@ -27,6 +27,9 @@ import Table from "@/Components/Table.vue";
 import Alert from "@/Components/Alert.vue";
 import Loading from "@/Components/Loading.vue";
 import Navbar from "@/Components/Navbar.vue";
+import Label from "@/Components/Label.vue";
+import NavbarItem from "@/Components/NavbarItem.vue";
+import DropdownItem from "@/Components/DropdownItem.vue";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -48,6 +51,7 @@ createInertiaApp({
             .component('Card', Card)
             .component('Checkbox', Checkbox)
             .component('Dropdown', Dropdown)
+            .component('DropdownItem', DropdownItem)
             .component('Footer', Footer)
             .component('Input', Input)
             .component('InputFile', InputFile)
@@ -55,12 +59,14 @@ createInertiaApp({
             .component('Logo', Logo)
             .component('Modal', Modal)
             .component('Navbar', Navbar)
+            .component('NavbarItem', NavbarItem)
             .component('Pagination', Pagination)
             .component('Progress', Progress)
             .component('Saved', Saved)
             .component('Select', Select)
             .component('Textarea', Textarea)
             .component('Table', Table)
+            .component('Label', Label)
             .mount(el);
     },
 });

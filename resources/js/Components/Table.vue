@@ -26,35 +26,34 @@ const props = defineProps({
         default: () => [],
         required: true,
     },
+    striped: Boolean
 })
 
 </script>
 <template>
-    <table :class="{
-              ...props.className,
-              [`table-${props.variant}`]: props.variant,
-              [`table-${props.size}`]: props.size,
-            }"
-           class="table"
+    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500"
     >
-        <thead>
+        <thead class="bg-gray-50">
         <tr>
             <th v-for="(column,h) in props.columns"
                 :key="h"
-                class="first-letter:uppercase"
-                :class="{
-                    ...props.className,
-                    [`text-${column.align}`]: column.align
-                }"
+                scope="col"
+                class="px-6 py-4 font-medium text-gray-900"
             >
                 {{ column.name ?? column.key }}
             </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody
+            class="divide-y border-t border-gray-100"
+            :class="{
+                'divide-gray-100': props.striped
+            }"
+        >
         <tr v-for="(item,i) in items" :key="i">
             <td v-for="(column,c) in props.columns"
                 :key="c"
+                class="px-6 py-4"
                 :class="[column.className, `text-${column.align ?? 'left'}`]"
             >
                 <slot v-if="$slots['item.'+column.key]" :name="`item.${column.key}`" v-bind="{index: i, item: item} as Item"></slot>

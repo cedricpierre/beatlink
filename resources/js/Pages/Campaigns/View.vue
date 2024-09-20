@@ -43,13 +43,11 @@ const form = useForm({
             <p>View your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link :href="route('campaigns.edit', {campaign: props.campaign?.id})" class="btn btn-primary" target="_blank">
-                Edit campain
+            <Link :href="route('campaigns.edit', {campaign: props.campaign?.id})" target="_blank">
+                <Button variant="ghost">Edit campain</Button>
             </Link>
             <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
-                <Button>
-                    View page
-                </button>
+                <Button variant="ghost">View page</Button>
             </a>
         </template>
 
@@ -63,7 +61,7 @@ const form = useForm({
                                 <div class="flex flex-row space-x-2">
                                     <Select v-model="form.platform_id" :options="props.platforms" text-key="name" value-key="id"/>
                                     <Input v-model="form.search" placeholder="Search" type="search"></Input>
-                                    <Button variant="primary">Ok</Button>
+                                    <Button>Ok</Button>
                                 </div>
                             </form>
                         </div>

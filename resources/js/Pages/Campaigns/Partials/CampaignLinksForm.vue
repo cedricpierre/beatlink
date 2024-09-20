@@ -131,19 +131,23 @@ const columns = ref([
             </template>
             <template #item.actions="{item}">
                 <div class="space-x-2 whitespace-nowrap">
-                    <a :href="item.url" class="btn btn-primary btn-outline btn-sm" target="_blank">Preview</a>
-                    <Link :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})" class="btn btn-error btn-sm"
+                    <a :href="item.url" target="_blank">
+                        <Button size="sm">
+                            Preview
+                        </Button>
+                    </a>
+                    <Button variant="error" size="sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})"
                           method="delete"
                           preserve-scroll>
                         Delete
-                    </Link>
+                    </Button>
                 </div>
             </template>
         </Table>
         <Alert variant="warning" v-else>No links found</Alert>
 
         <div class="flex items-center gap-4 mt-4">
-            <Button :disabled="form.processing" :loading="form.processing" variant="primary" @click="isAddingLink = true">Add link</button>
+            <Button :disabled="form.processing" :loading="form.processing" @click="isAddingLink = true">Add link</button>
 
             <Transition
                 enter-active-class="transition ease-in-out"
@@ -188,7 +192,7 @@ const columns = ref([
                 </template>
                 <template #footer>
                     <Button @click="isAddingLink = false">Cancel</button>
-                    <Button :disabled="!lookup" :loading="form.processing" class="ms-3" variant="primary">
+                    <Button :disabled="!lookup" :loading="form.processing" class="ms-3">
                         Save
                     </button>
                 </template>

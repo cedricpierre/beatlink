@@ -15,8 +15,8 @@ const asset = useAsset()
             <h2 class="text-primary-900 dark:text-primary-500 font-bold text-4xl my-8">Music marketing, without headache ! 🤘</h2>
             <h3 class="text-gray-600 dark:text-primary-700 text-xl my-6">Engage people and grow your audience</h3>
 
-            <Link class="btn btn-success btn-lg my-4" :href="route('register')">
-                Register your 7 days trial
+            <Link class="my-4" :href="route('register')">
+                <Button size="lg">Register your 7 days trial</Button>
             </Link>
             <div>
                 <strong class="leading-tight text-gray-400">No credit card required. ✅</strong>
@@ -61,7 +61,7 @@ const asset = useAsset()
                         Share your pages on social medias like Facebook, Tiktok or Instagram. Get insight and statistic about your campaigns.
                     </p>
                     <p class="text-center my-8">
-                        <Link class="btn btn-primary" :href="route('register')">
+                        <Link :href="route('register')">
                             Register now
                         </Link>
                     </p>

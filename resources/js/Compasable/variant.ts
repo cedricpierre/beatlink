@@ -12,9 +12,12 @@ export function useStyleProps() {
                 return ['xs', 'sm', 'md', 'lg'].includes(value);
             }
         },
-        outline: {
-            type: Boolean,
-            default: false,
+        rounded: {
+            type: String,
+            default: 'md',
+            validator(value: string,): boolean {
+                return ['xs', 'sm', 'md', 'lg'].includes(value);
+            }
         },
         className: {
             type: Array,

@@ -71,7 +71,7 @@ const onSubmit = async () => {
 
 
             <div class="flex items-center justify-end mt-4">
-                <Button :disabled="form.processing" :loading="form.processing" class="ms-3" variant="primary">
+                <Button :disabled="form.processing" :loading="form.processing" class="ms-3">
                     Subscribe
                 </Button>
             </div>

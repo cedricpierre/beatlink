@@ -17,11 +17,12 @@ const closed = ref(false);
 <template>
     <div v-if="!closed" :class="{
           ...props.className,
-          [`alert-${props.variant}`]: props.variant,
-          [`alert-outline`]: props.outline,
-          [`alert-${props.size}`]: props.size,
+          [`bg-${props.variant}-50`]: props.variant,
+          [`text-${props.variant}-500`]: props.variant,
+          [`text-${props.size}`]: props.size,
+          [`rounded-${props.rounded}`]: props.rounded,
         }"
-         class="alert flex"
+         class="p-4"
          role="alert">
         <div class="w-full items-center justify-start flex">
             <div class="flex-grow">

@@ -5,11 +5,11 @@
             <slot name="header"></slot>
         </h2>
 
-        <div v-if="$slots.subtitle" class="py-2 text-sm text-gray-600 dark:text-gray-400">
+        <div v-if="$slots.subtitle" class="font-medium py-2 text-sm text-gray-600 dark:text-gray-400">
             <slot name="subtitle"></slot>
         </div>
 
-        <div class="space-y-6">
+        <div class="space-y-6 font-medium">
             <slot></slot>
         </div>
         <div v-if="$slots.actions" class="mt-4 pt-4 border-t-2 border-t-gray-200 dark:border-t-gray-900 flex justify-end items-center">

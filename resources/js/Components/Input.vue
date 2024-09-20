@@ -33,7 +33,7 @@ const emits = defineEmits(['update:modelValue'])
 </script>
 <template>
     <div class="form-control">
-        <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
+        <Label v-if="props.label">{{ props.label }}</Label>
         <div class="relative">
             <input
                 v-model="model"
@@ -41,10 +41,12 @@ const emits = defineEmits(['update:modelValue'])
                 :autofocus="props.autofocus"
                 :class="{
                   ...props.className,
-                  [`input-${props.variant}`]: props.variant,
-                  [`input-outline`]: props.outline,
-                  [`input-${props.size}`]: props.size,
+                  [`focus:border-${props.variant}-400`]: props.variant,
+                  [`focus:ring-${props.variant}-200`]: props.variant,
+                  [`text-${props.size}`]: props.size,
+                  'border-red-300': props.validationStatus === 'error',
                 }"
+                class="block w-full rounded-md border border-gray-300 shadow-sm focus:ring focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                 :disabled="props.disabled"
                 :max="props.max"
                 :maxlength="props.maxLength"
@@ -53,7 +55,6 @@ const emits = defineEmits(['update:modelValue'])
                 :placeholder="props.placeholder"
                 :required="props.required"
                 :type="props.type"
-                class="input input-bordered w-full"
             />
             <div v-if="props.loading" class="absolute h-full right-2 bottom-3 flex items-end">
                 <Loading :active="props.loading" :class="[props.type === 'search' ? 'mr-8' : '']" variant="ring"></Loading>

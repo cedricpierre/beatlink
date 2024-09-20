@@ -46,9 +46,9 @@ const form = useForm({
                 <div v-if="props.campaign?.image_url">
                     <h2 class="mb-2 text-gray-400 dark:text-white">Image</h2>
                     <img :src="props.campaign?.image_url" alt="" class="h-40 mb-4 rounded rounded-2xl">
-                    <Link as="button" :data="{image_url: null}" :href="route('campaigns.update', {campaign: props.campaign?.id})" class="btn btn-error btn-sm"
+                    <Link :data="{image_url: null}" :href="route('campaigns.update', {campaign: props.campaign?.id})"
                           method="put" preserve-scroll>
-                        Delete
+                        <Button variant="error" size="sm">Delete</Button>
                     </Link>
                 </div>
                 <InputFile
@@ -61,7 +61,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <Button :disabled="form.processing" :loading="form.processing" variant="primary">Save</button>
+                <Button :disabled="form.processing" :loading="form.processing">Save</button>
 
                 <Saved :form="form"/>
             </div>

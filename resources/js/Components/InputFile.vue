@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import {useStyleProps} from '@/Compasable/variant.js';
+import Input from "@/Components/Input.vue";
 
 const props = defineProps({
     ...useStyleProps(),
@@ -33,20 +34,24 @@ const emits = defineEmits(['update:modelValue'])
 </script>
 <template>
     <div class="form-control">
-        <div v-if="props.label" class="text-neutral-500 text-sm mb-2">{{ props.label }}</div>
+        <Label v-if="props.label">{{ props.label }}</Label>
         <input
             :autocomplete="props.autocomplete"
             :autofocus="props.autofocus"
             :class="{
                   ...props.className,
-                  [`input-${props.variant}`]: props.variant,
-                  [`input-${props.size}`]: props.size,
+                  [`file:bg-${props.variant}-500`]: props.variant,
+                  [`hover:file:bg-${props.variant}-700`]: props.variant,
+                  [`focus:border-${props.variant}-400`]: props.variant,
+                  [`focus:ring-${props.variant}-200`]: props.variant,
+                  [`text-${props.size}`]: props.size,
+                  'border-red-300': props.validationStatus === 'error',
                 }"
+            class="block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:py-2.5 file:px-4 file:text-sm file:font-semibold file:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-60"
             :disabled="props.disabled"
             :multiple="props.multiple"
             :name="props.name"
             :required="props.required"
-            class="file-input input-bordered w-full"
             placeholder="Click to select a file"
             type="file"
             @change="onFile"

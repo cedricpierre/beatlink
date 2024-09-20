@@ -14,7 +14,7 @@ const user = usePage().props.auth.user as IUser
             <h2>Subscription</h2>
         </template>
         <template #actions>
-            <Link :href="route('dashboard')" class="btn btn-primary ms-3">
+            <Link as="Button" :href="route('dashboard')" class="ms-3">
                 Go to dashboard
             </Link>
         </template>
@@ -24,7 +24,9 @@ const user = usePage().props.auth.user as IUser
             <Alert v-else>
                 Your subscription is canceled. You need to subscribe to reactivate your campaigns.
                 <template #action>
-                    <Link :href="route('subscriptions.subscribe')" class="btn btn-primary btn-sm">Subscribe</Link>
+                    <Link :href="route('subscriptions.subscribe')">
+                        <Button size="sm">Subscribe</Button>
+                    </Link>
                 </template>
             </Alert>
         </div>

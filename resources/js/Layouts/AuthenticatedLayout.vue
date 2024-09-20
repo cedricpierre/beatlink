@@ -5,6 +5,8 @@ import Badge from "@/Components/Badge.vue";
 import {IUser} from "@/Interfaces/User";
 import Navbar from "@/Components/Navbar.vue";
 import moment from "moment/moment";
+import NavbarItem from "@/Components/NavbarItem.vue";
+import DropdownItem from "@/Components/DropdownItem.vue";
 
 const user = usePage().props.auth.user as IUser
 </script>
@@ -12,53 +14,56 @@ const user = usePage().props.auth.user as IUser
 <template>
     <Background>
 
-        <Navbar sticky position="top" shadow>
+        <Navbar variant="white" sticky position="top" shadow>
             <template #left>
                 <Logo/>
             </template>
             <template #responsive>
-                <li>
+                <DropdownItem>
                     <Link :href="route('dashboard')">Dashboard</Link>
-                </li>
-                <li>
+                </DropdownItem>
+                <DropdownItem>
                     <Link :href="route('campaigns.list')">Campaigns</Link>
-                </li>
+                </DropdownItem>
             </template>
             <template #center>
-                <li>
-                    <Link :href="route('dashboard')">Dashboard</Link>
-                </li>
-                <li>
-                    <Link :href="route('campaigns.list')">Campaigns</Link>
-                </li>
+                <NavbarItem>
+                    <Link :href="route('dashboard')">
+                        Dashboard
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link :href="route('campaigns.list')">
+                        Campaigns
+                    </Link>
+                </NavbarItem>
             </template>
             <template #right>
-                <li v-if="user.is_subscribed && !user.is_premium">
-                    <Link :href="route('subscriptions.subscribe')" class="bg-primary-600 text-white hover:bg-primary-100 hover:text-primary-600">
+                <NavbarItem v-if="user.is_subscribed && !user.is_premium">
+                    <Link :href="route('subscriptions.subscribe')">
                         Subscribe now
                     </Link>
-                </li>
-                <li>
-                    <Dropdown align="end">
+                </NavbarItem>
+                <Dropdown align="right">
                         <template #trigger>
-                            <div>
-                                <Badge variant="primary" outline v-if="user.is_premium" class="uppercase mr-2" size="sm">
+                            <NavbarItem>
+                                <Badge variant="primary" v-if="user.is_premium" class="uppercase mr-2" size="xs">
                                     premium
                                 </Badge>
                                 <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>
-                            </div>
+                            </NavbarItem>
                         </template>
-                        <li>
-                            <Link :href="route('profile.edit')" class="text-primary-600">Profile</Link>
-                        </li>
-                        <li>
-                            <Link :href="route('subscriptions.edit')" class="text-primary-600">Subscription</Link>
-                        </li>
-                        <li>
-                            <Link :href="route('logout')" class="text-primary-600" method="post">Log Out</Link>
-                        </li>
+                    <DropdownItem>
+                        <Link :href="route('profile.edit')">Profile</Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                        <Link :href="route('subscriptions.edit')">Subscription</Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                        <Link :href="route('logout')" method="post">Log Out</Link>
+                    </DropdownItem>
                     </Dropdown>
-                </li>
+
             </template>
         </Navbar>
         <!-- Page Heading -->
@@ -88,7 +93,11 @@ const user = usePage().props.auth.user as IUser
                 You are on your trial period until: <strong>{{ moment(user.trial_ends_at).format('DD-MM-YYYY') }}</strong>
 
                 <template #action>
-                    <Link :href="route('subscriptions.subscribe')" class="btn btn-success btn-sm">Subscribe</Link>
+                    <Link size="sm" :href="route('subscriptions.subscribe')">
+                        <Button variant="ghost">
+                            Subscribe
+                        </Button>
+                    </Link>
                 </template>
             </Alert>
         </div>

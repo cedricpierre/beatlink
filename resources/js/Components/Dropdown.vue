@@ -1,27 +1,44 @@
 <script lang="ts" setup>
-import {ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 
 const props = defineProps({
     align: {
         type: String,
-        default: null,
+        default: 'left',
+        validator(value: string): boolean {
+            return ['left', 'right'].includes(value)
+        }
     }
 })
 
 const open = ref(false)
+
+watch(() => open.value, (value) => {
+    if (value) {
+        window.addEventListener('click', () => {
+            open.value = false
+        }, {once: true})
+    }
+})
+
 </script>
 <template>
-    <details class="dropdown" :class="{
-        [`dropdown-${align}`] : props.align,
-    }">
-        <summary v-if="$slots.trigger" tabindex="0" role="button">
+    <div class="relative inline-block">
+        <a href="#" @click.prevent.stop="open = !open" v-if="$slots.trigger">
             <slot name="trigger"></slot>
-        </summary>
-        <ul tabindex="0"
-            class="dropdown-content bg-white dark:bg-primary-800 text-primary-600 dark:text-white menu menu-vertical rounded-box z-[1] w-52 p-2 shadow-xl min-w-60">
-            <slot></slot>
-        </ul>
-    </details>
+        </a>
+        <div
+            v-if="open"
+            class="absolute transition z-10 mt-2 w-48 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg"
+            :class="{
+                [`${align}-0`] : props.align,
+            }"
+        >
+            <ul class="p-1">
+                <slot></slot>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <style scoped>

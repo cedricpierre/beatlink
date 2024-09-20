@@ -27,14 +27,16 @@ const props = defineProps({
             <p>Modify your campaign "<strong>{{ props.campaign?.name }}</strong>"</p>
         </template>
         <template #actions>
-            <Link :href="route('campaigns.view', {id: props.campaign?.id})" class="btn btn-primary">
-                View campain
+            <Link :href="route('campaigns.view', {id: props.campaign?.id})">
+                <Button variant="ghost">
+                    View campain
+                </Button>
             </Link>
-            <a :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
-                <Button>
+            <Link :href="route('landing', {slug: props.campaign?.slug})" target="_blank">
+                <Button variant="ghost">
                     View page
-                </button>
-            </a>
+                </Button>
+            </Link>
         </template>
 
         <div class="lg:max-w-screen-sm mx-auto space-y-6">

@@ -3,6 +3,7 @@ import {Link, usePage} from "@inertiajs/vue3";
 import {IUser} from "@/Interfaces/User";
 import Navbar from "@/Components/Navbar.vue";
 import {useAsset} from "@/Compasable/asset";
+import NavbarItem from "@/Components/NavbarItem.vue";
 
 const user = usePage().props.auth.user as IUser
 
@@ -15,7 +16,7 @@ const asset = useAsset()
             backgroundImage: `url(${asset('img/bg.png')})`,
         }"
     >
-        <Navbar variant="primary" sticky position="top" shadow>
+        <Navbar variant="white" sticky position="top" shadow>
             <template #left>
                 <Logo/>
             </template>
@@ -24,22 +25,20 @@ const asset = useAsset()
                 <li><a>How it works</a></li>
             </template>
             <template #center>
-                <li><a>Pricing</a></li>
-                <li><a>How it works</a></li>
             </template>
             <template #right>
                 <template v-if="!user">
-                    <li>
+                    <NavbarItem>
                         <Link class="text-primary" :href="route('register')">Register</Link>
-                    </li>
-                    <li>
+                    </NavbarItem>
+                    <NavbarItem>
                         <Link :href="route('login')">Login</Link>
-                    </li>
+                    </NavbarItem>
                 </template>
                 <template v-else>
-                    <li>
+                    <NavbarItem>
                         <Link :href="route('dashboard')">Dashboard</Link>
-                    </li>
+                    </NavbarItem>
                 </template>
             </template>
         </Navbar>

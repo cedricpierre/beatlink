@@ -38,8 +38,10 @@ const columns = ref([
             <p>Create or update your campaigns</p>
         </template>
         <template #actions>
-            <Link :href="route('campaigns.create')" class="btn btn-primary">
-                Create new campaign
+            <Link :href="route('campaigns.create')">
+                <Button variant="ghost">
+                    Create new campaign
+                </Button>
             </Link>
         </template>
         <Card>
@@ -74,21 +76,25 @@ const columns = ref([
                 </template>
                 <template #item.actions="{item}">
                     <div class="space-x-2 whitespace-nowrap flex justify-end">
-                        <a :href="route('landing', {slug: item.slug})" class="btn btn-neutral btn-sm" target="_blank">
-                            View page
+                        <a :href="route('landing', {slug: item.slug})" target="_blank">
+                            <Button variant="light" size="sm">
+                                View page
+                            </Button>
                         </a>
-                        <Link :href="route('campaigns.view', {id: item.id})" class="btn btn-neutral btn-sm">
-                            Stats
+                        <Link :href="route('campaigns.view', {id: item.id})">
+                            <Button variant="light" size="sm">Stats</Button>
                         </Link>
-                        <Link :href="route('campaigns.edit', {id: item.id})" class="btn btn-primary btn-sm">
-                            Edit
+                        <Link :href="route('campaigns.edit', {id: item.id})">
+                            <Button size="sm">Edit</Button>
                         </Link>
                     </div>
                 </template>
                 <template #empty>
                     <div class="flex space-y-6 flex-col justify-center items-center">
                         <span>No campaigns found</span>
-                        <Link :href="route('campaigns.create')" class="btn btn-primary btn-sm btn-outline">Create a campaign now</Link>
+                        <Link :href="route('campaigns.create')">
+                            <Button size="sm">Create a campaign now</Button>
+                        </Link>
                     </div>
                 </template>
             </Table>

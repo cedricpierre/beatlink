@@ -70,6 +70,7 @@ watch(() => props.items, (values) => {
 
 <template>
     <div class="form-control">
+        <Label v-if="props.label">{{ props.label }}</Label>
         <Input
             v-model="lookup"
             :disabled="props.disabled"

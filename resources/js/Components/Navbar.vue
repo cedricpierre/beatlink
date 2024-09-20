@@ -10,19 +10,18 @@ const props = defineProps({
 })
 </script>
 <template>
-    <div class="navbar flex z-50" :class="{
+    <nav class="flex z-50 justify-center items-center px-6 py-4 space-x-2" :class="{
         ...props.className,
-        [`bg-${props.variant}-950`]: props.variant,
-        [`text-${props.variant}-content`]: props.variant,
+        [`bg-${props.variant}`]: props.variant,
         [`${props.position}-0`]: props.sticky && props.position,
         'sticky': props.sticky,
         'shadow-2xl': props.shadow,
     }">
 
 		<div class="flex flex-shrink">
-            <Dropdown align="start" class="mr-2">
+            <Dropdown class="mr-2">
                 <template #trigger>
-                    <div class="btn btn-ghost btn-sm btn-square lg:hidden">
+                    <Button variant="light" class="lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5"
@@ -35,25 +34,23 @@ const props = defineProps({
                                 stroke-width="2"
                                 d="M4 6h16M4 12h8m-8 6h16"/>
                         </svg>
-                    </div>
+                    </Button>
                 </template>
-                <ul class="menu menu-vertical space-y-2">
-                    <slot name="responsive"></slot>
-                </ul>
+                <slot name="responsive"></slot>
             </Dropdown>
 
             <slot name="left"></slot>
         </div>
 		<div class="lg:flex hidden">
-            <ul class="menu menu-horizontal space-x-2">
+            <ul class="flex text-sm font-medium space-x-2">
                 <slot name="center"></slot>
             </ul>
         </div>
 		<div class="flex justify-end flex-grow">
-            <ul class="menu menu-horizontal space-x-2">
+            <ul class="flex text-sm font-medium space-x-2">
                 <slot name="right"></slot>
             </ul>
         </div>
-    </div>
+    </nav>
 
 </template>

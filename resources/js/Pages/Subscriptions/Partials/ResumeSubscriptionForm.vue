@@ -22,11 +22,15 @@ const user = usePage().props.auth.user as IUser
             </template>
         </template>
 
-        <Link v-if="user.is_on_grace_period" :href="route('subscriptions.resume')" class="btn btn-success" method="post">Resume
-            subscription
+        <Link v-if="user.is_on_grace_period" :href="route('subscriptions.resume')" method="post">
+            <Button variant="success">
+                Resume subscription
+            </Button>
         </Link>
 
-        <Link v-else :href="route('subscriptions.subscribe')" class="btn btn-success">Start a new subscription</Link>
+        <Link v-else :href="route('subscriptions.subscribe')">
+            <Button variant="success">Start a new subscription</Button>
+        </Link>
 
     </Card>
 </template>

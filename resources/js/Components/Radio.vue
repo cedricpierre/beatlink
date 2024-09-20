@@ -29,23 +29,25 @@ const emits = defineEmits(['update:modelValue'])
 </script>
 <template>
     <div class="form-control">
-        <label class="label cursor-pointer justify-start">
+        <label class="flex items-center space-x-2">
             <input
                 v-model="model"
                 :autofocus="props.autofocus"
                 :class="{
                   ...props.className,
-                  [`radio-${props.variant}`]: props.variant,
-                  [`radio-${props.size}`]: props.size,
+                  [`text-${props.variant}-600`]: props.variant,
+                  [`focus:border-${props.variant}-300`]: props.variant,
+                  [`focus:ring-${props.variant}-200`]: props.variant,
+                  'border-red-300': props.validationStatus === 'error',
                 }"
+                class="h-4 w-4 rounded-full border-gray-300 shadow-sm focus:ring focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                 :disabled="props.disabled"
                 :name="props.name"
                 :required="props.required"
-                class="radio"
                 type="radio"
                 @input="emits('update:modelValue', modelValue)"
             />
-            <div v-if="props.label" class="text-neutral-500 text-sm ml-2 justify-items-start">{{ props.label }}</div>
+            <Label v-if="props.label">{{ props.label }}</Label>
         </label>
         <div v-if="props.errorMessage" :class="{
             'text-red-600': props.validationStatus === 'error',
