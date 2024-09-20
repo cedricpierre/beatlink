@@ -187,6 +187,7 @@ const columns = ref([
                             :loading="loading"
                             @change="search"
                             @select="onSelect"
+                            placeholder="Search artists, albums, playlist,..."
                         />
                     </div>
                 </template>

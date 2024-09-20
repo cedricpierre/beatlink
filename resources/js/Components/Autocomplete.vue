@@ -14,6 +14,7 @@ const props = defineProps({
         type: String,
         default: 'Search',
     },
+    placeholder: String,
     disabled: {
         type: Boolean,
         default: false,
@@ -73,6 +74,7 @@ watch(() => props.items, (values) => {
         <Input
             v-model="lookup"
             :disabled="props.disabled"
+            :placeholder="props.placeholder"
             :error-message="form.errors.search"
             :label="props.label"
             :loading="props.loading"
