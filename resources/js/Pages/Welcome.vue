@@ -9,7 +9,7 @@ const asset = useAsset()
 <template>
     <Head title="Welcome"/>
     <DefaultLayout>
-        <div class="container mx-auto lg:max-w-screen-lg text-center py-8 mb-12">
+        <div class="text-center py-8 mb-12">
 
             <h1 class="text-primary-600 dark:text-primary-200 font-extrabold text-7xl my-8">BeatLink.</h1>
             <h2 class="text-primary-900 dark:text-primary-500 font-bold text-4xl my-8">Music marketing, without headache ! 🤘</h2>
@@ -31,7 +31,7 @@ const asset = useAsset()
                     <img class="rounded-xl shadow w-40 z-0 blur absolute top-10 right-0" :src="asset('img/screenshot.png')" alt="">
                     <img class="rounded-xl shadow w-40 z-0 blur absolute top-20 left-0" :src="asset('img/screenshot.png')" alt="">
                     <div class="z-20 w-full relative z-10">
-                        <img class="rounded-xl mx-auto  shadow w-60" :src="asset('img/screenshot.png')" alt="">
+                        <img class="rounded-xl mx-auto shadow-2xl w-60" :src="asset('img/screenshot.png')" alt="">
                     </div>
                 </div>
                 <div class="px-8 py-8">
@@ -41,18 +41,18 @@ const asset = useAsset()
 
                     <div class="columns-3 gap-2 lg:gap-4 my-8 space-y-6">
                         <div
-                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
-                            <img class="h-8 w-8" :src="asset('brands/spotify.svg')" alt="Spotify">
+                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            <img class="h-12 w-12" :src="asset('brands/spotify.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Spotify</h4>
                         </div>
                         <div
-                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
-                            <img class="h-8 w-8" :src="asset('brands/tidal.svg')" alt="Spotify">
+                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            <img class="h-12 w-12" :src="asset('brands/tidal.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Tidal</h4>
                         </div>
                         <div
-                            class="bg-primary-50 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
-                            <img class="h-8 w-8" :src="asset('brands/deezer.svg')" alt="Spotify">
+                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            <img class="h-12 w-12" :src="asset('brands/deezer.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Deezer</h4>
                         </div>
                     </div>

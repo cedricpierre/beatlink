@@ -12,7 +12,7 @@ const user = usePage().props.auth.user as IUser
 <template>
     <Background>
 
-        <Navbar variant="primary" sticky position="top" shadow>
+        <Navbar sticky position="top" shadow>
             <template #left>
                 <Logo/>
             </template>
@@ -42,10 +42,10 @@ const user = usePage().props.auth.user as IUser
                     <Dropdown align="end">
                         <template #trigger>
                             <div>
-                                <Badge v-if="user.is_premium" class="uppercase mr-2" size="sm">
-                                        premium
-                                    </Badge>
-                                    <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>
+                                <Badge variant="primary" outline v-if="user.is_premium" class="uppercase mr-2" size="sm">
+                                    premium
+                                </Badge>
+                                <strong class="first-letter:uppercase font-bold">{{ user.name }}</strong>
                             </div>
                         </template>
                         <li>
@@ -94,7 +94,7 @@ const user = usePage().props.auth.user as IUser
         </div>
 
         <!-- Page Content -->
-	    <main class="container px-2 my-4 mx-auto">
+        <main class="container px-2 my-4 mx-auto">
             <slot/>
         </main>
 

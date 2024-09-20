@@ -38,7 +38,7 @@ const asset = useAsset()
                 </template>
                 <template v-else>
                     <li>
-                        <Link :href="route('dashboard')" class="btn btn-primary">Dashboard</Link>
+                        <Link :href="route('dashboard')">Dashboard</Link>
                     </li>
                 </template>
             </template>
@@ -50,7 +50,7 @@ const asset = useAsset()
             </div>
         </header>
 
-        <main class="container px-2 mx-auto lg:max-w-screen-lg">
+        <main class="container mx-auto lg:max-w-screen-lg">
             <slot/>
         </main>
     </Background>
