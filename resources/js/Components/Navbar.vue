@@ -18,7 +18,7 @@ const props = defineProps({
         'shadow-2xl': props.shadow,
     }">
 
-		<div class="flex flex-shrink">
+        <div class="flex flex-shrink" v-if="$slots.responsive">
             <Dropdown class="mr-2">
                 <template #trigger>
                     <Button variant="light" class="lg:hidden">

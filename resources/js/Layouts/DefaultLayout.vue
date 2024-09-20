@@ -20,10 +20,6 @@ const asset = useAsset()
             <template #left>
                 <Logo/>
             </template>
-            <template #responsive>
-                <li><a>Pricing</a></li>
-                <li><a>How it works</a></li>
-            </template>
             <template #center>
             </template>
             <template #right>
