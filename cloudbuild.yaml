@@ -1,3 +1,5 @@
 steps:
-  - name: gcr.io/kaniko-project/executor
-    args: [ 'build', '-t', '${_LOCATION}/beatlink/github.com/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.' ]
+  - name: gcr.io/cloud-builders/docker
+    args: [ 'build', '-t', '${_LOCATION}/github.com/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.' ]
+images:
+  - '${_LOCATION}/github.com/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
