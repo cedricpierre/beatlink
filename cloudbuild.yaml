@@ -3,8 +3,7 @@ steps:
   - name: 'gcr.io/kaniko-project/executor:latest'
     args:
       [
-        "--dockerfile=<DOCKER-FILE-DIST>",
-        "--context=dir://<BUILD_CONTEXT>",
+        "--dockerfile=Dockerfile",
         "--cache=true",
         "--cache-ttl=6h",
         "--destination=gcr.io/$PROJECT_ID/beatlink:$COMMIT_SHA"
