@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/kaniko-project/executor:latest'
     args:
-      - --destination=gcr.io/beatlink/github.com/cedricpierre/beatlink@sha256:${_IMAGE}
+      - --destination=gcr.io/beatlink/github.com/cedricpierre/beatlink@sha256:${COMMIT_SHA}
       - --cache=true
       - --cache-ttl=XXh
