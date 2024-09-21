@@ -1,15 +1,23 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.1-fpm-alpine
 
-LABEL authors="cedricpierre"
+# Install system dependencies
+RUN apk add --no-cache git curl libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd-dev zip libzip-dev
 
-ADD ./resources/www.conf /usr/local/etc/php-fpm.d/www.conf
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql gd zip exif pcntl
 
-RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN mkdir -p /var/www/html
+# Set working directory
+WORKDIR /var/www
 
-ADD ./ /var/www/html
+# Copy existing application directory contents
+COPY . /var/www
 
-RUN docker-php-ext-install pdo pdo_mysql
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /var/www
 
-RUN chown -R laravel:laravel /var/www/html
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]
