@@ -1,13 +1,14 @@
-service: laravel
-
+service: beatlink
+configValidationMode: error
 provider:
+  stage: production
   name: aws
   # The AWS region in which to deploy (us-east-1 is the default)
-  region: eu-west-1
+  region: us-east-1
   # Environment variables
   environment:
     APP_ENV: production # Or use ${sls:stage} if you want the environment to match the stage
-
+    DB_PASSWORD: ${ssm:/beatlink-production/db}
 package:
   # Files and directories to exclude from deployment
   patterns:
@@ -28,10 +29,14 @@ functions:
       - httpApi: '*'
     vpc:
       securityGroupIds:
-        - sg-0b82b7a5b857a8b6c
+        - sg-04e0080ebffb527f7
       subnetIds:
-        - subnet-0cedd85a2ce7922c5
-        - subnet-0494b7d140f1bc71b
+        - subnet-0a756ad42dbcdb9bd
+        - subnet-05b011c8fe39a0512
+        - subnet-0d732fe413c4df91f
+        - subnet-095893ec94e2eea1c
+        - subnet-071f139d651e9aa69
+        - subnet-06862c51ef258b0d1
   # This function lets us run artisan commands in Lambda
   artisan:
     handler: artisan
@@ -46,11 +51,12 @@ constructs:
   website:
     type: server-side-website
     domain: beatlink.me
-    certificate: arn:aws:acm:us-east-1:872515253491:certificate/7ffb40aa-33cc-465f-972b-12bb22fea6df
+    certificate: arn:aws:acm:us-east-1:872515253491:certificate/477d0cfd-f165-4b17-bfe0-d80f13d8c3f5
+    redirectToMainDomain: true
     assets:
-      '/js/*': public/js
-      '/css/*': public/css
-      '/favicon.ico': public/favicon.ico
+      '/brands/*': public/brands
+      '/img/*': public/img
+      '/favicon.svg': public/favicon.svg
       '/robots.txt': public/robots.txt
 
 plugins:
