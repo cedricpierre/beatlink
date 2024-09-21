@@ -106,6 +106,7 @@ class CampaignsController extends Controller
 
     public function upload(CampaignUploadRequest $request, Campaign $campaign): RedirectResponse
     {
+        dump($request->allFiles());
         if ($request->hasFile('background')) {
             $campaign->background_url = $request->file('background')?->store('backgrounds', 's3');
             $campaign->save();
