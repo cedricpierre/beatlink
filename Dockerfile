@@ -60,6 +60,13 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
 COPY . /var/www/html
 
+RUN rm -rf node_modules \
+    && rm package-lock.json
+
+RUN npm i && npm run build
+
+RUN chmod 777 -R storage
+
 COPY docker/8.3/start-container /usr/local/bin/start-container
 COPY docker/8.3/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/8.3/php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
