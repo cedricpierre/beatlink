@@ -1,5 +1,3 @@
 steps:
-  - name: gcr.io/cloud-builders/docker
-    args: [ 'build', '-t', '${_LOCATION}/github.com/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.' ]
-images:
-  - '${_LOCATION}/github.com/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/beatlink/github.com/cedricpierre/beatlink@sha256:${_IMAGE}', '.' ]
