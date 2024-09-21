@@ -42,11 +42,10 @@ functions:
     handler: artisan
     runtime: php-82-console
     timeout: 720 # in seconds
-    # Uncomment to also run the scheduler every minute
-    #events:
-    #    - schedule:
-    #          rate: rate(1 minute)
-    #          input: '"schedule:run"'
+    events:
+      - schedule:
+          rate: rate(1 minute)
+          input: '"schedule:run"'
 constructs:
   website:
     type: server-side-website
@@ -54,6 +53,7 @@ constructs:
     certificate: arn:aws:acm:us-east-1:872515253491:certificate/477d0cfd-f165-4b17-bfe0-d80f13d8c3f5
     redirectToMainDomain: true
     assets:
+      '/build/*': public/build/
       '/brands/*': public/brands
       '/img/*': public/img
       '/favicon.svg': public/favicon.svg

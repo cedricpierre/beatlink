@@ -4,7 +4,8 @@
     "scripts": {
         "dev": "vite",
         "stripe": "stripe listen --forward-to=http://localhost:3080/stripe/webhook",
-        "build": "vue-tsc && vite build && vite build --ssr"
+        "build": "vue-tsc && vite build && vite build --ssr",
+        "deploy": "sls deploy && sls bref:cli --args=\"migrate --force\""
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.2.0",
