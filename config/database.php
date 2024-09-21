@@ -95,7 +95,6 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
-            'unix_socket' => env('DB_SOCKET', ''),
         ],
 
         'sqlsrv' => [
