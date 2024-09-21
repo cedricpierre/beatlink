@@ -36,9 +36,6 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
-      laravel-vapor:
-        specifier: ^0.7.1
-        version: 0.7.1
       laravel-vite-plugin:
         specifier: ^1.0.5
         version: 1.0.5(vite@5.4.6(sass-embedded@1.79.2))
@@ -711,9 +708,6 @@ packages:
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
-
-  laravel-vapor@0.7.1:
-    resolution: {integrity: sha512-A+SoMGX1ranj12TtKhvSb2Th4J430s/tPDFHAjSwz9L3Yuc77fG5a+/2bFM35xPKIxsfUx1U4L25XWokOIy3mg==}
 
   laravel-vite-plugin@1.0.5:
     resolution: {integrity: sha512-Zv+to82YLBknDCZ6g3iwOv9wZ7f6EWStb9pjSm7MGe9Mfoy5ynT2ssZbGsMr1udU6rDg9HOoYEVGw5Qf+p9zbw==}
@@ -1816,12 +1810,6 @@ snapshots:
       '@pkgjs/parseargs': 0.11.0
 
   jiti@1.21.6: {}
-
-  laravel-vapor@0.7.1:
-    dependencies:
-      axios: 1.7.7
-    transitivePeerDependencies:
-      - debug
 
   laravel-vite-plugin@1.0.5(vite@5.4.6(sass-embedded@1.79.2)):
     dependencies:

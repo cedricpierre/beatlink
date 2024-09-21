@@ -31,12 +31,20 @@ functions:
       securityGroupIds:
         - sg-04e0080ebffb527f7
       subnetIds:
+        # internal
         - subnet-0a756ad42dbcdb9bd
         - subnet-05b011c8fe39a0512
         - subnet-0d732fe413c4df91f
         - subnet-095893ec94e2eea1c
         - subnet-071f139d651e9aa69
         - subnet-06862c51ef258b0d1
+        # lambda to vpc external
+        - subnet-04b79f194ea938b0a
+        - subnet-0198576160e488e41
+        - subnet-0fa3165b8664b448c
+        - subnet-099b7ec2bd4befb51
+        - subnet-001eb137eea10d561
+        - subnet-09d0e66a942ee9aa1
   # This function lets us run artisan commands in Lambda
   artisan:
     handler: artisan
