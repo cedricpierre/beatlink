@@ -28,5 +28,5 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/cedricpierre/beatlink:latest
+          docker build resource -t ghcr.io/cedricpierre/beatlink:latest
           docker push ghcr.io/cedricpierre/beatlink:latest
