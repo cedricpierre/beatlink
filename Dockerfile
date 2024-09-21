@@ -63,6 +63,8 @@ COPY . /var/www/html
 RUN rm -rf node_modules \
     && rm package-lock.json
 
+RUN composer install
+
 RUN npm i && npm run build
 
 RUN chmod 777 -R storage
