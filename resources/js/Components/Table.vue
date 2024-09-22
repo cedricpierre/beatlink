@@ -16,6 +16,7 @@ interface Item {
 
 const props = defineProps({
     ...useStyleProps(),
+    responsive: Boolean,
     columns: {
         type: Array<Column>,
         default: () => [],
@@ -31,42 +32,46 @@ const props = defineProps({
 
 </script>
 <template>
-    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500"
-    >
-        <thead class="bg-gray-50">
-        <tr>
-            <th v-for="(column,h) in props.columns"
-                :key="h"
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900"
-            >
-                {{ column.name ?? column.key }}
-            </th>
-        </tr>
-        </thead>
-        <tbody
-            class="divide-y border-t border-gray-100"
-            :class="{
-                'divide-gray-100': props.striped
-            }"
+    <div :class="{
+        'overflow-auto': props.responsive
+    }">
+        <table class="w-full border-collapse bg-white text-left text-sm text-gray-500"
         >
-        <tr v-for="(item,i) in items" :key="i">
-            <td v-for="(column,c) in props.columns"
-                :key="c"
-                class="px-6 py-4"
-                :class="[column.className, `text-${column.align ?? 'left'}`]"
+            <thead class="bg-gray-50">
+            <tr>
+                <th v-for="(column,h) in props.columns"
+                    :key="h"
+                    scope="col"
+                    class="px-6 py-4 font-medium text-gray-900"
+                >
+                    {{ column.name ?? column.key }}
+                </th>
+            </tr>
+            </thead>
+            <tbody
+                class="divide-y border-t border-gray-100"
+                :class="{
+                    'divide-gray-100': props.striped
+                }"
             >
-                <slot v-if="$slots['item.'+column.key]" :name="`item.${column.key}`" v-bind="{index: i, item: item} as Item"></slot>
-                <template v-else>{{ item[column.key] }}</template>
-            </td>
-        </tr>
-        </tbody>
-        <template v-if="$slots.footer">
-            <tfoot>
-            <slot name="footer"></slot>
-            </tfoot>
-        </template>
-    </table>
+            <tr v-for="(item,i) in items" :key="i">
+                <td v-for="(column,c) in props.columns"
+                    :key="c"
+                    class="px-6 py-4"
+                    :class="[column.className, `text-${column.align ?? 'left'}`]"
+                >
+                    <slot v-if="$slots['item.'+column.key]" :name="`item.${column.key}`" v-bind="{index: i, item: item} as Item"></slot>
+                    <template v-else>{{ item[column.key] }}</template>
+                </td>
+            </tr>
+            </tbody>
+            <template v-if="$slots.footer">
+                <tfoot>
+                <slot name="footer"></slot>
+                </tfoot>
+            </template>
+        </table>
+    </div>
     <template v-if="$slots.empty && !props.items.length">
         <div class="flex items-center justify-center py-4 text-gray-500 font-bold text-sm">
             <slot name="empty"></slot>

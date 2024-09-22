@@ -54,21 +54,19 @@ const form = useForm({
         <div class="container mx-auto">
             <Card>
                 <template #header>
-                    <div class="flex flex-row space-between items-center">
-                        <h2 class="flex flex-grow">{{ props.leads?.total }} leads</h2>
-                        <div class="flex flex-shrink">
-                            <form @submit.prevent="form.get(route('campaigns.view',{campaign: props.campaign?.id}))">
-                                <div class="flex flex-row space-x-2">
-                                    <Select v-model="form.platform_id" :options="props.platforms" text-key="name" value-key="id"/>
-                                    <Input v-model="form.search" placeholder="Search" type="search"></Input>
-                                    <Button>Ok</Button>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="flex flex-row justify-end items-center">
+
+                        <form @submit.prevent="form.get(route('campaigns.view',{campaign: props.campaign?.id}))">
+                            <div class="flex flex-row space-x-2">
+                                <Select v-model="form.platform_id" :options="props.platforms" text-key="name" value-key="id"/>
+                                <Input v-model="form.search" placeholder="Search" type="search"></Input>
+                                <Button>Ok</Button>
+                            </div>
+                        </form>
                     </div>
                 </template>
 
-                <Table :columns="columns" :items="props.leads?.data">
+                <Table responsive :columns="columns" :items="props.leads?.data">
                     <template #item.platform="{item}">
                         {{ item.platform?.name }}
                     </template>
@@ -83,10 +81,12 @@ const form = useForm({
                             {{ item.referer ? item.referer.substring(0, 60) + '...' : '-' }}
                         </span>
                     </template>
+                    <template #pagination>
+                        <Pagination :paginated="leads"></Pagination>
+                    </template>
                 </Table>
             </Card>
 
-            <Pagination :paginated="leads"></Pagination>
 
         </div>
     </AuthenticatedLayout>

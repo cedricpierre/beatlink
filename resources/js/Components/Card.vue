@@ -1,9 +1,9 @@
 <template>
-    <div class="dark:bg-primary-950 dark:bg-opacity-30 bg-white shadow rounded-2xl py-6 px-4 overflow-auto sm:w-full">
+    <div class="flex flex-col dark:bg-primary-950 dark:bg-opacity-30 bg-white shadow rounded-2xl py-6 px-4 sm:w-full">
 
-        <h2 v-if="$slots.header" class="text-xl font-medium text-primary-900 dark:text-primary-100 py-2">
+        <div v-if="$slots.header" class="text-xl font-medium text-primary-900 dark:text-primary-100 py-2">
             <slot name="header"></slot>
-        </h2>
+        </div>
 
         <div v-if="$slots.subtitle" class="font-medium py-2 text-sm text-gray-600 dark:text-gray-400">
             <slot name="subtitle"></slot>

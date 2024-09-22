@@ -12,7 +12,7 @@ const onPageChange = (event: number) => {
 }
 </script>
 <template>
-    <div v-if="props.paginated" class="flex justify-center py-8">
+    <div v-if="props.paginated" class="flex justify-center">
         <nav aria-label="Pagination">
             <ul class="inline-flex items-center space-x-2 rounded-md text-sm">
                 <li>

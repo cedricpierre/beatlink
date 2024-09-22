@@ -13,17 +13,14 @@ const props = defineProps({
     token: String,
 })
 
-
 const open = async (link: ILink) => {
     const url = route('landing.open', {campaign: props.campaign?.slug, link: link.platform_id, referer: props.referer});
 
     const response = await fetch(url)
 
-    console.log(response)
-
     if (response.ok) {
         const data = await response.json()
-        window.open(data.url);
+        window.location = data.url
     }
 }
 const asset = useAsset()
