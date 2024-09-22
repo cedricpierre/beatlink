@@ -108,7 +108,7 @@ const columns = ref([
             Add links to your campaign
         </template>
 
-	    <Table responsive v-if="props.campaign?.links.length" :columns="columns" :items="props.campaign?.links">
+        <Table v-if="props.campaign?.links.length" :columns="columns" :items="props.campaign?.links">
 
             <template #item.name="{item}">
 	            <div class="whitespace-nowrap">
