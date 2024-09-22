@@ -1,4 +1,4 @@
-  #!/bin/sh\n\
+#!/bin/sh\n\
 echo "Starting services..."
 service php8.3-fpm start
 nginx -g "daemon off;error_log /dev/stdout debug;"
