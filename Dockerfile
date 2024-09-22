@@ -55,7 +55,7 @@ RUN npm i && npm run build
 
 RUN chmod 777 -R storage
 
-EXPOSE 80
+EXPOSE 80/tcp
 
 COPY ./docker/8.3/start.sh start.sh
 
