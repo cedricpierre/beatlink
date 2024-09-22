@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 use Illuminate\Http\Request;
 
@@ -15,6 +12,7 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 
+die(__DIR__);
 // Bootstrap Laravel and handle the request...
 (require_once __DIR__.'/../bootstrap/app.php')
     ->handleRequest(Request::capture());
