@@ -1,6 +1,8 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ARG MYSQL_CLIENT="mysql-client"
+ARG POSTGRES_VERSION=15
 
 # Install dependencies
 RUN apt update
@@ -20,6 +22,10 @@ RUN apt install -y php8.3\
     php8.3-xml\
     php8.3-bcmath\
     php8.3-pdo
+
+RUN apt-get update \
+    && apt-get install -y $MYSQL_CLIENT \
+    && apt-get install -y postgresql-client-$POSTGRES_VERSION \
 
 # Install php-fpm
 RUN apt install -y php8.3-fpm php8.3-cli
