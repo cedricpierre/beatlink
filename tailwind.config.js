@@ -45,6 +45,11 @@ module.exports = {
                 /^(text-(?:light|primary|secondary|dark|ghost|success|error|warning)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
             variants: ['hover', 'active', 'focus', 'dark', 'dark:hover'],
         },
+        {
+            pattern:
+                /^(fill-(?:light|primary|secondary|dark|ghost|success|error|warning)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+            variants: ['hover', 'active', 'focus', 'dark', 'dark:hover'],
+        },
     ],
     plugins: [
         typography,

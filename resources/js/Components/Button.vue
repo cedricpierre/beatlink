@@ -48,9 +48,9 @@ watch(() => props.loading, (value) => {
           [`rounded-${props.rounded}`]: props.rounded,
           [`text-${props.size}`]: props.size,
         }"
-        class="text-white border px-4 py-2 text-center font-medium shadow-sm transition-all focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+        class="text-white border px-4 py-2 text-center font-medium shadow-sm transition-all focus:ring focus:ring-primary-200 disabled:cursor-not-allowed"
     >
-        <Loading :active="loading" variant="dots"></Loading>
         <slot></slot>
+        <Loading class="ml-2" :active="props.loading" :variant="props.variant"></Loading>
     </button>
 </template>

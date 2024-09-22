@@ -94,7 +94,7 @@ const user = usePage().props.auth.user as IUser
 
                 <template #action>
                     <Link size="sm" :href="route('subscriptions.subscribe')">
-                        <Button variant="ghost">
+                        <Button variant="success">
                             Subscribe
                         </Button>
                     </Link>
