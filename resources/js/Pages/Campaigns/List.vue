@@ -48,7 +48,7 @@ const columns = ref([
             <template #header>
                 Campaigns
             </template>
-            <Table :columns="columns" :items="props.campaigns?.data">
+            <Table responsive :columns="columns" :items="props.campaigns?.data">
 
                 <template #item.name="{item}">
                     <Link :href="route('campaigns.view', {campaign: item.id})" class="whitespace-nowrap text-primary-600 hover:underline" target="_blank">
