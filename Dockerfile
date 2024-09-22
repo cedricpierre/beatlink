@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-
+ENV WWWGROUP=1
 # Install dependencies
 RUN apt update
 RUN apt install -y software-properties-common
@@ -57,6 +57,11 @@ RUN composer install
 RUN npm i && npm run build
 
 RUN chmod 777 -R storage
+
+RUN groupadd --force -g $WWWGROUP user
+
+RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 user
+
 
 EXPOSE 80/tcp
 
