@@ -8,6 +8,7 @@ steps:
         "--cache-ttl=6h",
         "--destination=gcr.io/$PROJECT_ID/beatlink:$COMMIT_SHA"
       ]
+
   # Deploy image to Cloud Run
   - name: "gcr.io/cloud-builders/gcloud"
     args:
