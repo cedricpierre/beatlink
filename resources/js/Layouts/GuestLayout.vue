@@ -7,11 +7,7 @@ const asset = useAsset()
 </script>
 
 <template>
-    <Background class="bg-no-repeat bg-top"
-                :style="{
-            backgroundImage: `url(${asset('img/bg.png')})`,
-        }"
-    >
+	<Background>
         <div class="flex justify-center items-center flex-col flex-1">
             <div class="container lg:max-w-screen-sm px-2">
                 <Logo class="text-center text-2xl mb-2"/>
