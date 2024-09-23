@@ -11,7 +11,7 @@ const asset = useAsset()
 </script>
 
 <template>
-    <Background class="bg-no-repeat bg-top"
+    <div class="bg-white bg-no-repeat bg-top"
                 :style="{
             backgroundImage: `url(${asset('img/bg.png')})`,
         }"
@@ -48,5 +48,5 @@ const asset = useAsset()
         <main class="container mx-auto lg:max-w-screen-lg">
             <slot/>
         </main>
-    </Background>
+    </div>
 </template>

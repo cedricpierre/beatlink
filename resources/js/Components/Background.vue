@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col min-h-screen from-primary-100 to-white bg-gradient-to-br dark:from-primary-950 dark:to-primary-800 ">
+        class="flex flex-col min-h-screen bg-primary-50">
         <slot></slot>
     </div>
 </template>
