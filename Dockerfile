@@ -47,6 +47,8 @@ COPY ./docker/8.3/nginx.conf /etc/nginx/sites-available/default
 COPY . /var/www/html
 WORKDIR /var/www/html
 
+COPY ./docker/8.3/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 RUN chown -R www-data:www-data /var/www/html
 
 RUN rm -rf node_modules \
