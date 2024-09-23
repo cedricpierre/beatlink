@@ -41,17 +41,17 @@ const asset = useAsset()
 
                     <div class="columns-3 gap-2 lg:gap-4 my-8 space-y-6">
                         <div
-                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            class="bg-white w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl shadow border border-primary-100 text-center">
                             <img class="h-12 w-12" :src="asset('brands/spotify.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Spotify</h4>
                         </div>
                         <div
-                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            class="bg-white w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl shadow border border-primary-100 text-center">
                             <img class="h-12 w-12" :src="asset('brands/tidal.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Tidal</h4>
                         </div>
                         <div
-                            class="bg-primary-100 w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl border border-primary-200 text-center">
+                            class="bg-white w-full flex items-center justify-center flex-col px-4 py-2 rounded-2xl shadow border border-primary-100 text-center">
                             <img class="h-12 w-12" :src="asset('brands/deezer.svg')" alt="Spotify">
                             <h4 class="text-primary-800 pt-4 pb-2 text-md lg:text-xl">Deezer</h4>
                         </div>
