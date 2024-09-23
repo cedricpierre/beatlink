@@ -1,4 +1,5 @@
-#!/bin/sh\n\
+#!/bin/sh
+echo $APP_KEY
 echo "Starting services..."
 service php8.3-fpm start
 nginx -g "daemon off;error_log /dev/stdout debug;"
