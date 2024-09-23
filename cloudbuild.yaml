@@ -9,16 +9,18 @@ steps:
         "--destination=gcr.io/$PROJECT_ID/beatlink:$COMMIT_SHA"
       ]
   # Deploy image to Cloud Run
-#  - name: "gcr.io/cloud-builders/gcloud"
-#    args:
-#      - "run"
-#      - "deploy"
-#      - "beatlink"
-#      - "--image"
-#      - "gcr.io/$PROJECT_ID/beatlink:$COMMIT_SHA"
-#      - "--region"
-#      - "us-central1"
-#      - "--platform"
-#      - "managed"
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "beatlink"
+      - "--image"
+      - "gcr.io/$PROJECT_ID/beatlink:$COMMIT_SHA"
+      - "--region"
+      - "us-central1"
+      - "--platform"
+      - "--set-env-vars"
+      - "APP_KEY=base64:H6Xq08iVGNp2WOTIiTlBMciqyslb7bbT+v9KRL7YIvQ="
+      - "managed"
 options:
   logging: CLOUD_LOGGING_ONLY
