@@ -5,7 +5,7 @@ import Navbar from "@/Components/Navbar.vue";
 import {useAsset} from "@/Compasable/asset";
 import NavbarItem from "@/Components/NavbarItem.vue";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 
 const asset = useAsset()
 </script>

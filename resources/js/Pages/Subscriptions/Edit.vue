@@ -7,7 +7,7 @@ import ResumeSubscriptionForm from "@/Pages/Subscriptions/Partials/ResumeSubscri
 import Alert from "@/Components/Alert.vue";
 import {IUser} from "@/Interfaces/User";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 
 const props = defineProps({
     subscription: Object,

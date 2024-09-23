@@ -4,8 +4,9 @@ import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import {Head, usePage} from '@inertiajs/vue3';
+import {IUser} from "@/Interfaces/User";
 
-const user = usePage().props.auth.user;
+const user = usePage().props.auth?.user as IUser;
 
 const props = defineProps({
     must_verify_email: Boolean,

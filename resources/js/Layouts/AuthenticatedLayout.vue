@@ -8,7 +8,7 @@ import moment from "moment/moment";
 import NavbarItem from "@/Components/NavbarItem.vue";
 import DropdownItem from "@/Components/DropdownItem.vue";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 </script>
 
 <template>

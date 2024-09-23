@@ -3,7 +3,7 @@ import Card from "@/Components/Card.vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import {IUser} from "@/Interfaces/User";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 
 </script>
 

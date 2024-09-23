@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Alert from "@/Components/Alert.vue";
 import {IUser} from "@/Interfaces/User";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 
 </script>
 

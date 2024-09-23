@@ -7,7 +7,7 @@ import {ISubscription} from "@/Interfaces/Subscription";
 import Badge from "@/Components/Badge.vue";
 import {IUser} from "@/Interfaces/User";
 
-const user = usePage().props.auth.user as IUser
+const user = usePage().props.auth?.user as IUser
 
 const props = defineProps({
     campaigns: Array<ICampaign>,
