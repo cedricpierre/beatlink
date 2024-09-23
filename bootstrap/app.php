@@ -30,9 +30,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
 
         $exceptions->respond(function (Response|RedirectResponse $response, Throwable $exception, Request $request) {
-            return $exception;
+
             if (!app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [500, 503, 404, 403])) {
-                return Inertia::render('Error', ['status' => $response->getStatusCode()])
+                return Inertia::render('Error', [
+                    'status'  => $response->getStatusCode(),
+                    'message' => $exception->getMessage(),
+                ])
                               ->toResponse($request)
                               ->setStatusCode($response->getStatusCode());
             } else if ($response->getStatusCode() === 419) {
