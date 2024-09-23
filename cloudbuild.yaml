@@ -21,7 +21,5 @@ steps:
       - "us-central1"
       - "--platform"
       - "managed"
-      - "--env-vars-file"
-      - ".env.production"
 options:
   logging: CLOUD_LOGGING_ONLY
