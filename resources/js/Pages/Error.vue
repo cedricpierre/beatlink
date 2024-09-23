@@ -13,7 +13,7 @@ const props = defineProps({
 
         <div class="container mx-auto lg:max-w-screen-lg">
             <div class="text-lg py-8 text-center">Awww snap ! An error occured...</div>
-            <code>{{ message }}</code>
+            <code class="overflow-auto">{{ message }}</code>
         </div>
     </GuestLayout>
 </template>
