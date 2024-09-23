@@ -47,7 +47,7 @@ COPY ./docker/8.3/nginx.conf /etc/nginx/sites-available/default
 COPY . /var/www/html
 WORKDIR /var/www/html
 
-COPY ./docker/8.3/php-fpm.conf /etc/php/8.3/fpm/pool.d/php-fpm.conf
+COPY ./docker/8.3/php-fpm.conf /etc/php/8.3/fpm/pool.d/custom.conf
 
 RUN chown -R www-data:www-data /var/www/html
 
