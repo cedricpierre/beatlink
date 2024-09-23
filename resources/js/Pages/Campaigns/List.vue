@@ -3,7 +3,6 @@ import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ICampaign} from "@/Interfaces/Campaign";
 import {IPaginated} from "@/Interfaces/Paginated";
-import BPagination from "@/Components/Pagination.vue";
 import Card from "@/Components/Card.vue";
 import Badge from "@/Components/Badge.vue";
 import moment from "moment/moment";
@@ -97,10 +96,12 @@ const columns = ref([
                         </Link>
                     </div>
                 </template>
+                <template #pagination>
+                    <Pagination :paginated="props.campaigns"></Pagination>
+                </template>
             </Table>
         </Card>
 
-        <BPagination :paginated="props.campaigns"></BPagination>
 
     </AuthenticatedLayout>
 </template>

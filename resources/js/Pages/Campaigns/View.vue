@@ -81,6 +81,11 @@ const form = useForm({
                             {{ item.referer ? item.referer.substring(0, 60) + '...' : '-' }}
                         </span>
                     </template>
+                    <template #empty>
+                        <div class="flex space-y-6 flex-col justify-center items-center">
+                            <span>No leads found</span>
+                        </div>
+                    </template>
                     <template #pagination>
                         <Pagination :paginated="leads"></Pagination>
                     </template>
