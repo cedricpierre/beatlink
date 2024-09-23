@@ -20,8 +20,8 @@ steps:
       - "--region"
       - "us-central1"
       - "--platform"
+      - "managed"
       - "--set-env-vars"
       - "APP_KEY=base64:H6Xq08iVGNp2WOTIiTlBMciqyslb7bbT+v9KRL7YIvQ="
-      - "managed"
 options:
   logging: CLOUD_LOGGING_ONLY
