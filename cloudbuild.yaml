@@ -22,6 +22,6 @@ steps:
       - "--platform"
       - "managed"
       - "--env-vars-file"
-      - ".env.production.yaml"
+      - ".env.production"
 options:
   logging: CLOUD_LOGGING_ONLY
