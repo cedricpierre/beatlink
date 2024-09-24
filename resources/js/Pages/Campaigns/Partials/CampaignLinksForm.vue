@@ -136,7 +136,7 @@ const columns = ref([
                             Preview
                         </Button>
                     </a>
-                    <Button variant="error" size="sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})"
+                    <Button as="button" variant="error" size="sm" :href="route('campaigns.links.destroy', {campaign: campaign?.id, link: item.id})"
                           method="delete"
                           preserve-scroll>
                         Delete
