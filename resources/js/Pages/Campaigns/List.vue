@@ -75,11 +75,11 @@ const columns = ref([
                 </template>
                 <template #item.actions="{item}">
                     <div class="space-x-2 whitespace-nowrap flex justify-end">
-                        <a :href="route('landing', {slug: item.slug})" target="_blank">
+                        <Link :href="route('landing', {slug: item.slug})" target="_blank">
                             <Button variant="light" size="sm">
                                 View page
                             </Button>
-                        </a>
+                        </Link>
                         <Link :href="route('campaigns.view', {id: item.id})">
                             <Button variant="light" size="sm">Stats</Button>
                         </Link>
