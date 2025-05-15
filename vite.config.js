@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import compression from 'vite-plugin-compression'
+
 
 export default defineConfig({
     server: {
@@ -20,5 +22,17 @@ export default defineConfig({
                 },
             },
         }),
+        compression({ algorithm: 'gzip' }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                    manualChunks(id) {
+                        if (id.includes('node_modules')) {
+                            if (id.includes('vue')) return 'vue'
+                        }
+                    }
+                }
+        }
+    }
 });
