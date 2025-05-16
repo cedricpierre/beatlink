@@ -72,5 +72,6 @@ If this were a production project, I would:
 - Add proper documentation
 - Enhance security measures
 - Optimize performance
+- Probably choose a different design pattern like ***Repository*** or ***Service*** pattern.
 
 But since this is a learning project, the focus was on understanding and implementing the core technologies rather than production-grade features.
